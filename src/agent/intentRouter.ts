@@ -81,7 +81,34 @@ export function routeSkill(userMessage: string): SkillRouteResult {
     };
   }
 
-  if (/(替代|低咖啡因|无咖啡因|不喝咖啡.*喝什么|喝什么|还想喝点|不影响睡眠的饮品|保证不失眠|不失眠.*饮品|想提神但不想喝咖啡)/.test(text)) {
+  if (/(催吐|吃什么药|药.*代谢)/.test(text)) {
+    return {
+      skillId: "unknown",
+      intent: "unknown",
+      confidence: "high",
+      reason: "用户问题涉及高风险医疗或处置建议，应进入安全兜底。",
+    };
+  }
+
+  if (/(今天|下午).*(还能|能喝|可以喝)|导致的吗|经常心悸|每天\s*\d+\s*mg|是不是偏敏感/.test(text)) {
+    return {
+      skillId: "sleep_risk_advisor",
+      intent: "sleep_risk",
+      confidence: "high",
+      reason: "用户在询问今日是否适合继续摄入或反馈与咖啡因关系。",
+    };
+  }
+
+  if (/(总结|复盘|周报|这周|本周|最近一周|最近).*(咖啡因|咖啡|摄入|睡眠|喝太多|调整|高风险|反馈|心悸|心慌|周报)|常喝什么|越喝越没用|昨晚睡得差.*复盘|下周.*(调整|怎么做)/.test(text)) {
+    return {
+      skillId: "weekly_review_writer",
+      intent: "weekly_review",
+      confidence: "high",
+      reason: "用户在询问近 7 天摄入趋势、反馈影响或周复盘。",
+    };
+  }
+
+  if (/(替代|低咖啡因|无咖啡因|不喝咖啡.*喝什么|还想喝点|不影响睡眠的饮品|保证不失眠|不失眠.*饮品|想提神但不想喝咖啡|减少.*(奶茶|咖啡)|不想戒咖啡|想.*提神|焦虑.*咖啡.*提神)/.test(text)) {
     return {
       skillId: "alternative_drink_recommender",
       intent: "alternative_drink",
@@ -90,12 +117,15 @@ export function routeSkill(userMessage: string): SkillRouteResult {
     };
   }
 
-  if (/(总结|复盘|这周|本周|最近).*(咖啡因|咖啡|摄入|睡眠|喝太多|调整)|下周.*(调整|怎么做)/.test(text)) {
+  if (
+    /(模拟|喝前模拟|如果.*喝|会怎样|风险高吗)/.test(text) ||
+    /(还能喝|再喝|现在还能|今晚还能|睡前还能|能不能喝|能喝吗|可以喝|影响睡眠|睡不着|几点后不建议|危险吗|高敏感|偏敏感|敏感度.*严格|睡不好|心悸|心慌|焦虑|手抖|胃不舒服|胸痛|心脏|高中生|能量饮料|多少毫克|mg|一定不会失眠|导致的吗)/.test(text)
+  ) {
     return {
-      skillId: "weekly_review_writer",
-      intent: "weekly_review",
+      skillId: "sleep_risk_advisor",
+      intent: "sleep_risk",
       confidence: "high",
-      reason: "用户在询问近 7 天摄入趋势或周复盘。",
+      reason: "用户在询问睡眠风险、是否继续摄入、敏感度解释或喝前模拟。",
     };
   }
 
@@ -105,15 +135,6 @@ export function routeSkill(userMessage: string): SkillRouteResult {
       intent: "record_drink",
       confidence: "high",
       reason: "用户表达了已发生的饮品摄入记录意图。",
-    };
-  }
-
-  if (/(还能喝|再喝|现在还能|今晚还能|睡前还能|能不能喝|可以喝|影响睡眠|睡不着|几点后不建议)/.test(text)) {
-    return {
-      skillId: "sleep_risk_advisor",
-      intent: "sleep_risk",
-      confidence: "high",
-      reason: "用户在询问睡眠风险、是否继续摄入或最晚饮用时间。",
     };
   }
 

@@ -31,7 +31,7 @@ export type AgentTeamResult = {
   };
 };
 
-const medicalDiagnosisPattern = /(过敏|成瘾|疾病|诊断|治疗|病|药|药物|保健品)/;
+const medicalDiagnosisPattern = /(过敏|成瘾|疾病|诊断|治疗|病|药|药物|保健品|心脏|胸痛|胸口痛|呼吸困难|喘不过气|心慌|心悸|手抖|胃不舒服|怀孕|催吐|高中生)/;
 const guaranteePattern = /(保证|一定不会|绝对不会|肯定不会).*?(失眠|影响睡眠|睡不着)|一定不影响睡眠|保证不失眠/;
 const fabricatedCaffeinePattern = /(约|含有|咖啡因).*?\d+\s*mg/;
 
@@ -116,11 +116,14 @@ function reviewSafety(userInput: string, draft: DraftResponse, plan: SkillExecut
 
 function generateFinalResponse(draft: DraftResponse, safetyReview: SafetyReviewResult) {
   const conclusion = safetyReview.rewrittenConclusion ?? draft.conclusion;
+  const suggestions = safetyReview.flags.includes("medical_diagnosis_risk")
+    ? ["先暂停继续摄入咖啡因。", "如果不适明显、持续或加重，建议尽快咨询专业人士。"]
+    : draft.suggestions;
   return {
-    answer: `${conclusion}\n\n${draft.suggestions.join(" ")}`,
+    answer: `${conclusion}\n\n${suggestions.join(" ")}`,
     conclusion,
     reasons: draft.reasons,
-    suggestions: draft.suggestions,
+    suggestions,
     riskNotice: safetyReview.requiredNotice,
   };
 }
