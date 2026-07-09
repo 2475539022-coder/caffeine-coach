@@ -187,6 +187,14 @@ type SensitivityInsight = {
   text: string;
 };
 
+type SensitivityExplanation = {
+  statusLabel: "偏敏感" | "正常" | "偏耐受";
+  summary: string;
+  reasons: string[];
+  evidence: { label: string; value: string; helper?: string }[];
+  suggestions: string[];
+};
+
 type ToleranceInsight = {
   level: "low" | "medium" | "high" | "unknown";
   label: string;
@@ -816,6 +824,81 @@ function buildSensitivityInsight(settings: SettingsState, feedback: FeedbackStat
     label: "低敏感",
     coefficient: 1,
     text: "目前敏感反馈不明显，系统会按常规节奏推荐。",
+  };
+}
+
+function buildSensitivityExplanation({
+  drinks,
+  dailyStatusMemory,
+  feedbackMemory,
+  settings,
+  feedback,
+  sensitivity,
+}: {
+  drinks: Drink[];
+  dailyStatusMemory: DailyStatusMemoryEntry[];
+  feedbackMemory: FeedbackMemoryEntry[];
+  settings: SettingsState;
+  feedback: FeedbackState;
+  sensitivity: SensitivityInsight;
+}): SensitivityExplanation {
+  const recentKeys = new Set(recentDateKeys(7));
+  const recentStatuses = dailyStatusMemory.filter((item) => recentKeys.has(item.date));
+  const recentFeedback = feedbackMemory.filter((item) => recentKeys.has(item.date));
+  const recentDrinks = drinks.filter((drink) => recentKeys.has(dateKey(new Date(drink.time))));
+  const totalMg = recentDrinks.reduce((sum, drink) => sum + drink.mg, 0);
+  const averageMg = Math.round(totalMg / 7);
+  const lateDays = recentStatuses.filter((item) => item.hasEveningIntake).length;
+  const highResidualDays = recentStatuses.filter((item) => item.sleepRiskLevel === "高" || item.bedtimeResidualMg > settings.safeSleepResidualMg).length;
+  const sleepAffectedCount = recentFeedback.filter((item) => item.sleepQuality === "bad" || item.fallAsleepSpeed === "slow").length;
+  const discomfortCount =
+    recentFeedback.filter((item) => item.palpitation || item.anxiety || item.handTremor || item.stomachDiscomfort).length +
+    (feedback.sideEffect !== "none" || feedback.palpitationToday === "yes" || feedback.anxietyToday === "yes" ? 1 : 0);
+  const toleranceSignal = settings.sensitivityProfile === "high_tolerance" || hasLessEffectiveFeedback(feedback);
+  const statusLabel: SensitivityExplanation["statusLabel"] =
+    sensitivity.level === "high" || discomfortCount >= 2 || settings.sensitivityProfile === "body_sensitive"
+      ? "偏敏感"
+      : toleranceSignal
+        ? "偏耐受"
+        : "正常";
+
+  const reasons: string[] = [];
+  if (settings.sensitivityProfile === "body_sensitive") reasons.push("你的习惯设置里显示，喝咖啡后更容易出现心慌或紧张，因此系统会更保守。");
+  if (settings.sensitivityProfile === "sleep_sensitive") reasons.push("你的习惯设置里显示，下午咖啡更容易影响睡眠，因此晚间摄入提醒会提前。");
+  if (settings.sensitivityProfile === "high_tolerance") reasons.push("你反馈一杯咖啡可能没什么感觉，系统会记录为提神效果变弱信号，但不会直接建议加量。");
+  if (highResidualDays > 0) reasons.push(`最近 7 天有 ${highResidualDays} 天睡前残留高于更安心的目标，晚些时候喝咖啡可能让风险偏高。`);
+  if (lateDays > 0) reasons.push(`最近 7 天有 ${lateDays} 天存在晚间摄入，最后一杯时间会影响睡前残留。`);
+  if (sleepAffectedCount > 0) reasons.push(`最近反馈里有 ${sleepAffectedCount} 次睡眠受影响记录，系统会把睡眠风险判断调得更谨慎。`);
+  if (discomfortCount > 0) reasons.push(`最近有 ${discomfortCount} 次心慌、焦虑、手抖或胃部不适相关反馈，单杯建议会更倾向小剂量。`);
+  if (reasons.length === 0) reasons.push("最近记录里没有明显不适或睡眠受影响信号，系统暂时按常规节奏判断。");
+
+  const suggestions: string[] =
+    statusLabel === "偏敏感"
+      ? ["优先把最后一杯提前到下午较早时间。", "想喝时可以先选择半杯、小杯或低因。", "如果连续出现不舒服反馈，可以在设置里把提醒调严格一点。"]
+      : statusLabel === "偏耐受"
+        ? ["不要因为提神感变弱就直接加量。", "可以连续几天降低下午摄入，观察提神效果是否恢复。", "继续记录真实感受，系统会根据反馈辅助校准。"]
+        : ["继续保持当前节奏。", "如果某天睡不好或有不舒服，可以补充反馈帮助后续判断。", "当前敏感度不是固定标签，会随记录和反馈逐步调整。"];
+
+  return {
+    statusLabel,
+    summary:
+      statusLabel === "偏敏感"
+        ? "根据你的近期记录和反馈，系统会倾向更保守地提醒咖啡因摄入。"
+        : statusLabel === "偏耐受"
+          ? "根据你的反馈，系统会关注提神效果是否变弱，但不会直接鼓励提高剂量。"
+          : "目前没有明显偏敏感或偏耐受信号，系统会按当前习惯保持平衡建议。",
+    reasons,
+    evidence: [
+      { label: "近 7 天摄入", value: `${totalMg}mg`, helper: `日均约 ${averageMg}mg` },
+      { label: "晚间摄入", value: `${lateDays}天`, helper: "影响最后一杯建议时间" },
+      { label: "睡前残留偏高", value: `${highResidualDays}天`, helper: `目标 ${settings.safeSleepResidualMg}mg` },
+      { label: "睡眠受影响反馈", value: `${sleepAffectedCount}次`, helper: "来自状态日历和今日反馈" },
+      { label: "即时不适反馈", value: `${discomfortCount}次`, helper: "心慌、焦虑、手抖或胃不舒服" },
+      { label: "半衰期估算", value: `${halfLives[settings.metabolism]}h`, helper: profileLabel(settings.sensitivityProfile) },
+      { label: "计划睡觉", value: settings.bedTime, helper: "用于估算睡前残留" },
+      { label: "提醒策略", value: settings.strictnessMode === "strict" ? "严格" : settings.strictnessMode === "loose" ? "宽松" : "平衡", helper: "可在设置中调整" },
+    ],
+    suggestions,
   };
 }
 
@@ -1559,6 +1642,19 @@ function App() {
     };
   }, [drinks, feedback, settings, tolerance]);
 
+  const sensitivityExplanation = useMemo(
+    () =>
+      buildSensitivityExplanation({
+        drinks,
+        dailyStatusMemory,
+        feedbackMemory,
+        settings,
+        feedback,
+        sensitivity: derived.sensitivity,
+      }),
+    [drinks, dailyStatusMemory, feedbackMemory, settings, feedback, derived.sensitivity],
+  );
+
   const simResult = useMemo(() => {
     const now = new Date();
     const bedDate = getBedDate(settings.bedTime, now);
@@ -2186,7 +2282,14 @@ function App() {
                   <span className="rounded-full bg-[#fff8ee] px-4 py-2 text-sm font-bold text-caramel">调整</span>
                 </button>
               </DialogTrigger>
-              <SettingsDialog settings={settings} setSettings={setSettingsWithRefresh} feedback={feedback} sensitivity={derived.sensitivity} close={() => setSettingsOpen(false)} />
+              <SettingsDialog
+                settings={settings}
+                setSettings={setSettingsWithRefresh}
+                feedback={feedback}
+                sensitivity={derived.sensitivity}
+                explanation={sensitivityExplanation}
+                close={() => setSettingsOpen(false)}
+              />
             </Dialog>
 
             <div className="card p-5">
@@ -3387,6 +3490,21 @@ function StatusCalendarDialog({
               </button>
             </div>
             <p className="rounded-[24px] bg-[#fff8ee] p-4 text-sm font-semibold leading-relaxed text-ink/62">{detailStatus.summaryText}</p>
+            <div className="mt-4 rounded-[24px] bg-white/60 p-4">
+              <p className="text-sm font-bold text-caramel">今日判断依据</p>
+              <ul className="mt-2 space-y-1 text-sm leading-relaxed text-ink/58">
+                <li>• 睡前预计残留约 {detailStatus.bedtimeResidualMg}mg，风险为{detailStatus.sleepRiskLevel}。</li>
+                {detailStatus.hasEveningIntake && <li>• 当天有较晚摄入，可能让睡前残留偏高。</li>}
+                {detailStatus.exceededDailyTarget && <li>• 当天摄入超过建议量，因此系统会更谨慎。</li>}
+                {selectedFeedback && (selectedFeedback.palpitation || selectedFeedback.anxiety || selectedFeedback.handTremor || selectedFeedback.stomachDiscomfort) && (
+                  <li>• 当天有不舒服反馈，后续单杯建议会倾向更轻。</li>
+                )}
+                {selectedFeedback && (selectedFeedback.sleepQuality === "bad" || selectedFeedback.fallAsleepSpeed === "slow") && (
+                  <li>• 睡眠反馈显示可能受影响，晚间摄入提醒会更保守。</li>
+                )}
+              </ul>
+              <p className="mt-2 text-xs leading-relaxed text-ink/42">这是基于记录和反馈的辅助判断，不是医疗建议。</p>
+            </div>
 
             <div className="mt-5 grid grid-cols-2 gap-3">
               <InfoPill label="当日总摄入" value={`${detailStatus.totalCaffeineMg}mg`} />
@@ -3627,6 +3745,67 @@ function IndexSummary({ sensitivity, tolerance }: { sensitivity: SensitivityInsi
   );
 }
 
+function SensitivityExplanationPanel({ explanation }: { explanation: SensitivityExplanation }) {
+  const tone =
+    explanation.statusLabel === "偏敏感"
+      ? "bg-[#fff0d8] text-[#b87425]"
+      : explanation.statusLabel === "偏耐受"
+        ? "bg-[#fff8ee] text-caramel"
+        : "bg-[#e8f3e5] text-sage";
+  return (
+    <details className="mt-6 rounded-[28px] border border-[#eadccd] bg-white/55 p-5" open>
+      <summary className="cursor-pointer list-none">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <p className="text-lg font-bold text-ink">为什么这样判断？</p>
+            <p className="mt-1 text-sm leading-relaxed text-ink/55">根据近期摄入、反馈和你的设置生成辅助解释。</p>
+          </div>
+          <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${tone}`}>{explanation.statusLabel}</span>
+        </div>
+      </summary>
+      <div className="mt-5 space-y-5">
+        <div className="rounded-[24px] bg-[#fff8ee] p-4">
+          <p className="text-sm font-bold text-caramel">当前解释</p>
+          <p className="mt-2 text-base font-semibold leading-relaxed text-ink/68">{explanation.summary}</p>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-ink">主要依据</p>
+          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink/62">
+            {explanation.reasons.map((reason) => (
+              <li key={reason} className="rounded-[18px] bg-white/65 px-4 py-3">
+                {reason}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="text-sm font-bold text-ink">关键证据</p>
+          <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {explanation.evidence.map((item) => (
+              <div key={item.label} className="rounded-[20px] bg-white/65 p-3">
+                <p className="text-xs font-bold text-ink/45">{item.label}</p>
+                <p className="mt-1 text-lg font-bold text-ink">{item.value}</p>
+                {item.helper && <p className="mt-1 text-[11px] leading-relaxed text-ink/42">{item.helper}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-[24px] bg-[#eef4e8] p-4">
+          <p className="text-sm font-bold text-[#668f58]">校准建议</p>
+          <ul className="mt-3 space-y-1 text-sm leading-relaxed text-ink/64">
+            {explanation.suggestions.map((item) => (
+              <li key={item}>• {item}</li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs leading-relaxed text-ink/45">
+            当前敏感度不是永久标签，会随着后续记录和反馈逐步校准。本产品提供生活管理估算，不是医疗建议。
+          </p>
+        </div>
+      </div>
+    </details>
+  );
+}
+
 function InsightCard({
   activeTab,
   setActiveTab,
@@ -3863,12 +4042,14 @@ function SettingsDialog({
   setSettings,
   feedback,
   sensitivity,
+  explanation,
   close,
 }: {
   settings: SettingsState;
   setSettings: React.Dispatch<React.SetStateAction<SettingsState>>;
   feedback: FeedbackState;
   sensitivity: SensitivityInsight;
+  explanation: SensitivityExplanation;
   close: () => void;
 }) {
   const preview = recommendationPreview(settings, feedback, sensitivity);
@@ -3994,6 +4175,7 @@ function SettingsDialog({
         <p className="mt-2 text-xl font-bold text-ink">按当前习惯，今天建议约 {preview}mg。</p>
         <p className="mt-2 text-base leading-relaxed text-ink/60">{note}</p>
       </div>
+      <SensitivityExplanationPanel explanation={explanation} />
       <details className="mt-5 rounded-[28px] border border-[#eadccd] bg-white/55 p-5">
         <summary className="cursor-pointer list-none">
           <p className="font-bold text-ink">高级参数</p>
