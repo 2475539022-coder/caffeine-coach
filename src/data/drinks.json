@@ -1,0 +1,5589 @@
+[
+  {
+    "id": "一点点-波霸奶茶-1",
+    "brand": "一点点",
+    "name": "波霸奶茶",
+    "displayName": "一点点 波霸奶茶",
+    "category": "milk_tea",
+    "subCategory": "milk_tea",
+    "sizeLabel": "中杯约500ml",
+    "volumeMl": 500,
+    "caffeineMg": 90,
+    "caffeineRangeMg": {
+      "min": 90,
+      "max": 125
+    },
+    "caffeinePer100ml": 18,
+    "sourceType": "food_api",
+    "confidence": "high",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "波霸奶茶",
+      "一点点 波霸奶茶"
+    ],
+    "ocrKeywords": [
+      "一点点",
+      "波霸奶茶",
+      "一点点 波霸奶茶"
+    ],
+    "matchPriority": 20,
+    "tags": [
+      "milk_tea",
+      "第三方检测换算"
+    ],
+    "notes": "中杯约500ml/大杯约700ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "一点点-红茶玛奇朵-2",
+    "brand": "一点点",
+    "name": "红茶玛奇朵",
+    "displayName": "一点点 红茶玛奇朵",
+    "category": "milk_tea",
+    "subCategory": "macchiato_tea",
+    "sizeLabel": "中杯约500ml",
+    "volumeMl": 500,
+    "caffeineMg": 115,
+    "caffeineRangeMg": {
+      "min": 90,
+      "max": 160
+    },
+    "caffeinePer100ml": 23,
+    "sourceType": "generic_estimate",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "红茶玛奇朵",
+      "一点点 红茶玛奇朵"
+    ],
+    "ocrKeywords": [
+      "一点点",
+      "红茶玛奇朵",
+      "一点点 红茶玛奇朵"
+    ],
+    "matchPriority": 19.95,
+    "tags": [
+      "milk_tea",
+      "macchiato_tea",
+      "茶底估算"
+    ],
+    "notes": "中杯约500ml/大杯约700ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "一点点-牛乳红茶-3",
+    "brand": "一点点",
+    "name": "牛乳红茶",
+    "displayName": "一点点 牛乳红茶",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "中杯约500ml",
+    "volumeMl": 500,
+    "caffeineMg": 105,
+    "caffeineRangeMg": {
+      "min": 80,
+      "max": 145
+    },
+    "caffeinePer100ml": 21,
+    "sourceType": "generic_estimate",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "牛乳红茶",
+      "一点点 牛乳红茶"
+    ],
+    "ocrKeywords": [
+      "一点点",
+      "牛乳红茶",
+      "一点点 牛乳红茶"
+    ],
+    "matchPriority": 19.9,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "茶底估算"
+    ],
+    "notes": "中杯约500ml/大杯约700ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "一点点-清香乌龙茶-4",
+    "brand": "一点点",
+    "name": "清香乌龙茶",
+    "displayName": "一点点 清香乌龙茶",
+    "category": "tea",
+    "subCategory": "pure_tea",
+    "sizeLabel": "中杯约500ml",
+    "volumeMl": 500,
+    "caffeineMg": 95,
+    "caffeineRangeMg": {
+      "min": 70,
+      "max": 135
+    },
+    "caffeinePer100ml": 19,
+    "sourceType": "generic_estimate",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "清香乌龙茶",
+      "一点点 清香乌龙茶"
+    ],
+    "ocrKeywords": [
+      "一点点",
+      "清香乌龙茶",
+      "一点点 清香乌龙茶"
+    ],
+    "matchPriority": 19.85,
+    "tags": [
+      "tea",
+      "pure_tea",
+      "茶底估算"
+    ],
+    "notes": "中杯约500ml/大杯约700ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "一点点-四季春-珍波椰-5",
+    "brand": "一点点",
+    "name": "四季春+珍波椰",
+    "displayName": "一点点 四季春+珍波椰",
+    "category": "milk_tea",
+    "subCategory": "topping_tea",
+    "sizeLabel": "中杯约500ml",
+    "volumeMl": 500,
+    "caffeineMg": 85,
+    "caffeineRangeMg": {
+      "min": 65,
+      "max": 120
+    },
+    "caffeinePer100ml": 17,
+    "sourceType": "generic_estimate",
+    "confidence": "low",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "四季春+珍波椰",
+      "一点点 四季春+珍波椰"
+    ],
+    "ocrKeywords": [
+      "一点点",
+      "四季春+珍波椰",
+      "一点点 四季春+珍波椰"
+    ],
+    "matchPriority": 19.8,
+    "tags": [
+      "milk_tea",
+      "topping_tea",
+      "茶底估算"
+    ],
+    "notes": "中杯约500ml/大杯约700ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-青沫观音-6",
+    "brand": "霸王茶姬",
+    "name": "青沫观音",
+    "displayName": "霸王茶姬 青沫观音",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 149.6,
+    "caffeineRangeMg": {
+      "min": 149.6,
+      "max": 149.6
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "青沫观音",
+      "霸王茶姬 青沫观音"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "青沫观音",
+      "霸王茶姬 青沫观音"
+    ],
+    "matchPriority": 19.75,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-伯牙绝弦-7",
+    "brand": "霸王茶姬",
+    "name": "伯牙绝弦",
+    "displayName": "霸王茶姬 伯牙绝弦",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 117.2,
+    "caffeineRangeMg": {
+      "min": 117.2,
+      "max": 117.2
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "伯牙绝弦",
+      "霸王茶姬 伯牙绝弦"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "伯牙绝弦",
+      "霸王茶姬 伯牙绝弦"
+    ],
+    "matchPriority": 19.7,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-醒时春山-8",
+    "brand": "霸王茶姬",
+    "name": "醒时春山",
+    "displayName": "霸王茶姬 醒时春山",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 153.1,
+    "caffeineRangeMg": {
+      "min": 153.1,
+      "max": 153.1
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "醒时春山",
+      "霸王茶姬 醒时春山"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "醒时春山",
+      "霸王茶姬 醒时春山"
+    ],
+    "matchPriority": 19.65,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-桂馥兰香-9",
+    "brand": "霸王茶姬",
+    "name": "桂馥兰香",
+    "displayName": "霸王茶姬 桂馥兰香",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 132.2,
+    "caffeineRangeMg": {
+      "min": 132.2,
+      "max": 132.2
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "桂馥兰香",
+      "霸王茶姬 桂馥兰香"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "桂馥兰香",
+      "霸王茶姬 桂馥兰香"
+    ],
+    "matchPriority": 19.6,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-青青糯山-10",
+    "brand": "霸王茶姬",
+    "name": "青青糯山",
+    "displayName": "霸王茶姬 青青糯山",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 85.5,
+    "caffeineRangeMg": {
+      "min": 85.5,
+      "max": 85.5
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "青青糯山",
+      "霸王茶姬 青青糯山"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "青青糯山",
+      "霸王茶姬 青青糯山"
+    ],
+    "matchPriority": 19.55,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-万里木兰-11",
+    "brand": "霸王茶姬",
+    "name": "万里木兰",
+    "displayName": "霸王茶姬 万里木兰",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 184.4,
+    "caffeineRangeMg": {
+      "min": 184.4,
+      "max": 184.4
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "万里木兰",
+      "霸王茶姬 万里木兰"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "万里木兰",
+      "霸王茶姬 万里木兰"
+    ],
+    "matchPriority": 19.5,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-山野栀子-12",
+    "brand": "霸王茶姬",
+    "name": "山野栀子",
+    "displayName": "霸王茶姬 山野栀子",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190.8,
+    "caffeineRangeMg": {
+      "min": 190.8,
+      "max": 190.8
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "山野栀子",
+      "霸王茶姬 山野栀子"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "山野栀子",
+      "霸王茶姬 山野栀子"
+    ],
+    "matchPriority": 19.45,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "霸王茶姬-白雾红尘-13",
+    "brand": "霸王茶姬",
+    "name": "白雾红尘",
+    "displayName": "霸王茶姬 白雾红尘",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 83.7,
+    "caffeineRangeMg": {
+      "min": 83.7,
+      "max": 83.7
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "白雾红尘",
+      "霸王茶姬 白雾红尘"
+    ],
+    "ocrKeywords": [
+      "霸王茶姬",
+      "白雾红尘",
+      "霸王茶姬 白雾红尘"
+    ],
+    "matchPriority": 19.4,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-拿铁-14",
+    "brand": "星巴克",
+    "name": "拿铁",
+    "displayName": "星巴克 拿铁",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 115,
+    "caffeineRangeMg": {
+      "min": 75,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "拿铁",
+      "星巴克 拿铁"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "拿铁",
+      "星巴克 拿铁"
+    ],
+    "matchPriority": 19.35,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-摩卡-15",
+    "brand": "星巴克",
+    "name": "摩卡",
+    "displayName": "星巴克 摩卡",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 140,
+    "caffeineRangeMg": {
+      "min": 90,
+      "max": 185
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "摩卡",
+      "星巴克 摩卡"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "摩卡",
+      "星巴克 摩卡"
+    ],
+    "matchPriority": 19.3,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-冰咖啡-16",
+    "brand": "星巴克",
+    "name": "冰咖啡",
+    "displayName": "星巴克 冰咖啡",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 180,
+    "caffeineRangeMg": {
+      "min": 120,
+      "max": 235
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰咖啡",
+      "星巴克 冰咖啡"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "冰咖啡",
+      "星巴克 冰咖啡"
+    ],
+    "matchPriority": 19.25,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-冰拿铁-17",
+    "brand": "星巴克",
+    "name": "冰拿铁",
+    "displayName": "星巴克 冰拿铁",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 115,
+    "caffeineRangeMg": {
+      "min": 75,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰拿铁",
+      "星巴克 冰拿铁"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "冰拿铁",
+      "星巴克 冰拿铁"
+    ],
+    "matchPriority": 19.2,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-冰摩卡-18",
+    "brand": "星巴克",
+    "name": "冰摩卡",
+    "displayName": "星巴克 冰摩卡",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 140,
+    "caffeineRangeMg": {
+      "min": 90,
+      "max": 185
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰摩卡",
+      "星巴克 冰摩卡"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "冰摩卡",
+      "星巴克 冰摩卡"
+    ],
+    "matchPriority": 19.15,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-冰红茶-19",
+    "brand": "星巴克",
+    "name": "冰红茶",
+    "displayName": "星巴克 冰红茶",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 35,
+    "caffeineRangeMg": {
+      "min": 25,
+      "max": 45
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰红茶",
+      "星巴克 冰红茶"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "冰红茶",
+      "星巴克 冰红茶"
+    ],
+    "matchPriority": 19.1,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-冰绿茶-20",
+    "brand": "星巴克",
+    "name": "冰绿茶",
+    "displayName": "星巴克 冰绿茶",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 35,
+    "caffeineRangeMg": {
+      "min": 25,
+      "max": 45
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰绿茶",
+      "星巴克 冰绿茶"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "冰绿茶",
+      "星巴克 冰绿茶"
+    ],
+    "matchPriority": 19.05,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-馥芮白-21",
+    "brand": "星巴克",
+    "name": "馥芮白",
+    "displayName": "星巴克 馥芮白",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 195,
+    "caffeineRangeMg": {
+      "min": 130,
+      "max": 260
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "馥芮白",
+      "星巴克 馥芮白"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "馥芮白",
+      "星巴克 馥芮白"
+    ],
+    "matchPriority": 19,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-冷萃咖啡-22",
+    "brand": "星巴克",
+    "name": "冷萃咖啡",
+    "displayName": "星巴克 冷萃咖啡",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 300
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冷萃咖啡",
+      "星巴克 冷萃咖啡"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "冷萃咖啡",
+      "星巴克 冷萃咖啡"
+    ],
+    "matchPriority": 18.95,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-卡布奇诺-23",
+    "brand": "星巴克",
+    "name": "卡布奇诺",
+    "displayName": "星巴克 卡布奇诺",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 115,
+    "caffeineRangeMg": {
+      "min": 75,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "卡布奇诺",
+      "星巴克 卡布奇诺"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "卡布奇诺",
+      "星巴克 卡布奇诺"
+    ],
+    "matchPriority": 18.9,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "星巴克-抹茶拿铁-24",
+    "brand": "星巴克",
+    "name": "抹茶拿铁",
+    "displayName": "星巴克 抹茶拿铁",
+    "category": "other",
+    "sizeLabel": "杯型",
+    "caffeineMg": 85,
+    "caffeineRangeMg": {
+      "min": 55,
+      "max": 110
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "抹茶拿铁",
+      "星巴克 抹茶拿铁"
+    ],
+    "ocrKeywords": [
+      "星巴克",
+      "抹茶拿铁",
+      "星巴克 抹茶拿铁"
+    ],
+    "matchPriority": 18.85,
+    "tags": [
+      "other",
+      "用户截图"
+    ],
+    "notes": "不同杯型",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-拿铁-25",
+    "brand": "Manner Coffee",
+    "name": "拿铁",
+    "displayName": "Manner Coffee 拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 230,
+    "caffeineRangeMg": {
+      "min": 220,
+      "max": 240
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "拿铁",
+      "Manner Coffee 拿铁"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "拿铁",
+      "Manner Coffee 拿铁"
+    ],
+    "matchPriority": 18.8,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-摩卡-26",
+    "brand": "Manner Coffee",
+    "name": "摩卡",
+    "displayName": "Manner Coffee 摩卡",
+    "category": "coffee",
+    "subCategory": "coffee_mocha",
+    "sizeLabel": "杯型",
+    "caffeineMg": 230,
+    "caffeineRangeMg": {
+      "min": 220,
+      "max": 240
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "摩卡",
+      "Manner Coffee 摩卡"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "摩卡",
+      "Manner Coffee 摩卡"
+    ],
+    "matchPriority": 18.75,
+    "tags": [
+      "coffee",
+      "coffee_mocha",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-美式-27",
+    "brand": "Manner Coffee",
+    "name": "美式",
+    "displayName": "Manner Coffee 美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 230,
+    "caffeineRangeMg": {
+      "min": 220,
+      "max": 240
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "美式",
+      "Manner Coffee 美式"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "美式",
+      "Manner Coffee 美式"
+    ],
+    "matchPriority": 18.7,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-冰拿铁-28",
+    "brand": "Manner Coffee",
+    "name": "冰拿铁",
+    "displayName": "Manner Coffee 冰拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 220,
+    "caffeineRangeMg": {
+      "min": 220,
+      "max": 220
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰拿铁",
+      "Manner Coffee 冰拿铁"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "冰拿铁",
+      "Manner Coffee 冰拿铁"
+    ],
+    "matchPriority": 18.65,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-冰摩卡-29",
+    "brand": "Manner Coffee",
+    "name": "冰摩卡",
+    "displayName": "Manner Coffee 冰摩卡",
+    "category": "coffee",
+    "subCategory": "coffee_mocha",
+    "sizeLabel": "杯型",
+    "caffeineMg": 220,
+    "caffeineRangeMg": {
+      "min": 220,
+      "max": 220
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰摩卡",
+      "Manner Coffee 冰摩卡"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "冰摩卡",
+      "Manner Coffee 冰摩卡"
+    ],
+    "matchPriority": 18.6,
+    "tags": [
+      "coffee",
+      "coffee_mocha",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-冰美式-30",
+    "brand": "Manner Coffee",
+    "name": "冰美式",
+    "displayName": "Manner Coffee 冰美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 220,
+    "caffeineRangeMg": {
+      "min": 220,
+      "max": 220
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰美式",
+      "Manner Coffee 冰美式"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "冰美式",
+      "Manner Coffee 冰美式"
+    ],
+    "matchPriority": 18.55,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-巧克力-31",
+    "brand": "Manner Coffee",
+    "name": "巧克力",
+    "displayName": "Manner Coffee 巧克力",
+    "category": "other",
+    "subCategory": "chocolate",
+    "sizeLabel": "杯型",
+    "caffeineMg": 18,
+    "caffeineRangeMg": {
+      "min": 15,
+      "max": 20
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "巧克力",
+      "Manner Coffee 巧克力"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "巧克力",
+      "Manner Coffee 巧克力"
+    ],
+    "matchPriority": 18.5,
+    "tags": [
+      "other",
+      "chocolate",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-冰巧克力-32",
+    "brand": "Manner Coffee",
+    "name": "冰巧克力",
+    "displayName": "Manner Coffee 冰巧克力",
+    "category": "other",
+    "subCategory": "chocolate",
+    "sizeLabel": "杯型",
+    "caffeineMg": 15,
+    "caffeineRangeMg": {
+      "min": 15,
+      "max": 15
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰巧克力",
+      "Manner Coffee 冰巧克力"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "冰巧克力",
+      "Manner Coffee 冰巧克力"
+    ],
+    "matchPriority": 18.45,
+    "tags": [
+      "other",
+      "chocolate",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-冰橙美式-33",
+    "brand": "Manner Coffee",
+    "name": "冰橙美式",
+    "displayName": "Manner Coffee 冰橙美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 250,
+    "caffeineRangeMg": {
+      "min": 250,
+      "max": 250
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰橙美式",
+      "Manner Coffee 冰橙美式"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "冰橙美式",
+      "Manner Coffee 冰橙美式"
+    ],
+    "matchPriority": 18.4,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-冰甜拿铁-34",
+    "brand": "Manner Coffee",
+    "name": "冰甜拿铁",
+    "displayName": "Manner Coffee 冰甜拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 300,
+    "caffeineRangeMg": {
+      "min": 300,
+      "max": 300
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰甜拿铁",
+      "Manner Coffee 冰甜拿铁"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "冰甜拿铁",
+      "Manner Coffee 冰甜拿铁"
+    ],
+    "matchPriority": 18.35,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "manner-coffee-冰葡美式-35",
+    "brand": "Manner Coffee",
+    "name": "冰葡美式",
+    "displayName": "Manner Coffee 冰葡美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 250,
+    "caffeineRangeMg": {
+      "min": 250,
+      "max": 250
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰葡美式",
+      "Manner Coffee 冰葡美式"
+    ],
+    "ocrKeywords": [
+      "Manner Coffee",
+      "冰葡美式",
+      "Manner Coffee 冰葡美式"
+    ],
+    "matchPriority": 18.3,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每杯",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-挂耳咖啡-36",
+    "brand": "瑞幸咖啡",
+    "name": "挂耳咖啡",
+    "displayName": "瑞幸咖啡 挂耳咖啡",
+    "category": "coffee",
+    "subCategory": "drip_bag_coffee",
+    "sizeLabel": "杯型",
+    "caffeineMg": 100,
+    "caffeineRangeMg": {
+      "min": 100,
+      "max": 100
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "挂耳咖啡",
+      "瑞幸咖啡 挂耳咖啡"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "挂耳咖啡",
+      "瑞幸咖啡 挂耳咖啡"
+    ],
+    "matchPriority": 18.25,
+    "tags": [
+      "coffee",
+      "drip_bag_coffee",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-鲜萃咖啡液-37",
+    "brand": "瑞幸咖啡",
+    "name": "鲜萃咖啡液",
+    "displayName": "瑞幸咖啡 鲜萃咖啡液",
+    "category": "coffee",
+    "subCategory": "coffee_concentrate",
+    "sizeLabel": "杯型",
+    "caffeineMg": 75,
+    "caffeineRangeMg": {
+      "min": 75,
+      "max": 75
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "鲜萃咖啡液",
+      "瑞幸咖啡 鲜萃咖啡液"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "鲜萃咖啡液",
+      "瑞幸咖啡 鲜萃咖啡液"
+    ],
+    "matchPriority": 18.2,
+    "tags": [
+      "coffee",
+      "coffee_concentrate",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-元气弹系列01-38",
+    "brand": "瑞幸咖啡",
+    "name": "元气弹系列01",
+    "displayName": "瑞幸咖啡 元气弹系列01",
+    "category": "coffee",
+    "subCategory": "coffee",
+    "sizeLabel": "杯型",
+    "caffeineMg": 95,
+    "caffeineRangeMg": {
+      "min": 95,
+      "max": 95
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "元气弹系列01",
+      "瑞幸咖啡 元气弹系列01"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "元气弹系列01",
+      "瑞幸咖啡 元气弹系列01"
+    ],
+    "matchPriority": 18.15,
+    "tags": [
+      "coffee",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-元气弹系列02-39",
+    "brand": "瑞幸咖啡",
+    "name": "元气弹系列02",
+    "displayName": "瑞幸咖啡 元气弹系列02",
+    "category": "coffee",
+    "subCategory": "coffee",
+    "sizeLabel": "杯型",
+    "caffeineMg": 95,
+    "caffeineRangeMg": {
+      "min": 95,
+      "max": 95
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "元气弹系列02",
+      "瑞幸咖啡 元气弹系列02"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "元气弹系列02",
+      "瑞幸咖啡 元气弹系列02"
+    ],
+    "matchPriority": 18.1,
+    "tags": [
+      "coffee",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-元气弹系列03-40",
+    "brand": "瑞幸咖啡",
+    "name": "元气弹系列03",
+    "displayName": "瑞幸咖啡 元气弹系列03",
+    "category": "coffee",
+    "subCategory": "coffee",
+    "sizeLabel": "杯型",
+    "caffeineMg": 95,
+    "caffeineRangeMg": {
+      "min": 95,
+      "max": 95
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "元气弹系列03",
+      "瑞幸咖啡 元气弹系列03"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "元气弹系列03",
+      "瑞幸咖啡 元气弹系列03"
+    ],
+    "matchPriority": 18.05,
+    "tags": [
+      "coffee",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-风味漫游系列-峡谷晨曦-41",
+    "brand": "瑞幸咖啡",
+    "name": "风味漫游系列·峡谷晨曦",
+    "displayName": "瑞幸咖啡 风味漫游系列·峡谷晨曦",
+    "category": "coffee",
+    "subCategory": "coffee",
+    "sizeLabel": "杯型",
+    "caffeineMg": 95,
+    "caffeineRangeMg": {
+      "min": 95,
+      "max": 95
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "风味漫游系列·峡谷晨曦",
+      "瑞幸咖啡 风味漫游系列·峡谷晨曦"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "风味漫游系列·峡谷晨曦",
+      "瑞幸咖啡 风味漫游系列·峡谷晨曦"
+    ],
+    "matchPriority": 18,
+    "tags": [
+      "coffee",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-风味漫游系列-河谷长廊-42",
+    "brand": "瑞幸咖啡",
+    "name": "风味漫游系列·河谷长廊",
+    "displayName": "瑞幸咖啡 风味漫游系列·河谷长廊",
+    "category": "coffee",
+    "subCategory": "coffee",
+    "sizeLabel": "杯型",
+    "caffeineMg": 95,
+    "caffeineRangeMg": {
+      "min": 95,
+      "max": 95
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "风味漫游系列·河谷长廊",
+      "瑞幸咖啡 风味漫游系列·河谷长廊"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "风味漫游系列·河谷长廊",
+      "瑞幸咖啡 风味漫游系列·河谷长廊"
+    ],
+    "matchPriority": 17.95,
+    "tags": [
+      "coffee",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-风味漫游系列-soe耶加雪菲-43",
+    "brand": "瑞幸咖啡",
+    "name": "风味漫游系列·SOE耶加雪菲",
+    "displayName": "瑞幸咖啡 风味漫游系列·SOE耶加雪菲",
+    "category": "coffee",
+    "subCategory": "coffee",
+    "sizeLabel": "杯型",
+    "caffeineMg": 95,
+    "caffeineRangeMg": {
+      "min": 95,
+      "max": 95
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "风味漫游系列·SOE耶加雪菲",
+      "瑞幸咖啡 风味漫游系列·SOE耶加雪菲"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "风味漫游系列·SOE耶加雪菲",
+      "瑞幸咖啡 风味漫游系列·SOE耶加雪菲"
+    ],
+    "matchPriority": 17.9,
+    "tags": [
+      "coffee",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-天堂庄园-澳瑞白-44",
+    "brand": "瑞幸咖啡",
+    "name": "天堂庄园·澳瑞白",
+    "displayName": "瑞幸咖啡 天堂庄园·澳瑞白",
+    "category": "coffee",
+    "subCategory": "flat_white",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "天堂庄园·澳瑞白",
+      "瑞幸咖啡 天堂庄园·澳瑞白"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "天堂庄园·澳瑞白",
+      "瑞幸咖啡 天堂庄园·澳瑞白"
+    ],
+    "matchPriority": 17.85,
+    "tags": [
+      "coffee",
+      "flat_white",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-花魁-生椰dirty-45",
+    "brand": "瑞幸咖啡",
+    "name": "花魁·生椰Dirty",
+    "displayName": "瑞幸咖啡 花魁·生椰Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "花魁·生椰Dirty",
+      "瑞幸咖啡 花魁·生椰Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "花魁·生椰Dirty",
+      "瑞幸咖啡 花魁·生椰Dirty"
+    ],
+    "matchPriority": 17.8,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-耶加-dirty-46",
+    "brand": "瑞幸咖啡",
+    "name": "耶加·Dirty",
+    "displayName": "瑞幸咖啡 耶加·Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "耶加·Dirty",
+      "瑞幸咖啡 耶加·Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "耶加·Dirty",
+      "瑞幸咖啡 耶加·Dirty"
+    ],
+    "matchPriority": 17.75,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-天堂庄园-生椰dirty-47",
+    "brand": "瑞幸咖啡",
+    "name": "天堂庄园·生椰Dirty",
+    "displayName": "瑞幸咖啡 天堂庄园·生椰Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "天堂庄园·生椰Dirty",
+      "瑞幸咖啡 天堂庄园·生椰Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "天堂庄园·生椰Dirty",
+      "瑞幸咖啡 天堂庄园·生椰Dirty"
+    ],
+    "matchPriority": 17.7,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-耶加雪菲-澳瑞白-48",
+    "brand": "瑞幸咖啡",
+    "name": "耶加雪菲·澳瑞白",
+    "displayName": "瑞幸咖啡 耶加雪菲·澳瑞白",
+    "category": "coffee",
+    "subCategory": "flat_white",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "耶加雪菲·澳瑞白",
+      "瑞幸咖啡 耶加雪菲·澳瑞白"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "耶加雪菲·澳瑞白",
+      "瑞幸咖啡 耶加雪菲·澳瑞白"
+    ],
+    "matchPriority": 17.65,
+    "tags": [
+      "coffee",
+      "flat_white",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-花魁-dirty-49",
+    "brand": "瑞幸咖啡",
+    "name": "花魁·Dirty",
+    "displayName": "瑞幸咖啡 花魁·Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "花魁·Dirty",
+      "瑞幸咖啡 花魁·Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "花魁·Dirty",
+      "瑞幸咖啡 花魁·Dirty"
+    ],
+    "matchPriority": 17.6,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-云南小柑橘-冰美式-50",
+    "brand": "瑞幸咖啡",
+    "name": "云南小柑橘·冰美式",
+    "displayName": "瑞幸咖啡 云南小柑橘·冰美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "云南小柑橘·冰美式",
+      "瑞幸咖啡 云南小柑橘·冰美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "云南小柑橘·冰美式",
+      "瑞幸咖啡 云南小柑橘·冰美式"
+    ],
+    "matchPriority": 17.55,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-云南小柑橘-澳瑞白-51",
+    "brand": "瑞幸咖啡",
+    "name": "云南小柑橘·澳瑞白",
+    "displayName": "瑞幸咖啡 云南小柑橘·澳瑞白",
+    "category": "coffee",
+    "subCategory": "flat_white",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "云南小柑橘·澳瑞白",
+      "瑞幸咖啡 云南小柑橘·澳瑞白"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "云南小柑橘·澳瑞白",
+      "瑞幸咖啡 云南小柑橘·澳瑞白"
+    ],
+    "matchPriority": 17.5,
+    "tags": [
+      "coffee",
+      "flat_white",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-卡美罗-dirty-52",
+    "brand": "瑞幸咖啡",
+    "name": "卡美罗·Dirty",
+    "displayName": "瑞幸咖啡 卡美罗·Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "卡美罗·Dirty",
+      "瑞幸咖啡 卡美罗·Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "卡美罗·Dirty",
+      "瑞幸咖啡 卡美罗·Dirty"
+    ],
+    "matchPriority": 17.45,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-山茶花-dirty-53",
+    "brand": "瑞幸咖啡",
+    "name": "山茶花·Dirty",
+    "displayName": "瑞幸咖啡 山茶花·Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "山茶花·Dirty",
+      "瑞幸咖啡 山茶花·Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "山茶花·Dirty",
+      "瑞幸咖啡 山茶花·Dirty"
+    ],
+    "matchPriority": 17.4,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-天堂庄园-dirty-54",
+    "brand": "瑞幸咖啡",
+    "name": "天堂庄园·Dirty",
+    "displayName": "瑞幸咖啡 天堂庄园·Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "天堂庄园·Dirty",
+      "瑞幸咖啡 天堂庄园·Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "天堂庄园·Dirty",
+      "瑞幸咖啡 天堂庄园·Dirty"
+    ],
+    "matchPriority": 17.35,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-耶加-生椰dirty-55",
+    "brand": "瑞幸咖啡",
+    "name": "耶加·生椰Dirty",
+    "displayName": "瑞幸咖啡 耶加·生椰Dirty",
+    "category": "coffee",
+    "subCategory": "dirty",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "耶加·生椰Dirty",
+      "瑞幸咖啡 耶加·生椰Dirty"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "耶加·生椰Dirty",
+      "瑞幸咖啡 耶加·生椰Dirty"
+    ],
+    "matchPriority": 17.3,
+    "tags": [
+      "coffee",
+      "dirty",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-瓦尔登滑雪拿铁-56",
+    "brand": "瑞幸咖啡",
+    "name": "瓦尔登滑雪拿铁",
+    "displayName": "瑞幸咖啡 瓦尔登滑雪拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "瓦尔登滑雪拿铁",
+      "瑞幸咖啡 瓦尔登滑雪拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "瓦尔登滑雪拿铁",
+      "瑞幸咖啡 瓦尔登滑雪拿铁"
+    ],
+    "matchPriority": 17.25,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-经典拿铁瑞纳冰-57",
+    "brand": "瑞幸咖啡",
+    "name": "经典拿铁瑞纳冰",
+    "displayName": "瑞幸咖啡 经典拿铁瑞纳冰",
+    "category": "coffee",
+    "subCategory": "frappuccino",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "经典拿铁瑞纳冰",
+      "瑞幸咖啡 经典拿铁瑞纳冰"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "经典拿铁瑞纳冰",
+      "瑞幸咖啡 经典拿铁瑞纳冰"
+    ],
+    "matchPriority": 17.2,
+    "tags": [
+      "coffee",
+      "frappuccino",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-花魁-拿铁-58",
+    "brand": "瑞幸咖啡",
+    "name": "花魁·拿铁",
+    "displayName": "瑞幸咖啡 花魁·拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "花魁·拿铁",
+      "瑞幸咖啡 花魁·拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "花魁·拿铁",
+      "瑞幸咖啡 花魁·拿铁"
+    ],
+    "matchPriority": 17.15,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-花魁-美式-59",
+    "brand": "瑞幸咖啡",
+    "name": "花魁·美式",
+    "displayName": "瑞幸咖啡 花魁·美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "花魁·美式",
+      "瑞幸咖啡 花魁·美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "花魁·美式",
+      "瑞幸咖啡 花魁·美式"
+    ],
+    "matchPriority": 17.1,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-蓝丝绒飒雪拿铁-60",
+    "brand": "瑞幸咖啡",
+    "name": "蓝丝绒飒雪拿铁",
+    "displayName": "瑞幸咖啡 蓝丝绒飒雪拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "蓝丝绒飒雪拿铁",
+      "瑞幸咖啡 蓝丝绒飒雪拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "蓝丝绒飒雪拿铁",
+      "瑞幸咖啡 蓝丝绒飒雪拿铁"
+    ],
+    "matchPriority": 17.05,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-陨石拿铁瑞纳冰-61",
+    "brand": "瑞幸咖啡",
+    "name": "陨石拿铁瑞纳冰",
+    "displayName": "瑞幸咖啡 陨石拿铁瑞纳冰",
+    "category": "coffee",
+    "subCategory": "frappuccino",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "陨石拿铁瑞纳冰",
+      "瑞幸咖啡 陨石拿铁瑞纳冰"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "陨石拿铁瑞纳冰",
+      "瑞幸咖啡 陨石拿铁瑞纳冰"
+    ],
+    "matchPriority": 17,
+    "tags": [
+      "coffee",
+      "frappuccino",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-九州草莓丝绒拿铁-62",
+    "brand": "瑞幸咖啡",
+    "name": "九州草莓丝绒拿铁",
+    "displayName": "瑞幸咖啡 九州草莓丝绒拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "九州草莓丝绒拿铁",
+      "瑞幸咖啡 九州草莓丝绒拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "九州草莓丝绒拿铁",
+      "瑞幸咖啡 九州草莓丝绒拿铁"
+    ],
+    "matchPriority": 16.95,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-冲绳黑糖丝绒拿铁-63",
+    "brand": "瑞幸咖啡",
+    "name": "冲绳黑糖丝绒拿铁",
+    "displayName": "瑞幸咖啡 冲绳黑糖丝绒拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冲绳黑糖丝绒拿铁",
+      "瑞幸咖啡 冲绳黑糖丝绒拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "冲绳黑糖丝绒拿铁",
+      "瑞幸咖啡 冲绳黑糖丝绒拿铁"
+    ],
+    "matchPriority": 16.9,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-冲绳黑糖燕麦拿铁-64",
+    "brand": "瑞幸咖啡",
+    "name": "冲绳黑糖燕麦拿铁",
+    "displayName": "瑞幸咖啡 冲绳黑糖燕麦拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冲绳黑糖燕麦拿铁",
+      "瑞幸咖啡 冲绳黑糖燕麦拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "冲绳黑糖燕麦拿铁",
+      "瑞幸咖啡 冲绳黑糖燕麦拿铁"
+    ],
+    "matchPriority": 16.85,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-圣诞初雪丝绒拿铁-65",
+    "brand": "瑞幸咖啡",
+    "name": "圣诞初雪丝绒拿铁",
+    "displayName": "瑞幸咖啡 圣诞初雪丝绒拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "圣诞初雪丝绒拿铁",
+      "瑞幸咖啡 圣诞初雪丝绒拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "圣诞初雪丝绒拿铁",
+      "瑞幸咖啡 圣诞初雪丝绒拿铁"
+    ],
+    "matchPriority": 16.8,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-太妃榛香厚乳拿铁-66",
+    "brand": "瑞幸咖啡",
+    "name": "太妃榛香厚乳拿铁",
+    "displayName": "瑞幸咖啡 太妃榛香厚乳拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "太妃榛香厚乳拿铁",
+      "瑞幸咖啡 太妃榛香厚乳拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "太妃榛香厚乳拿铁",
+      "瑞幸咖啡 太妃榛香厚乳拿铁"
+    ],
+    "matchPriority": 16.75,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-海盐芝士厚乳拿铁-67",
+    "brand": "瑞幸咖啡",
+    "name": "海盐芝士厚乳拿铁",
+    "displayName": "瑞幸咖啡 海盐芝士厚乳拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "海盐芝士厚乳拿铁",
+      "瑞幸咖啡 海盐芝士厚乳拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "海盐芝士厚乳拿铁",
+      "瑞幸咖啡 海盐芝士厚乳拿铁"
+    ],
+    "matchPriority": 16.7,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-海盐芝士鸳鸯拿铁-68",
+    "brand": "瑞幸咖啡",
+    "name": "海盐芝士鸳鸯拿铁",
+    "displayName": "瑞幸咖啡 海盐芝士鸳鸯拿铁",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 185,
+    "caffeineRangeMg": {
+      "min": 185,
+      "max": 185
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "海盐芝士鸳鸯拿铁",
+      "瑞幸咖啡 海盐芝士鸳鸯拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "海盐芝士鸳鸯拿铁",
+      "瑞幸咖啡 海盐芝士鸳鸯拿铁"
+    ],
+    "matchPriority": 16.65,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-花魁-澳瑞白-69",
+    "brand": "瑞幸咖啡",
+    "name": "花魁·澳瑞白",
+    "displayName": "瑞幸咖啡 花魁·澳瑞白",
+    "category": "coffee",
+    "subCategory": "flat_white",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "花魁·澳瑞白",
+      "瑞幸咖啡 花魁·澳瑞白"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "花魁·澳瑞白",
+      "瑞幸咖啡 花魁·澳瑞白"
+    ],
+    "matchPriority": 16.6,
+    "tags": [
+      "coffee",
+      "flat_white",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-虎年嗷呜丝绒拿铁-70",
+    "brand": "瑞幸咖啡",
+    "name": "虎年嗷呜丝绒拿铁",
+    "displayName": "瑞幸咖啡 虎年嗷呜丝绒拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "虎年嗷呜丝绒拿铁",
+      "瑞幸咖啡 虎年嗷呜丝绒拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "虎年嗷呜丝绒拿铁",
+      "瑞幸咖啡 虎年嗷呜丝绒拿铁"
+    ],
+    "matchPriority": 16.55,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-天堂庄园-拿铁-71",
+    "brand": "瑞幸咖啡",
+    "name": "天堂庄园·拿铁",
+    "displayName": "瑞幸咖啡 天堂庄园·拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "天堂庄园·拿铁",
+      "瑞幸咖啡 天堂庄园·拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "天堂庄园·拿铁",
+      "瑞幸咖啡 天堂庄园·拿铁"
+    ],
+    "matchPriority": 16.5,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-天堂庄园-美式-72",
+    "brand": "瑞幸咖啡",
+    "name": "天堂庄园·美式",
+    "displayName": "瑞幸咖啡 天堂庄园·美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "天堂庄园·美式",
+      "瑞幸咖啡 天堂庄园·美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "天堂庄园·美式",
+      "瑞幸咖啡 天堂庄园·美式"
+    ],
+    "matchPriority": 16.45,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-耶加雪菲-拿铁-73",
+    "brand": "瑞幸咖啡",
+    "name": "耶加雪菲·拿铁",
+    "displayName": "瑞幸咖啡 耶加雪菲·拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "耶加雪菲·拿铁",
+      "瑞幸咖啡 耶加雪菲·拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "耶加雪菲·拿铁",
+      "瑞幸咖啡 耶加雪菲·拿铁"
+    ],
+    "matchPriority": 16.4,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-耶加雪菲-美式-74",
+    "brand": "瑞幸咖啡",
+    "name": "耶加雪菲·美式",
+    "displayName": "瑞幸咖啡 耶加雪菲·美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "耶加雪菲·美式",
+      "瑞幸咖啡 耶加雪菲·美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "耶加雪菲·美式",
+      "瑞幸咖啡 耶加雪菲·美式"
+    ],
+    "matchPriority": 16.35,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-云南小柑橘-拿铁-75",
+    "brand": "瑞幸咖啡",
+    "name": "云南小柑橘·拿铁",
+    "displayName": "瑞幸咖啡 云南小柑橘·拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "云南小柑橘·拿铁",
+      "瑞幸咖啡 云南小柑橘·拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "云南小柑橘·拿铁",
+      "瑞幸咖啡 云南小柑橘·拿铁"
+    ],
+    "matchPriority": 16.3,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-榛香燕麦拿铁-76",
+    "brand": "瑞幸咖啡",
+    "name": "榛香燕麦拿铁",
+    "displayName": "瑞幸咖啡 榛香燕麦拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "榛香燕麦拿铁",
+      "瑞幸咖啡 榛香燕麦拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "榛香燕麦拿铁",
+      "瑞幸咖啡 榛香燕麦拿铁"
+    ],
+    "matchPriority": 16.25,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-陨石燕麦拿铁-77",
+    "brand": "瑞幸咖啡",
+    "name": "陨石燕麦拿铁",
+    "displayName": "瑞幸咖啡 陨石燕麦拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "陨石燕麦拿铁",
+      "瑞幸咖啡 陨石燕麦拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "陨石燕麦拿铁",
+      "瑞幸咖啡 陨石燕麦拿铁"
+    ],
+    "matchPriority": 16.2,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-橙金气泡美式-78",
+    "brand": "瑞幸咖啡",
+    "name": "橙金气泡美式",
+    "displayName": "瑞幸咖啡 橙金气泡美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "橙金气泡美式",
+      "瑞幸咖啡 橙金气泡美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "橙金气泡美式",
+      "瑞幸咖啡 橙金气泡美式"
+    ],
+    "matchPriority": 16.15,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-陨石生椰拿铁-79",
+    "brand": "瑞幸咖啡",
+    "name": "陨石生椰拿铁",
+    "displayName": "瑞幸咖啡 陨石生椰拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "陨石生椰拿铁",
+      "瑞幸咖啡 陨石生椰拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "陨石生椰拿铁",
+      "瑞幸咖啡 陨石生椰拿铁"
+    ],
+    "matchPriority": 16.1,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-焦糖加浓美式-80",
+    "brand": "瑞幸咖啡",
+    "name": "焦糖加浓美式",
+    "displayName": "瑞幸咖啡 焦糖加浓美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 300,
+    "caffeineRangeMg": {
+      "min": 300,
+      "max": 300
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "焦糖加浓美式",
+      "瑞幸咖啡 焦糖加浓美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "焦糖加浓美式",
+      "瑞幸咖啡 焦糖加浓美式"
+    ],
+    "matchPriority": 16.05,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-香草丝绒拿铁-81",
+    "brand": "瑞幸咖啡",
+    "name": "香草丝绒拿铁",
+    "displayName": "瑞幸咖啡 香草丝绒拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "香草丝绒拿铁",
+      "瑞幸咖啡 香草丝绒拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "香草丝绒拿铁",
+      "瑞幸咖啡 香草丝绒拿铁"
+    ],
+    "matchPriority": 16,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-焦糖标准美式-82",
+    "brand": "瑞幸咖啡",
+    "name": "焦糖标准美式",
+    "displayName": "瑞幸咖啡 焦糖标准美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "焦糖标准美式",
+      "瑞幸咖啡 焦糖标准美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "焦糖标准美式",
+      "瑞幸咖啡 焦糖标准美式"
+    ],
+    "matchPriority": 15.95,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-黑金气泡美式-83",
+    "brand": "瑞幸咖啡",
+    "name": "黑金气泡美式",
+    "displayName": "瑞幸咖啡 黑金气泡美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "黑金气泡美式",
+      "瑞幸咖啡 黑金气泡美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "黑金气泡美式",
+      "瑞幸咖啡 黑金气泡美式"
+    ],
+    "matchPriority": 15.9,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-生椰丝绒拿铁-84",
+    "brand": "瑞幸咖啡",
+    "name": "生椰丝绒拿铁",
+    "displayName": "瑞幸咖啡 生椰丝绒拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "生椰丝绒拿铁",
+      "瑞幸咖啡 生椰丝绒拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "生椰丝绒拿铁",
+      "瑞幸咖啡 生椰丝绒拿铁"
+    ],
+    "matchPriority": 15.85,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-卡布奇诺瑞纳冰-85",
+    "brand": "瑞幸咖啡",
+    "name": "卡布奇诺瑞纳冰",
+    "displayName": "瑞幸咖啡 卡布奇诺瑞纳冰",
+    "category": "coffee",
+    "subCategory": "frappuccino",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "卡布奇诺瑞纳冰",
+      "瑞幸咖啡 卡布奇诺瑞纳冰"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "卡布奇诺瑞纳冰",
+      "瑞幸咖啡 卡布奇诺瑞纳冰"
+    ],
+    "matchPriority": 15.8,
+    "tags": [
+      "coffee",
+      "frappuccino",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-碧螺知春拿铁-86",
+    "brand": "瑞幸咖啡",
+    "name": "碧螺知春拿铁",
+    "displayName": "瑞幸咖啡 碧螺知春拿铁",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "碧螺知春拿铁",
+      "瑞幸咖啡 碧螺知春拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "碧螺知春拿铁",
+      "瑞幸咖啡 碧螺知春拿铁"
+    ],
+    "matchPriority": 15.75,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-新鸳鸯红茶拿铁-87",
+    "brand": "瑞幸咖啡",
+    "name": "新鸳鸯红茶拿铁",
+    "displayName": "瑞幸咖啡 新鸳鸯红茶拿铁",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 185,
+    "caffeineRangeMg": {
+      "min": 185,
+      "max": 185
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "新鸳鸯红茶拿铁",
+      "瑞幸咖啡 新鸳鸯红茶拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "新鸳鸯红茶拿铁",
+      "瑞幸咖啡 新鸳鸯红茶拿铁"
+    ],
+    "matchPriority": 15.7,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-茉莉海盐拿铁-88",
+    "brand": "瑞幸咖啡",
+    "name": "茉莉海盐拿铁",
+    "displayName": "瑞幸咖啡 茉莉海盐拿铁",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "茉莉海盐拿铁",
+      "瑞幸咖啡 茉莉海盐拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "茉莉海盐拿铁",
+      "瑞幸咖啡 茉莉海盐拿铁"
+    ],
+    "matchPriority": 15.65,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-橙之海生酪拿铁-89",
+    "brand": "瑞幸咖啡",
+    "name": "橙之海生酪拿铁",
+    "displayName": "瑞幸咖啡 橙之海生酪拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "橙之海生酪拿铁",
+      "瑞幸咖啡 橙之海生酪拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "橙之海生酪拿铁",
+      "瑞幸咖啡 橙之海生酪拿铁"
+    ],
+    "matchPriority": 15.6,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-茉莉花香拿铁-90",
+    "brand": "瑞幸咖啡",
+    "name": "茉莉花香拿铁",
+    "displayName": "瑞幸咖啡 茉莉花香拿铁",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "茉莉花香拿铁",
+      "瑞幸咖啡 茉莉花香拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "茉莉花香拿铁",
+      "瑞幸咖啡 茉莉花香拿铁"
+    ],
+    "matchPriority": 15.55,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-葡萄冰萃美式-91",
+    "brand": "瑞幸咖啡",
+    "name": "葡萄冰萃美式",
+    "displayName": "瑞幸咖啡 葡萄冰萃美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "葡萄冰萃美式",
+      "瑞幸咖啡 葡萄冰萃美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "葡萄冰萃美式",
+      "瑞幸咖啡 葡萄冰萃美式"
+    ],
+    "matchPriority": 15.5,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-元气厚乳拿铁-92",
+    "brand": "瑞幸咖啡",
+    "name": "元气厚乳拿铁",
+    "displayName": "瑞幸咖啡 元气厚乳拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "元气厚乳拿铁",
+      "瑞幸咖啡 元气厚乳拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "元气厚乳拿铁",
+      "瑞幸咖啡 元气厚乳拿铁"
+    ],
+    "matchPriority": 15.45,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-香草拿铁-93",
+    "brand": "瑞幸咖啡",
+    "name": "香草拿铁",
+    "displayName": "瑞幸咖啡 香草拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "香草拿铁",
+      "瑞幸咖啡 香草拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "香草拿铁",
+      "瑞幸咖啡 香草拿铁"
+    ],
+    "matchPriority": 15.4,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-冠军燕麦拿铁-94",
+    "brand": "瑞幸咖啡",
+    "name": "冠军燕麦拿铁",
+    "displayName": "瑞幸咖啡 冠军燕麦拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冠军燕麦拿铁",
+      "瑞幸咖啡 冠军燕麦拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "冠军燕麦拿铁",
+      "瑞幸咖啡 冠军燕麦拿铁"
+    ],
+    "matchPriority": 15.35,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-冰厚乳拿铁-95",
+    "brand": "瑞幸咖啡",
+    "name": "冰厚乳拿铁",
+    "displayName": "瑞幸咖啡 冰厚乳拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰厚乳拿铁",
+      "瑞幸咖啡 冰厚乳拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "冰厚乳拿铁",
+      "瑞幸咖啡 冰厚乳拿铁"
+    ],
+    "matchPriority": 15.3,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-冰吸生椰拿铁-96",
+    "brand": "瑞幸咖啡",
+    "name": "冰吸生椰拿铁",
+    "displayName": "瑞幸咖啡 冰吸生椰拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冰吸生椰拿铁",
+      "瑞幸咖啡 冰吸生椰拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "冰吸生椰拿铁",
+      "瑞幸咖啡 冰吸生椰拿铁"
+    ],
+    "matchPriority": 15.25,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-姜饼人拿铁-97",
+    "brand": "瑞幸咖啡",
+    "name": "姜饼人拿铁",
+    "displayName": "瑞幸咖啡 姜饼人拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "姜饼人拿铁",
+      "瑞幸咖啡 姜饼人拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "姜饼人拿铁",
+      "瑞幸咖啡 姜饼人拿铁"
+    ],
+    "matchPriority": 15.2,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-冲绳黑糖拿铁-98",
+    "brand": "瑞幸咖啡",
+    "name": "冲绳黑糖拿铁",
+    "displayName": "瑞幸咖啡 冲绳黑糖拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冲绳黑糖拿铁",
+      "瑞幸咖啡 冲绳黑糖拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "冲绳黑糖拿铁",
+      "瑞幸咖啡 冲绳黑糖拿铁"
+    ],
+    "matchPriority": 15.15,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-抹茶好喝椰-99",
+    "brand": "瑞幸咖啡",
+    "name": "抹茶好喝椰",
+    "displayName": "瑞幸咖啡 抹茶好喝椰",
+    "category": "tea",
+    "subCategory": "matcha_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 45,
+    "caffeineRangeMg": {
+      "min": 45,
+      "max": 45
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "抹茶好喝椰",
+      "瑞幸咖啡 抹茶好喝椰"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "抹茶好喝椰",
+      "瑞幸咖啡 抹茶好喝椰"
+    ],
+    "matchPriority": 15.1,
+    "tags": [
+      "tea",
+      "matcha_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-夏日青提拿铁-100",
+    "brand": "瑞幸咖啡",
+    "name": "夏日青提拿铁",
+    "displayName": "瑞幸咖啡 夏日青提拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "夏日青提拿铁",
+      "瑞幸咖啡 夏日青提拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "夏日青提拿铁",
+      "瑞幸咖啡 夏日青提拿铁"
+    ],
+    "matchPriority": 15.05,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-抹茶瑞纳冰-101",
+    "brand": "瑞幸咖啡",
+    "name": "抹茶瑞纳冰",
+    "displayName": "瑞幸咖啡 抹茶瑞纳冰",
+    "category": "tea",
+    "subCategory": "matcha_frappuccino",
+    "sizeLabel": "杯型",
+    "caffeineMg": 45,
+    "caffeineRangeMg": {
+      "min": 45,
+      "max": 45
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "抹茶瑞纳冰",
+      "瑞幸咖啡 抹茶瑞纳冰"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "抹茶瑞纳冰",
+      "瑞幸咖啡 抹茶瑞纳冰"
+    ],
+    "matchPriority": 15,
+    "tags": [
+      "tea",
+      "matcha_frappuccino",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-巧克力瑞纳冰-102",
+    "brand": "瑞幸咖啡",
+    "name": "巧克力瑞纳冰",
+    "displayName": "瑞幸咖啡 巧克力瑞纳冰",
+    "category": "other",
+    "subCategory": "chocolate",
+    "sizeLabel": "杯型",
+    "caffeineMg": 25,
+    "caffeineRangeMg": {
+      "min": 25,
+      "max": 25
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "巧克力瑞纳冰",
+      "瑞幸咖啡 巧克力瑞纳冰"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "巧克力瑞纳冰",
+      "瑞幸咖啡 巧克力瑞纳冰"
+    ],
+    "matchPriority": 14.95,
+    "tags": [
+      "other",
+      "chocolate",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-摩卡瑞纳冰-103",
+    "brand": "瑞幸咖啡",
+    "name": "摩卡瑞纳冰",
+    "displayName": "瑞幸咖啡 摩卡瑞纳冰",
+    "category": "coffee",
+    "subCategory": "frappuccino",
+    "sizeLabel": "杯型",
+    "caffeineMg": 175,
+    "caffeineRangeMg": {
+      "min": 175,
+      "max": 175
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "摩卡瑞纳冰",
+      "瑞幸咖啡 摩卡瑞纳冰"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "摩卡瑞纳冰",
+      "瑞幸咖啡 摩卡瑞纳冰"
+    ],
+    "matchPriority": 14.9,
+    "tags": [
+      "coffee",
+      "frappuccino",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-抓马西瓜拿铁-104",
+    "brand": "瑞幸咖啡",
+    "name": "抓马西瓜拿铁",
+    "displayName": "瑞幸咖啡 抓马西瓜拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "抓马西瓜拿铁",
+      "瑞幸咖啡 抓马西瓜拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "抓马西瓜拿铁",
+      "瑞幸咖啡 抓马西瓜拿铁"
+    ],
+    "matchPriority": 14.85,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-焦糖玛奇朵-105",
+    "brand": "瑞幸咖啡",
+    "name": "焦糖玛奇朵",
+    "displayName": "瑞幸咖啡 焦糖玛奇朵",
+    "category": "coffee",
+    "subCategory": "caramel_macchiato",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "焦糖玛奇朵",
+      "瑞幸咖啡 焦糖玛奇朵"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "焦糖玛奇朵",
+      "瑞幸咖啡 焦糖玛奇朵"
+    ],
+    "matchPriority": 14.8,
+    "tags": [
+      "coffee",
+      "caramel_macchiato",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-抹茶燕麦拿铁-106",
+    "brand": "瑞幸咖啡",
+    "name": "抹茶燕麦拿铁",
+    "displayName": "瑞幸咖啡 抹茶燕麦拿铁",
+    "category": "tea",
+    "subCategory": "matcha_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 45,
+    "caffeineRangeMg": {
+      "min": 45,
+      "max": 45
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "抹茶燕麦拿铁",
+      "瑞幸咖啡 抹茶燕麦拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "抹茶燕麦拿铁",
+      "瑞幸咖啡 抹茶燕麦拿铁"
+    ],
+    "matchPriority": 14.75,
+    "tags": [
+      "tea",
+      "matcha_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-生椰爱摩卡-107",
+    "brand": "瑞幸咖啡",
+    "name": "生椰爱摩卡",
+    "displayName": "瑞幸咖啡 生椰爱摩卡",
+    "category": "coffee",
+    "subCategory": "coffee_mocha",
+    "sizeLabel": "杯型",
+    "caffeineMg": 175,
+    "caffeineRangeMg": {
+      "min": 175,
+      "max": 175
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "生椰爱摩卡",
+      "瑞幸咖啡 生椰爱摩卡"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "生椰爱摩卡",
+      "瑞幸咖啡 生椰爱摩卡"
+    ],
+    "matchPriority": 14.7,
+    "tags": [
+      "coffee",
+      "coffee_mocha",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-摸鱼生椰拿铁-108",
+    "brand": "瑞幸咖啡",
+    "name": "摸鱼生椰拿铁",
+    "displayName": "瑞幸咖啡 摸鱼生椰拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "摸鱼生椰拿铁",
+      "瑞幸咖啡 摸鱼生椰拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "摸鱼生椰拿铁",
+      "瑞幸咖啡 摸鱼生椰拿铁"
+    ],
+    "matchPriority": 14.65,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-精萃澳瑞白-109",
+    "brand": "瑞幸咖啡",
+    "name": "精萃澳瑞白",
+    "displayName": "瑞幸咖啡 精萃澳瑞白",
+    "category": "coffee",
+    "subCategory": "flat_white",
+    "sizeLabel": "杯型",
+    "caffeineMg": 190,
+    "caffeineRangeMg": {
+      "min": 190,
+      "max": 190
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "精萃澳瑞白",
+      "瑞幸咖啡 精萃澳瑞白"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "精萃澳瑞白",
+      "瑞幸咖啡 精萃澳瑞白"
+    ],
+    "matchPriority": 14.6,
+    "tags": [
+      "coffee",
+      "flat_white",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-杏花乌龙拿铁-110",
+    "brand": "瑞幸咖啡",
+    "name": "杏花乌龙拿铁",
+    "displayName": "瑞幸咖啡 杏花乌龙拿铁",
+    "category": "milk_tea",
+    "subCategory": "tea_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "杏花乌龙拿铁",
+      "瑞幸咖啡 杏花乌龙拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "杏花乌龙拿铁",
+      "瑞幸咖啡 杏花乌龙拿铁"
+    ],
+    "matchPriority": 14.55,
+    "tags": [
+      "milk_tea",
+      "tea_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-椰青冰萃美式-111",
+    "brand": "瑞幸咖啡",
+    "name": "椰青冰萃美式",
+    "displayName": "瑞幸咖啡 椰青冰萃美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "椰青冰萃美式",
+      "瑞幸咖啡 椰青冰萃美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "椰青冰萃美式",
+      "瑞幸咖啡 椰青冰萃美式"
+    ],
+    "matchPriority": 14.5,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-拿铁-112",
+    "brand": "瑞幸咖啡",
+    "name": "拿铁",
+    "displayName": "瑞幸咖啡 拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "拿铁",
+      "瑞幸咖啡 拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "拿铁",
+      "瑞幸咖啡 拿铁"
+    ],
+    "matchPriority": 14.45,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-标准美式-113",
+    "brand": "瑞幸咖啡",
+    "name": "标准美式",
+    "displayName": "瑞幸咖啡 标准美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "标准美式",
+      "瑞幸咖啡 标准美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "标准美式",
+      "瑞幸咖啡 标准美式"
+    ],
+    "matchPriority": 14.4,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-摩卡-114",
+    "brand": "瑞幸咖啡",
+    "name": "摩卡",
+    "displayName": "瑞幸咖啡 摩卡",
+    "category": "coffee",
+    "subCategory": "coffee_mocha",
+    "sizeLabel": "杯型",
+    "caffeineMg": 175,
+    "caffeineRangeMg": {
+      "min": 175,
+      "max": 175
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "摩卡",
+      "瑞幸咖啡 摩卡"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "摩卡",
+      "瑞幸咖啡 摩卡"
+    ],
+    "matchPriority": 14.35,
+    "tags": [
+      "coffee",
+      "coffee_mocha",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-椰云拿铁-115",
+    "brand": "瑞幸咖啡",
+    "name": "椰云拿铁",
+    "displayName": "瑞幸咖啡 椰云拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "椰云拿铁",
+      "瑞幸咖啡 椰云拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "椰云拿铁",
+      "瑞幸咖啡 椰云拿铁"
+    ],
+    "matchPriority": 14.3,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-厚乳茶-116",
+    "brand": "瑞幸咖啡",
+    "name": "厚乳茶",
+    "displayName": "瑞幸咖啡 厚乳茶",
+    "category": "milk_tea",
+    "subCategory": "milk_tea",
+    "sizeLabel": "杯型",
+    "caffeineMg": 35,
+    "caffeineRangeMg": {
+      "min": 35,
+      "max": 35
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "厚乳茶",
+      "瑞幸咖啡 厚乳茶"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "厚乳茶",
+      "瑞幸咖啡 厚乳茶"
+    ],
+    "matchPriority": 14.25,
+    "tags": [
+      "milk_tea",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-榛果拿铁-117",
+    "brand": "瑞幸咖啡",
+    "name": "榛果拿铁",
+    "displayName": "瑞幸咖啡 榛果拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "榛果拿铁",
+      "瑞幸咖啡 榛果拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "榛果拿铁",
+      "瑞幸咖啡 榛果拿铁"
+    ],
+    "matchPriority": 14.2,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-轻乳茶-118",
+    "brand": "瑞幸咖啡",
+    "name": "轻乳茶",
+    "displayName": "瑞幸咖啡 轻乳茶",
+    "category": "milk_tea",
+    "subCategory": "milk_tea",
+    "sizeLabel": "杯型",
+    "caffeineMg": 35,
+    "caffeineRangeMg": {
+      "min": 35,
+      "max": 35
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "轻乳茶",
+      "瑞幸咖啡 轻乳茶"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "轻乳茶",
+      "瑞幸咖啡 轻乳茶"
+    ],
+    "matchPriority": 14.15,
+    "tags": [
+      "milk_tea",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-橙c美式-119",
+    "brand": "瑞幸咖啡",
+    "name": "橙C美式",
+    "displayName": "瑞幸咖啡 橙C美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 225,
+    "caffeineRangeMg": {
+      "min": 225,
+      "max": 225
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "橙C美式",
+      "瑞幸咖啡 橙C美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "橙C美式",
+      "瑞幸咖啡 橙C美式"
+    ],
+    "matchPriority": 14.1,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-丝绒拿铁-120",
+    "brand": "瑞幸咖啡",
+    "name": "丝绒拿铁",
+    "displayName": "瑞幸咖啡 丝绒拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "丝绒拿铁",
+      "瑞幸咖啡 丝绒拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "丝绒拿铁",
+      "瑞幸咖啡 丝绒拿铁"
+    ],
+    "matchPriority": 14.05,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-热巧克力-121",
+    "brand": "瑞幸咖啡",
+    "name": "热巧克力",
+    "displayName": "瑞幸咖啡 热巧克力",
+    "category": "other",
+    "subCategory": "chocolate",
+    "sizeLabel": "杯型",
+    "caffeineMg": 25,
+    "caffeineRangeMg": {
+      "min": 25,
+      "max": 25
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "热巧克力",
+      "瑞幸咖啡 热巧克力"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "热巧克力",
+      "瑞幸咖啡 热巧克力"
+    ],
+    "matchPriority": 14,
+    "tags": [
+      "other",
+      "chocolate",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-加浓美式-122",
+    "brand": "瑞幸咖啡",
+    "name": "加浓美式",
+    "displayName": "瑞幸咖啡 加浓美式",
+    "category": "coffee",
+    "subCategory": "americano",
+    "sizeLabel": "杯型",
+    "caffeineMg": 300,
+    "caffeineRangeMg": {
+      "min": 300,
+      "max": 300
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "加浓美式",
+      "瑞幸咖啡 加浓美式"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "加浓美式",
+      "瑞幸咖啡 加浓美式"
+    ],
+    "matchPriority": 13.95,
+    "tags": [
+      "coffee",
+      "americano",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-焦糖拿铁-123",
+    "brand": "瑞幸咖啡",
+    "name": "焦糖拿铁",
+    "displayName": "瑞幸咖啡 焦糖拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "焦糖拿铁",
+      "瑞幸咖啡 焦糖拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "焦糖拿铁",
+      "瑞幸咖啡 焦糖拿铁"
+    ],
+    "matchPriority": 13.9,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-卡布奇诺-124",
+    "brand": "瑞幸咖啡",
+    "name": "卡布奇诺",
+    "displayName": "瑞幸咖啡 卡布奇诺",
+    "category": "coffee",
+    "subCategory": "cappuccino",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "卡布奇诺",
+      "瑞幸咖啡 卡布奇诺"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "卡布奇诺",
+      "瑞幸咖啡 卡布奇诺"
+    ],
+    "matchPriority": 13.85,
+    "tags": [
+      "coffee",
+      "cappuccino",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-生椰拿铁-125",
+    "brand": "瑞幸咖啡",
+    "name": "生椰拿铁",
+    "displayName": "瑞幸咖啡 生椰拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "生椰拿铁",
+      "瑞幸咖啡 生椰拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "生椰拿铁",
+      "瑞幸咖啡 生椰拿铁"
+    ],
+    "matchPriority": 13.8,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-厚乳拿铁-126",
+    "brand": "瑞幸咖啡",
+    "name": "厚乳拿铁",
+    "displayName": "瑞幸咖啡 厚乳拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "厚乳拿铁",
+      "瑞幸咖啡 厚乳拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "厚乳拿铁",
+      "瑞幸咖啡 厚乳拿铁"
+    ],
+    "matchPriority": 13.75,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-生酪拿铁-127",
+    "brand": "瑞幸咖啡",
+    "name": "生酪拿铁",
+    "displayName": "瑞幸咖啡 生酪拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "生酪拿铁",
+      "瑞幸咖啡 生酪拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "生酪拿铁",
+      "瑞幸咖啡 生酪拿铁"
+    ],
+    "matchPriority": 13.7,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-小白拿铁-128",
+    "brand": "瑞幸咖啡",
+    "name": "小白拿铁",
+    "displayName": "瑞幸咖啡 小白拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "小白拿铁",
+      "瑞幸咖啡 小白拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "小白拿铁",
+      "瑞幸咖啡 小白拿铁"
+    ],
+    "matchPriority": 13.65,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-酱香拿铁-129",
+    "brand": "瑞幸咖啡",
+    "name": "酱香拿铁",
+    "displayName": "瑞幸咖啡 酱香拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "酱香拿铁",
+      "瑞幸咖啡 酱香拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "酱香拿铁",
+      "瑞幸咖啡 酱香拿铁"
+    ],
+    "matchPriority": 13.6,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-抹茶拿铁-130",
+    "brand": "瑞幸咖啡",
+    "name": "抹茶拿铁",
+    "displayName": "瑞幸咖啡 抹茶拿铁",
+    "category": "tea",
+    "subCategory": "matcha_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 45,
+    "caffeineRangeMg": {
+      "min": 45,
+      "max": 45
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "抹茶拿铁",
+      "瑞幸咖啡 抹茶拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "抹茶拿铁",
+      "瑞幸咖啡 抹茶拿铁"
+    ],
+    "matchPriority": 13.55,
+    "tags": [
+      "tea",
+      "matcha_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "瑞幸咖啡-陨石拿铁-131",
+    "brand": "瑞幸咖啡",
+    "name": "陨石拿铁",
+    "displayName": "瑞幸咖啡 陨石拿铁",
+    "category": "coffee",
+    "subCategory": "coffee_latte",
+    "sizeLabel": "杯型",
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 150,
+      "max": 150
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "陨石拿铁",
+      "瑞幸咖啡 陨石拿铁"
+    ],
+    "ocrKeywords": [
+      "瑞幸咖啡",
+      "陨石拿铁",
+      "瑞幸咖啡 陨石拿铁"
+    ],
+    "matchPriority": 13.5,
+    "tags": [
+      "coffee",
+      "coffee_latte",
+      "用户截图"
+    ],
+    "notes": "默认杯型/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-可乐-132",
+    "brand": "常见饮品",
+    "name": "可乐",
+    "displayName": "常见饮品 可乐",
+    "category": "soda",
+    "subCategory": "soft_drink",
+    "sizeLabel": "335ml",
+    "volumeMl": 335,
+    "caffeineMg": 34,
+    "caffeineRangeMg": {
+      "min": 34,
+      "max": 34
+    },
+    "caffeinePer100ml": 10,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "可乐",
+      "常见饮品 可乐"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "可乐",
+      "常见饮品 可乐"
+    ],
+    "matchPriority": 13.45,
+    "tags": [
+      "soda",
+      "soft_drink",
+      "用户截图"
+    ],
+    "notes": "335ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-无糖可乐-133",
+    "brand": "常见饮品",
+    "name": "无糖可乐",
+    "displayName": "常见饮品 无糖可乐",
+    "category": "soda",
+    "subCategory": "soft_drink",
+    "sizeLabel": "330ml",
+    "volumeMl": 330,
+    "caffeineMg": 38,
+    "caffeineRangeMg": {
+      "min": 38,
+      "max": 38
+    },
+    "caffeinePer100ml": 12,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "无糖可乐",
+      "常见饮品 无糖可乐"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "无糖可乐",
+      "常见饮品 无糖可乐"
+    ],
+    "matchPriority": 13.4,
+    "tags": [
+      "soda",
+      "soft_drink",
+      "用户截图"
+    ],
+    "notes": "330ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-百事可乐-134",
+    "brand": "常见饮品",
+    "name": "百事可乐",
+    "displayName": "常见饮品 百事可乐",
+    "category": "soda",
+    "subCategory": "soft_drink",
+    "sizeLabel": "330ml",
+    "volumeMl": 330,
+    "caffeineMg": 38,
+    "caffeineRangeMg": {
+      "min": 38,
+      "max": 38
+    },
+    "caffeinePer100ml": 12,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "百事可乐",
+      "常见饮品 百事可乐"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "百事可乐",
+      "常见饮品 百事可乐"
+    ],
+    "matchPriority": 13.35,
+    "tags": [
+      "soda",
+      "soft_drink",
+      "用户截图"
+    ],
+    "notes": "330ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-零度可乐-135",
+    "brand": "常见饮品",
+    "name": "零度可乐",
+    "displayName": "常见饮品 零度可乐",
+    "category": "soda",
+    "subCategory": "soft_drink",
+    "sizeLabel": "335ml",
+    "volumeMl": 335,
+    "caffeineMg": 36,
+    "caffeineRangeMg": {
+      "min": 36,
+      "max": 36
+    },
+    "caffeinePer100ml": 11,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "零度可乐",
+      "常见饮品 零度可乐"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "零度可乐",
+      "常见饮品 零度可乐"
+    ],
+    "matchPriority": 13.3,
+    "tags": [
+      "soda",
+      "soft_drink",
+      "用户截图"
+    ],
+    "notes": "335ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-健怡可乐-136",
+    "brand": "常见饮品",
+    "name": "健怡可乐",
+    "displayName": "常见饮品 健怡可乐",
+    "category": "soda",
+    "subCategory": "soft_drink",
+    "sizeLabel": "335ml",
+    "volumeMl": 335,
+    "caffeineMg": 46,
+    "caffeineRangeMg": {
+      "min": 46,
+      "max": 46
+    },
+    "caffeinePer100ml": 14,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "健怡可乐",
+      "常见饮品 健怡可乐"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "健怡可乐",
+      "常见饮品 健怡可乐"
+    ],
+    "matchPriority": 13.25,
+    "tags": [
+      "soda",
+      "soft_drink",
+      "用户截图"
+    ],
+    "notes": "335ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-红牛-137",
+    "brand": "常见饮品",
+    "name": "红牛",
+    "displayName": "常见饮品 红牛",
+    "category": "energy_drink",
+    "subCategory": "energy_drink",
+    "sizeLabel": "250ml/330ml不同版本",
+    "volumeMl": 250,
+    "caffeineMg": 76,
+    "caffeineRangeMg": {
+      "min": 76,
+      "max": 80
+    },
+    "caffeinePer100ml": 30,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "红牛",
+      "常见饮品 红牛"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "红牛",
+      "常见饮品 红牛"
+    ],
+    "matchPriority": 13.2,
+    "tags": [
+      "energy_drink",
+      "用户截图"
+    ],
+    "notes": "250ml/330ml不同版本",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-魔爪能量饮料-138",
+    "brand": "常见饮品",
+    "name": "魔爪能量饮料",
+    "displayName": "常见饮品 魔爪能量饮料",
+    "category": "energy_drink",
+    "subCategory": "energy_drink",
+    "sizeLabel": "330ml",
+    "volumeMl": 330,
+    "caffeineMg": 160,
+    "caffeineRangeMg": {
+      "min": 160,
+      "max": 160
+    },
+    "caffeinePer100ml": 48,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "魔爪能量饮料",
+      "常见饮品 魔爪能量饮料"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "魔爪能量饮料",
+      "常见饮品 魔爪能量饮料"
+    ],
+    "matchPriority": 13.15,
+    "tags": [
+      "energy_drink",
+      "用户截图"
+    ],
+    "notes": "330ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-红茶-139",
+    "brand": "常见饮品",
+    "name": "红茶",
+    "displayName": "常见饮品 红茶",
+    "category": "tea",
+    "subCategory": "tea",
+    "sizeLabel": "约240ml",
+    "volumeMl": 240,
+    "caffeineMg": 55,
+    "caffeineRangeMg": {
+      "min": 40,
+      "max": 70
+    },
+    "caffeinePer100ml": 23,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "红茶",
+      "常见饮品 红茶"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "红茶",
+      "常见饮品 红茶"
+    ],
+    "matchPriority": 13.1,
+    "tags": [
+      "tea",
+      "用户截图"
+    ],
+    "notes": "约240ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-绿茶-140",
+    "brand": "常见饮品",
+    "name": "绿茶",
+    "displayName": "常见饮品 绿茶",
+    "category": "tea",
+    "subCategory": "tea",
+    "sizeLabel": "约240ml",
+    "volumeMl": 240,
+    "caffeineMg": 32,
+    "caffeineRangeMg": {
+      "min": 20,
+      "max": 45
+    },
+    "caffeinePer100ml": 13,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "绿茶",
+      "常见饮品 绿茶"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "绿茶",
+      "常见饮品 绿茶"
+    ],
+    "matchPriority": 13.05,
+    "tags": [
+      "tea",
+      "用户截图"
+    ],
+    "notes": "约240ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-抹茶-141",
+    "brand": "常见饮品",
+    "name": "抹茶",
+    "displayName": "常见饮品 抹茶",
+    "category": "tea",
+    "subCategory": "matcha",
+    "sizeLabel": "约240ml",
+    "volumeMl": 240,
+    "caffeineMg": 70,
+    "caffeineRangeMg": {
+      "min": 70,
+      "max": 70
+    },
+    "caffeinePer100ml": 29,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "抹茶",
+      "常见饮品 抹茶"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "抹茶",
+      "常见饮品 抹茶"
+    ],
+    "matchPriority": 13,
+    "tags": [
+      "tea",
+      "matcha",
+      "用户截图"
+    ],
+    "notes": "约240ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-冷萃咖啡-142",
+    "brand": "常见饮品",
+    "name": "冷萃咖啡",
+    "displayName": "常见饮品 冷萃咖啡",
+    "category": "coffee",
+    "subCategory": "cold_brew",
+    "sizeLabel": "约240ml",
+    "volumeMl": 240,
+    "caffeineMg": 150,
+    "caffeineRangeMg": {
+      "min": 100,
+      "max": 200
+    },
+    "caffeinePer100ml": 63,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "冷萃咖啡",
+      "常见饮品 冷萃咖啡"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "冷萃咖啡",
+      "常见饮品 冷萃咖啡"
+    ],
+    "matchPriority": 12.95,
+    "tags": [
+      "coffee",
+      "cold_brew",
+      "用户截图"
+    ],
+    "notes": "约240ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-雀巢速溶咖啡-143",
+    "brand": "常见饮品",
+    "name": "雀巢速溶咖啡",
+    "displayName": "常见饮品 雀巢速溶咖啡",
+    "category": "coffee",
+    "subCategory": "instant_coffee",
+    "sizeLabel": "袋",
+    "caffeineMg": 60,
+    "caffeineRangeMg": {
+      "min": 60,
+      "max": 60
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "雀巢速溶咖啡",
+      "常见饮品 雀巢速溶咖啡"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "雀巢速溶咖啡",
+      "常见饮品 雀巢速溶咖啡"
+    ],
+    "matchPriority": 12.9,
+    "tags": [
+      "coffee",
+      "instant_coffee",
+      "用户截图"
+    ],
+    "notes": "一袋/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-雀巢即饮咖啡-144",
+    "brand": "常见饮品",
+    "name": "雀巢即饮咖啡",
+    "displayName": "常见饮品 雀巢即饮咖啡",
+    "category": "coffee",
+    "subCategory": "ready_to_drink_coffee",
+    "sizeLabel": "杯",
+    "caffeineMg": 60,
+    "caffeineRangeMg": {
+      "min": 60,
+      "max": 60
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "雀巢即饮咖啡",
+      "常见饮品 雀巢即饮咖啡"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "雀巢即饮咖啡",
+      "常见饮品 雀巢即饮咖啡"
+    ],
+    "matchPriority": 12.85,
+    "tags": [
+      "coffee",
+      "ready_to_drink_coffee",
+      "用户截图"
+    ],
+    "notes": "一杯/每份",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-雅哈意式拿铁罐装-145",
+    "brand": "常见饮品",
+    "name": "雅哈意式拿铁罐装",
+    "displayName": "常见饮品 雅哈意式拿铁罐装",
+    "category": "coffee",
+    "subCategory": "ready_to_drink_coffee",
+    "sizeLabel": "280ml",
+    "volumeMl": 280,
+    "caffeineMg": 135,
+    "caffeineRangeMg": {
+      "min": 135,
+      "max": 135
+    },
+    "caffeinePer100ml": 48,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "雅哈意式拿铁罐装",
+      "常见饮品 雅哈意式拿铁罐装"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "雅哈意式拿铁罐装",
+      "常见饮品 雅哈意式拿铁罐装"
+    ],
+    "matchPriority": 12.8,
+    "tags": [
+      "coffee",
+      "ready_to_drink_coffee",
+      "用户截图"
+    ],
+    "notes": "280ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-贝纳颂曼特宁罐装-146",
+    "brand": "常见饮品",
+    "name": "贝纳颂曼特宁罐装",
+    "displayName": "常见饮品 贝纳颂曼特宁罐装",
+    "category": "coffee",
+    "subCategory": "ready_to_drink_coffee",
+    "sizeLabel": "280ml",
+    "volumeMl": 280,
+    "caffeineMg": 132,
+    "caffeineRangeMg": {
+      "min": 132,
+      "max": 132
+    },
+    "caffeinePer100ml": 47,
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "贝纳颂曼特宁罐装",
+      "常见饮品 贝纳颂曼特宁罐装"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "贝纳颂曼特宁罐装",
+      "常见饮品 贝纳颂曼特宁罐装"
+    ],
+    "matchPriority": 12.75,
+    "tags": [
+      "coffee",
+      "ready_to_drink_coffee",
+      "用户截图"
+    ],
+    "notes": "280ml",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  },
+  {
+    "id": "常见饮品-雀巢燃魂速溶咖啡-147",
+    "brand": "常见饮品",
+    "name": "雀巢燃魂速溶咖啡",
+    "displayName": "常见饮品 雀巢燃魂速溶咖啡",
+    "category": "coffee",
+    "subCategory": "instant_coffee",
+    "sizeLabel": "1.8g",
+    "caffeineMg": 110,
+    "caffeineRangeMg": {
+      "min": 110,
+      "max": 110
+    },
+    "sourceType": "brand_library",
+    "confidence": "medium",
+    "isDefault": true,
+    "isCustom": false,
+    "isDecaf": false,
+    "aliases": [
+      "雀巢燃魂速溶咖啡",
+      "常见饮品 雀巢燃魂速溶咖啡"
+    ],
+    "ocrKeywords": [
+      "常见饮品",
+      "雀巢燃魂速溶咖啡",
+      "常见饮品 雀巢燃魂速溶咖啡"
+    ],
+    "matchPriority": 12.7,
+    "tags": [
+      "coffee",
+      "instant_coffee",
+      "用户截图"
+    ],
+    "notes": "1.8g",
+    "editableFields": [
+      "caffeineMg"
+    ]
+  }
+]
