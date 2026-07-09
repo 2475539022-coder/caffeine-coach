@@ -1,0 +1,93 @@
+[
+  {
+    "id": "s6.3.memory.001",
+    "name": "近 14 天同一饮品 2 次进入常喝",
+    "category": "frequent_drink",
+    "input": { "records": [{ "name": "拿铁", "brand": "瑞幸", "caffeineMg": 120, "usedAt": "2026-07-01T10:00:00+08:00" }, { "name": "拿铁", "brand": "瑞幸", "caffeineMg": 120, "usedAt": "2026-07-08T10:00:00+08:00" }], "pinned": [], "excludedIds": [], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": true, "count": 2, "source": "auto" }
+  },
+  {
+    "id": "s6.3.memory.002",
+    "name": "累计 3 次进入常喝",
+    "category": "frequent_drink",
+    "input": { "records": [{ "name": "美式", "caffeineMg": 150, "usedAt": "2026-06-01T10:00:00+08:00" }, { "name": "美式", "caffeineMg": 150, "usedAt": "2026-06-15T10:00:00+08:00" }, { "name": "美式", "caffeineMg": 150, "usedAt": "2026-07-01T10:00:00+08:00" }], "pinned": [], "excludedIds": [], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": true, "count": 3, "source": "auto" }
+  },
+  {
+    "id": "s6.3.memory.003",
+    "name": "删除后自动常喝不满足阈值则移除",
+    "category": "frequent_drink",
+    "input": { "records": [{ "name": "拿铁", "brand": "瑞幸", "caffeineMg": 120, "usedAt": "2026-07-08T10:00:00+08:00" }], "pinned": [], "excludedIds": [], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": false }
+  },
+  {
+    "id": "s6.3.memory.004",
+    "name": "手动 pinned 不因记录次数下降消失",
+    "category": "frequent_drink",
+    "input": { "records": [], "pinned": [{ "id": "manual::拿铁:120", "name": "拿铁", "caffeineMg": 120, "source": "manual", "count": 1, "isPinned": true, "lastUsedAt": "2026-07-08T10:00:00+08:00" }], "excludedIds": [], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": true, "source": "manual", "isPinned": true }
+  },
+  {
+    "id": "s6.3.memory.005",
+    "name": "用户移除后不立即重新出现",
+    "category": "frequent_drink",
+    "input": { "records": [{ "name": "拿铁", "caffeineMg": 120, "usedAt": "2026-07-07T10:00:00+08:00" }, { "name": "拿铁", "caffeineMg": 120, "usedAt": "2026-07-08T10:00:00+08:00" }], "pinned": [], "excludedIds": ["manual::拿铁:120"], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": false }
+  },
+  {
+    "id": "s6.3.memory.006",
+    "name": "同名不同咖啡因不误合并",
+    "category": "frequent_drink",
+    "input": { "records": [{ "name": "拿铁", "caffeineMg": 80, "usedAt": "2026-07-07T10:00:00+08:00" }, { "name": "拿铁", "caffeineMg": 120, "usedAt": "2026-07-08T10:00:00+08:00" }], "pinned": [], "excludedIds": [], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": false, "groupCount": 2 }
+  },
+  {
+    "id": "s6.3.memory.007",
+    "name": "custom drink 真实记录后可参与常喝",
+    "category": "frequent_drink",
+    "input": { "records": [{ "name": "公司楼下拿铁", "caffeineMg": 90, "sourceType": "user_custom", "usedAt": "2026-07-07T10:00:00+08:00" }, { "name": "公司楼下拿铁", "caffeineMg": 90, "sourceType": "user_custom", "usedAt": "2026-07-08T10:00:00+08:00" }], "pinned": [], "excludedIds": [], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": true, "sourceType": "user_custom" }
+  },
+  {
+    "id": "s6.3.memory.008",
+    "name": "pending no_match 不参与常喝",
+    "category": "frequent_drink",
+    "input": { "records": [], "pendingNoMatch": [{ "rawInput": "公司楼下拿铁", "count": 3, "status": "pending" }], "pinned": [], "excludedIds": [], "now": "2026-07-09T10:00:00+08:00" },
+    "expected": { "appears": false }
+  },
+  {
+    "id": "s6.3.memory.009",
+    "name": "搜索无结果不自动写入 no_match",
+    "category": "no_match",
+    "input": { "action": "search_no_result", "rawInput": "XYZ987", "userChoice": "none", "existing": [] },
+    "expected": { "memoryCount": 0 }
+  },
+  {
+    "id": "s6.3.memory.010",
+    "name": "取消 no_match 不写入",
+    "category": "no_match",
+    "input": { "action": "search_no_result", "rawInput": "公司楼下拿铁", "userChoice": "cancel", "existing": [] },
+    "expected": { "memoryCount": 0 }
+  },
+  {
+    "id": "s6.3.memory.011",
+    "name": "仅保存名称进入 pending",
+    "category": "no_match",
+    "input": { "action": "save_name", "rawInput": "公司楼下拿铁", "existing": [] },
+    "expected": { "status": "pending", "count": 1, "normalizedInput": "公司楼下拿铁" }
+  },
+  {
+    "id": "s6.3.memory.012",
+    "name": "重复 no_match 合并 count",
+    "category": "no_match",
+    "input": { "action": "save_name", "rawInput": " 公司楼下拿铁！", "existing": [{ "rawInput": "公司楼下拿铁", "normalizedInput": "公司楼下拿铁", "count": 1, "status": "pending" }] },
+    "expected": { "status": "pending", "count": 2, "memoryCount": 1 }
+  },
+  {
+    "id": "s6.3.memory.013",
+    "name": "补充咖啡因后转 converted",
+    "category": "no_match",
+    "input": { "action": "convert", "rawInput": "公司楼下拿铁", "caffeineMg": 88, "convertedDrinkId": "custom-1", "existing": [{ "rawInput": "公司楼下拿铁", "normalizedInput": "公司楼下拿铁", "count": 1, "status": "pending" }] },
+    "expected": { "status": "converted", "caffeineMg": 88, "convertedDrinkId": "custom-1" }
+  }
+]

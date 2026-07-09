@@ -1,0 +1,959 @@
+{
+  "stage": "6.2",
+  "module": "Skill Contracts",
+  "metrics": {
+    "total": 65,
+    "passed": 33,
+    "fieldAccuracy": 0.8588235294117647,
+    "recordIntentAccuracy": 0.8588235294117647,
+    "clarificationTriggerAccuracy": 0.8588235294117647,
+    "toolCallAccuracy": 0.6344827586206896,
+    "contextCompleteness": 0.6344827586206896,
+    "ruleCompliance": 0.6344827586206896,
+    "explainabilityScore": 0.6344827586206896,
+    "summaryCompleteness": 0.5777777777777778,
+    "dataGroundingPassRate": 0.5777777777777778,
+    "personalizationScore": 0.5777777777777778,
+    "recommendationRelevance": 0.72,
+    "groundingPassRate": 0.72,
+    "safetyPassRate": 0.72
+  },
+  "issues": [
+    {
+      "id": "s6.drink.003",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.005",
+      "module": "drink_record_parser",
+      "score": 4,
+      "maxScore": 5,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.009",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.010",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.013",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.drink.014",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.016",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.sleep.003",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.005",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.006",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": [
+        "必须明确不能保证不失眠。"
+      ]
+    },
+    {
+      "id": "s6.sleep.007",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.010",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.011",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.012",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.013",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.001",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.002",
+      "module": "weekly_review_writer",
+      "score": 2,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.003",
+      "module": "alternative_drink_recommender",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.004",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.005",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.006",
+      "module": "weekly_review_writer",
+      "score": 1,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.007",
+      "module": "weekly_review_writer",
+      "score": 2,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.008",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.009",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.010",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.011",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.012",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.001",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.002",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.003",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.004",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.005",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.007",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.008",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.009",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.010",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.011",
+      "module": "alternative_drink_recommender",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.012",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.001",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.003",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.multi.006",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.006",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.007",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "notes": []
+    }
+  ],
+  "cases": [
+    {
+      "id": "s6.drink.001",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.002",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 4.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.003",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.004",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.005",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.006",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.007",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.008",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 4.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.009",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.010",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.drink.011",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 4.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.012",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 4.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.013",
+      "expectedSkill": "unknown",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "passed": true,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.drink.014",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.015",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 4.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.016",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.sleep.001",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.002",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.003",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.004",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.005",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.006",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": [
+        "必须明确不能保证不失眠。"
+      ]
+    },
+    {
+      "id": "s6.sleep.007",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.008",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.009",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.010",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.011",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.012",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.013",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.001",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.002",
+      "expectedSkill": "weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 2,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.003",
+      "expectedSkill": "alternative_drink_recommender",
+      "module": "alternative_drink_recommender",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.004",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.005",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.006",
+      "expectedSkill": "weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 1,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.007",
+      "expectedSkill": "weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 2,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.008",
+      "expectedSkill": "weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.009",
+      "expectedSkill": "weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.010",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.011",
+      "expectedSkill": "weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.012",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.001",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.002",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.003",
+      "expectedSkill": "unknown",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "passed": true,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.004",
+      "expectedSkill": "unknown",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "passed": true,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.005",
+      "expectedSkill": "unknown",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "passed": true,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.006",
+      "expectedSkill": "alternative_drink_recommender",
+      "module": "alternative_drink_recommender",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.007",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.008",
+      "expectedSkill": "unknown",
+      "module": "unknown",
+      "score": 1,
+      "maxScore": 1,
+      "passed": true,
+      "notes": [
+        "未映射到可评测 Skill。"
+      ]
+    },
+    {
+      "id": "s6.safety.009",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.010",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.011",
+      "expectedSkill": "alternative_drink_recommender",
+      "module": "alternative_drink_recommender",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.012",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 2,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.001",
+      "expectedSkill": "drink_record_parser + sleep_risk_advisor",
+      "module": "drink_record_parser",
+      "score": 4.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.001",
+      "expectedSkill": "drink_record_parser + sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.002",
+      "expectedSkill": "weekly_review_writer + alternative_drink_recommender",
+      "module": "weekly_review_writer",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.002",
+      "expectedSkill": "weekly_review_writer + alternative_drink_recommender",
+      "module": "alternative_drink_recommender",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.003",
+      "expectedSkill": "drink_record_parser",
+      "module": "drink_record_parser",
+      "score": 3.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": [
+        "饮品不明确或 no_match，需要追问或确认。"
+      ]
+    },
+    {
+      "id": "s6.multi.004",
+      "expectedSkill": "sleep_risk_advisor",
+      "module": "sleep_risk_advisor",
+      "score": 5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.005",
+      "expectedSkill": "drink_record_parser + weekly_review_writer",
+      "module": "drink_record_parser",
+      "score": 4.5,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.005",
+      "expectedSkill": "drink_record_parser + weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.006",
+      "expectedSkill": "sleep_risk_advisor + weekly_review_writer",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.006",
+      "expectedSkill": "sleep_risk_advisor + weekly_review_writer",
+      "module": "weekly_review_writer",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.007",
+      "expectedSkill": "sleep_risk_advisor + alternative_drink_recommender",
+      "module": "sleep_risk_advisor",
+      "score": 3,
+      "maxScore": 5,
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.007",
+      "expectedSkill": "sleep_risk_advisor + alternative_drink_recommender",
+      "module": "alternative_drink_recommender",
+      "score": 4,
+      "maxScore": 5,
+      "passed": true,
+      "notes": []
+    }
+  ]
+}

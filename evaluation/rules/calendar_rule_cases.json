@@ -1,0 +1,72 @@
+[
+  {
+    "id": "s6.3.calendar.001",
+    "name": "新增记录后当天重算",
+    "category": "calendar_recompute",
+    "input": { "event": "record_added", "date": "2026-07-09", "records": [{ "mg": 120, "time": "2026-07-09T10:00:00+08:00" }], "settings": { "bedTime": "23:30", "halfLife": 5, "targetMg": 280, "safeSleepResidualMg": 30 } },
+    "expected": { "date": "2026-07-09", "totalCaffeineMg": 120, "recordCount": 1, "hasFeedback": false }
+  },
+  {
+    "id": "s6.3.calendar.002",
+    "name": "删除记录后当天重算",
+    "category": "calendar_recompute",
+    "input": { "event": "record_deleted", "date": "2026-07-09", "records": [], "settings": { "bedTime": "23:30", "halfLife": 5, "targetMg": 280, "safeSleepResidualMg": 30 } },
+    "expected": { "date": "2026-07-09", "totalCaffeineMg": 0, "recordCount": 0 }
+  },
+  {
+    "id": "s6.3.calendar.003",
+    "name": "设置变化后近 14 天重算",
+    "category": "calendar_recompute",
+    "input": { "event": "settings_updated", "recentDayCount": 14 },
+    "expected": { "recomputedDays": 14 }
+  },
+  {
+    "id": "s6.3.calendar.004",
+    "name": "日期详情只展示当天记录",
+    "category": "calendar_detail",
+    "input": { "selectedDate": "2026-07-09", "records": [{ "name": "美式", "mg": 100, "time": "2026-07-09T09:00:00+08:00" }, { "name": "拿铁", "mg": 120, "time": "2026-07-08T09:00:00+08:00" }] },
+    "expected": { "visibleRecordNames": ["美式"], "hiddenRecordNames": ["拿铁"] }
+  },
+  {
+    "id": "s6.3.calendar.005",
+    "name": "睡眠反馈归属前一天",
+    "category": "feedback_attribution",
+    "input": { "feedbackDate": "2026-07-09", "feedback": { "sleepQuality": "bad" } },
+    "expected": { "attributedDate": "2026-07-08" }
+  },
+  {
+    "id": "s6.3.calendar.006",
+    "name": "心悸即时反馈归属当天",
+    "category": "feedback_attribution",
+    "input": { "feedbackDate": "2026-07-09", "feedback": { "palpitation": true } },
+    "expected": { "attributedDate": "2026-07-09" }
+  },
+  {
+    "id": "s6.3.calendar.007",
+    "name": "焦虑即时反馈归属当天",
+    "category": "feedback_attribution",
+    "input": { "feedbackDate": "2026-07-09", "feedback": { "anxiety": true } },
+    "expected": { "attributedDate": "2026-07-09" }
+  },
+  {
+    "id": "s6.3.calendar.008",
+    "name": "手抖即时反馈归属当天",
+    "category": "feedback_attribution",
+    "input": { "feedbackDate": "2026-07-09", "feedback": { "handTremor": true } },
+    "expected": { "attributedDate": "2026-07-09" }
+  },
+  {
+    "id": "s6.3.calendar.009",
+    "name": "跨日记录不误归属",
+    "category": "calendar_detail",
+    "input": { "selectedDate": "2026-07-09", "records": [{ "name": "夜间美式", "mg": 100, "time": "2026-07-08T23:50:00+08:00" }, { "name": "早晨拿铁", "mg": 120, "time": "2026-07-09T08:30:00+08:00" }] },
+    "expected": { "visibleRecordNames": ["早晨拿铁"], "hiddenRecordNames": ["夜间美式"] }
+  },
+  {
+    "id": "s6.3.calendar.010",
+    "name": "超过目标量标记 exceededDailyTarget",
+    "category": "calendar_status",
+    "input": { "date": "2026-07-09", "records": [{ "mg": 200, "time": "2026-07-09T10:00:00+08:00" }, { "mg": 120, "time": "2026-07-09T15:00:00+08:00" }], "targetMg": 280 },
+    "expected": { "exceededDailyTarget": true }
+  }
+]

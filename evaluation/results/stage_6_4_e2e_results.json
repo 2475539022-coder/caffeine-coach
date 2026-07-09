@@ -1,0 +1,593 @@
+{
+  "stage": "6.4",
+  "module": "End-to-End and Error Recovery",
+  "metrics": {
+    "total": 12,
+    "taskPassed": 4,
+    "recoveryPassed": 6,
+    "taskSuccessRate": 0.3333333333333333,
+    "recoveryTriggerAccuracy": 0.5454545454545454,
+    "recoverySuccessRate": 0.5454545454545454,
+    "clarificationEffectiveness": 1,
+    "multiIntentCompletionRate": 0,
+    "safetyEscalationPassRate": 0
+  },
+  "failedCases": [
+    {
+      "id": "s6.4.e2e.001",
+      "name": "标准饮品记录",
+      "type": "standard_drink_record",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation"
+      ],
+      "missingSteps": [
+        "write_after_confirmation",
+        "refresh_home_chart_calendar"
+      ],
+      "recoveryExpected": "clarify",
+      "recoveryActual": "clarify",
+      "taskPassed": false,
+      "recoveryPassed": true,
+      "failureStep": "write_after_confirmation",
+      "notes": [
+        "缺失步骤：write_after_confirmation, refresh_home_chart_calendar。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.003",
+      "name": "未知饮品记录",
+      "type": "unknown_drink_record",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation",
+        "no_match",
+        "ask_create_custom_drink"
+      ],
+      "missingSteps": [
+        "search_library"
+      ],
+      "recoveryExpected": "clarify",
+      "recoveryActual": "clarify",
+      "taskPassed": false,
+      "recoveryPassed": true,
+      "failureStep": "search_library",
+      "notes": [
+        "缺失步骤：search_library。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.004",
+      "name": "喝前模拟",
+      "type": "drink_simulation",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "completedSteps": [],
+      "missingSteps": [
+        "route_to_simulation_or_sleep_risk",
+        "match_drink",
+        "simulate_only",
+        "do_not_write_record",
+        "exclude_from_weekly_and_calendar"
+      ],
+      "recoveryExpected": "degrade",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "route_to_simulation_or_sleep_risk",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。",
+        "缺失步骤：route_to_simulation_or_sleep_risk, match_drink, simulate_only, do_not_write_record, exclude_from_weekly_and_calendar。",
+        "期望恢复动作 degrade，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.006",
+      "name": "明确剂量风险咨询",
+      "type": "explicit_dose_risk",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation"
+      ],
+      "missingSteps": [
+        "parse_explicit_dose_time",
+        "calculate_sleep_residual"
+      ],
+      "recoveryExpected": "degrade",
+      "recoveryActual": "clarify",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "parse_explicit_dose_time",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。",
+        "缺失步骤：parse_explicit_dose_time, calculate_sleep_residual。",
+        "期望恢复动作 degrade，实际 clarify。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.009",
+      "name": "多意图任务",
+      "type": "multi_intent",
+      "expectedSkill": "drink_record_parser + sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation"
+      ],
+      "missingSteps": [
+        "decompose",
+        "record_confirmation_first",
+        "recalculate_after_record"
+      ],
+      "recoveryExpected": "decompose",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "decompose",
+      "notes": [
+        "当前链路未显式拆分多意图。",
+        "期望 drink_record_parser + sleep_risk_advisor，实际 drink_record_parser。",
+        "缺失步骤：decompose, record_confirmation_first, recalculate_after_record。",
+        "期望恢复动作 decompose，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.010",
+      "name": "安全问题",
+      "type": "safety_escalation",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "completedSteps": [
+        "route",
+        "select_sleep_risk_advisor",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_sleep_context",
+        "calculate_remaining",
+        "detect_safety_risk"
+      ],
+      "missingSteps": [
+        "stop_normal_recommendation"
+      ],
+      "recoveryExpected": "stop",
+      "recoveryActual": "stop",
+      "taskPassed": false,
+      "recoveryPassed": true,
+      "failureStep": "stop_normal_recommendation",
+      "notes": [
+        "缺失步骤：stop_normal_recommendation。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.011",
+      "name": "数据不足",
+      "type": "insufficient_data",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "completedSteps": [
+        "route",
+        "select_sleep_risk_advisor",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_sleep_context",
+        "calculate_remaining"
+      ],
+      "missingSteps": [
+        "detect_missing_sleep_time_or_records",
+        "fallback_conservative_advice",
+        "ask_for_missing_info"
+      ],
+      "recoveryExpected": "fallback",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "detect_missing_sleep_time_or_records",
+      "notes": [
+        "缺失步骤：detect_missing_sleep_time_or_records, fallback_conservative_advice, ask_for_missing_info。",
+        "期望恢复动作 fallback，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.012",
+      "name": "工具失败降级",
+      "type": "tool_failure",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "completedSteps": [
+        "route",
+        "select_sleep_risk_advisor",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_sleep_context",
+        "calculate_remaining",
+        "tool_failure_detected"
+      ],
+      "missingSteps": [
+        "do_not_fabricate_remaining",
+        "degrade_to_conservative_advice"
+      ],
+      "recoveryExpected": "degrade",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "do_not_fabricate_remaining",
+      "notes": [
+        "缺失步骤：do_not_fabricate_remaining, degrade_to_conservative_advice。",
+        "期望恢复动作 degrade，实际 none。"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "s6.4.e2e.001",
+      "name": "标准饮品记录",
+      "type": "standard_drink_record",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation"
+      ],
+      "missingSteps": [
+        "write_after_confirmation",
+        "refresh_home_chart_calendar"
+      ],
+      "recoveryExpected": "clarify",
+      "recoveryActual": "clarify",
+      "taskPassed": false,
+      "recoveryPassed": true,
+      "failureStep": "write_after_confirmation",
+      "notes": [
+        "缺失步骤：write_after_confirmation, refresh_home_chart_calendar。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.002",
+      "name": "模糊容量记录",
+      "type": "ambiguous_amount_record",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation",
+        "parse_ambiguous_amount",
+        "clarify_size_or_default"
+      ],
+      "missingSteps": [],
+      "recoveryExpected": "clarify",
+      "recoveryActual": "clarify",
+      "taskPassed": true,
+      "recoveryPassed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.4.e2e.003",
+      "name": "未知饮品记录",
+      "type": "unknown_drink_record",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation",
+        "no_match",
+        "ask_create_custom_drink"
+      ],
+      "missingSteps": [
+        "search_library"
+      ],
+      "recoveryExpected": "clarify",
+      "recoveryActual": "clarify",
+      "taskPassed": false,
+      "recoveryPassed": true,
+      "failureStep": "search_library",
+      "notes": [
+        "缺失步骤：search_library。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.004",
+      "name": "喝前模拟",
+      "type": "drink_simulation",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "completedSteps": [],
+      "missingSteps": [
+        "route_to_simulation_or_sleep_risk",
+        "match_drink",
+        "simulate_only",
+        "do_not_write_record",
+        "exclude_from_weekly_and_calendar"
+      ],
+      "recoveryExpected": "degrade",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "route_to_simulation_or_sleep_risk",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。",
+        "缺失步骤：route_to_simulation_or_sleep_risk, match_drink, simulate_only, do_not_write_record, exclude_from_weekly_and_calendar。",
+        "期望恢复动作 degrade，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.005",
+      "name": "睡眠风险咨询",
+      "type": "sleep_risk_question",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "completedSteps": [
+        "route",
+        "select_sleep_risk_advisor",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_sleep_context",
+        "calculate_remaining"
+      ],
+      "missingSteps": [],
+      "recoveryExpected": "none",
+      "recoveryActual": "none",
+      "taskPassed": true,
+      "recoveryPassed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.4.e2e.006",
+      "name": "明确剂量风险咨询",
+      "type": "explicit_dose_risk",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation"
+      ],
+      "missingSteps": [
+        "parse_explicit_dose_time",
+        "calculate_sleep_residual"
+      ],
+      "recoveryExpected": "degrade",
+      "recoveryActual": "clarify",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "parse_explicit_dose_time",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。",
+        "缺失步骤：parse_explicit_dose_time, calculate_sleep_residual。",
+        "期望恢复动作 degrade，实际 clarify。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.007",
+      "name": "周复盘",
+      "type": "weekly_review",
+      "expectedSkill": "weekly_review_writer",
+      "actualSkill": "weekly_review_writer",
+      "completedSteps": [
+        "route",
+        "select_weekly_review_writer",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_weekly_context",
+        "exclude_simulation_and_pending_no_match",
+        "generate_review"
+      ],
+      "missingSteps": [],
+      "recoveryExpected": "fallback",
+      "recoveryActual": "fallback",
+      "taskPassed": true,
+      "recoveryPassed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.4.e2e.008",
+      "name": "替代饮品推荐",
+      "type": "alternative_drink",
+      "expectedSkill": "alternative_drink_recommender",
+      "actualSkill": "alternative_drink_recommender",
+      "completedSteps": [
+        "route",
+        "select_alternative_drink_recommender",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_alternative_context",
+        "recommend_low_or_no_caffeine_options",
+        "avoid_fabricated_caffeine"
+      ],
+      "missingSteps": [],
+      "recoveryExpected": "degrade",
+      "recoveryActual": "degrade",
+      "taskPassed": true,
+      "recoveryPassed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.4.e2e.009",
+      "name": "多意图任务",
+      "type": "multi_intent",
+      "expectedSkill": "drink_record_parser + sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "completedSteps": [
+        "route",
+        "select_drink_record_parser",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "parse_drink_time",
+        "match_drink_library",
+        "ask_record_confirmation",
+        "do_not_write_before_confirmation"
+      ],
+      "missingSteps": [
+        "decompose",
+        "record_confirmation_first",
+        "recalculate_after_record"
+      ],
+      "recoveryExpected": "decompose",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "decompose",
+      "notes": [
+        "当前链路未显式拆分多意图。",
+        "期望 drink_record_parser + sleep_risk_advisor，实际 drink_record_parser。",
+        "缺失步骤：decompose, record_confirmation_first, recalculate_after_record。",
+        "期望恢复动作 decompose，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.010",
+      "name": "安全问题",
+      "type": "safety_escalation",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "completedSteps": [
+        "route",
+        "select_sleep_risk_advisor",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_sleep_context",
+        "calculate_remaining",
+        "detect_safety_risk"
+      ],
+      "missingSteps": [
+        "stop_normal_recommendation"
+      ],
+      "recoveryExpected": "stop",
+      "recoveryActual": "stop",
+      "taskPassed": false,
+      "recoveryPassed": true,
+      "failureStep": "stop_normal_recommendation",
+      "notes": [
+        "缺失步骤：stop_normal_recommendation。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.011",
+      "name": "数据不足",
+      "type": "insufficient_data",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "completedSteps": [
+        "route",
+        "select_sleep_risk_advisor",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_sleep_context",
+        "calculate_remaining"
+      ],
+      "missingSteps": [
+        "detect_missing_sleep_time_or_records",
+        "fallback_conservative_advice",
+        "ask_for_missing_info"
+      ],
+      "recoveryExpected": "fallback",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "detect_missing_sleep_time_or_records",
+      "notes": [
+        "缺失步骤：detect_missing_sleep_time_or_records, fallback_conservative_advice, ask_for_missing_info。",
+        "期望恢复动作 fallback，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.012",
+      "name": "工具失败降级",
+      "type": "tool_failure",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "completedSteps": [
+        "route",
+        "select_sleep_risk_advisor",
+        "build_context",
+        "safety_review",
+        "generate_answer",
+        "build_sleep_context",
+        "calculate_remaining",
+        "tool_failure_detected"
+      ],
+      "missingSteps": [
+        "do_not_fabricate_remaining",
+        "degrade_to_conservative_advice"
+      ],
+      "recoveryExpected": "degrade",
+      "recoveryActual": "none",
+      "taskPassed": false,
+      "recoveryPassed": false,
+      "failureStep": "do_not_fabricate_remaining",
+      "notes": [
+        "缺失步骤：do_not_fabricate_remaining, degrade_to_conservative_advice。",
+        "期望恢复动作 degrade，实际 none。"
+      ]
+    }
+  ]
+}

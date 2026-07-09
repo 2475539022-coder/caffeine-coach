@@ -1,0 +1,119 @@
+[
+  {
+    "id": "s6.3.calc.001",
+    "name": "摄入后 0 小时残留等于剂量",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 100, "time": "2026-07-09T10:00:00+08:00" }], "at": "2026-07-09T10:00:00+08:00", "halfLife": 5 },
+    "expected": { "remainingMg": 100 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.002",
+    "name": "经过 1 个半衰期残留一半",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 100, "time": "2026-07-09T10:00:00+08:00" }], "at": "2026-07-09T15:00:00+08:00", "halfLife": 5 },
+    "expected": { "remainingMg": 50 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.003",
+    "name": "经过 2 个半衰期残留四分之一",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 160, "time": "2026-07-09T08:00:00+08:00" }], "at": "2026-07-09T18:00:00+08:00", "halfLife": 5 },
+    "expected": { "remainingMg": 40 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.004",
+    "name": "多条摄入残留叠加",
+    "category": "caffeine_calculation",
+    "input": {
+      "records": [
+        { "mg": 100, "time": "2026-07-09T10:00:00+08:00" },
+        { "mg": 80, "time": "2026-07-09T12:30:00+08:00" }
+      ],
+      "at": "2026-07-09T15:00:00+08:00",
+      "halfLife": 5
+    },
+    "expected": { "remainingMg": 106.57 },
+    "tolerance": 0.2
+  },
+  {
+    "id": "s6.3.calc.005",
+    "name": "快代谢半衰期残留更低",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 140, "time": "2026-07-09T10:00:00+08:00" }], "at": "2026-07-09T17:00:00+08:00", "halfLife": 3.5 },
+    "expected": { "remainingMg": 35 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.006",
+    "name": "慢代谢半衰期残留更高",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 140, "time": "2026-07-09T10:00:00+08:00" }], "at": "2026-07-09T17:00:00+08:00", "halfLife": 7 },
+    "expected": { "remainingMg": 70 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.007",
+    "name": "未来摄入不计入当前残留",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 100, "time": "2026-07-09T16:00:00+08:00" }], "at": "2026-07-09T15:00:00+08:00", "halfLife": 5 },
+    "expected": { "remainingMg": 0 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.008",
+    "name": "0mg 输入残留为 0",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 0, "time": "2026-07-09T10:00:00+08:00" }], "at": "2026-07-09T12:00:00+08:00", "halfLife": 5 },
+    "expected": { "remainingMg": 0 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.009",
+    "name": "极高剂量仍按同一公式衰减",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 1000, "time": "2026-07-09T10:00:00+08:00" }], "at": "2026-07-09T15:00:00+08:00", "halfLife": 5 },
+    "expected": { "remainingMg": 500 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.010",
+    "name": "跨日残留计算",
+    "category": "caffeine_calculation",
+    "input": { "records": [{ "mg": 120, "time": "2026-07-08T22:00:00+08:00" }], "at": "2026-07-09T08:00:00+08:00", "halfLife": 5 },
+    "expected": { "remainingMg": 30 },
+    "tolerance": 0.1
+  },
+  {
+    "id": "s6.3.calc.011",
+    "name": "睡前残留当前时间早于睡眠时间",
+    "category": "sleep_residual",
+    "input": { "records": [{ "mg": 150, "time": "2026-07-09T15:00:00+08:00" }], "currentTime": "2026-07-09T18:00:00+08:00", "bedTime": "23:00", "halfLife": 5, "threshold": 30 },
+    "expected": { "sleepRemainingMg": 49.61, "risk": "中" },
+    "tolerance": 0.3
+  },
+  {
+    "id": "s6.3.calc.012",
+    "name": "睡前残留当前时间已跨过睡眠时间",
+    "category": "sleep_residual",
+    "input": { "records": [{ "mg": 100, "time": "2026-07-09T21:00:00+08:00" }], "currentTime": "2026-07-09T23:30:00+08:00", "bedTime": "23:00", "halfLife": 5, "threshold": 30 },
+    "expected": { "sleepRemainingMg": 2.72, "risk": "低", "bedDate": "next_day" },
+    "tolerance": 0.3
+  },
+  {
+    "id": "s6.3.calc.013",
+    "name": "高于 80mg 为高风险",
+    "category": "risk_rule",
+    "input": { "remainingMg": 81, "threshold": 30 },
+    "expected": { "risk": "高" }
+  },
+  {
+    "id": "s6.3.calc.014",
+    "name": "阈值内为低风险",
+    "category": "risk_rule",
+    "input": { "remainingMg": 30, "threshold": 30 },
+    "expected": { "risk": "低" }
+  }
+]

@@ -1,0 +1,735 @@
+{
+  "stage": "6.2",
+  "module": "Context Builder",
+  "metrics": {
+    "total": 55,
+    "passed": 52,
+    "contextCompleteness": 0.9571428571428572,
+    "contextPrecision": 0.86,
+    "invalidDataLeakageRate": 0.08
+  },
+  "issues": [
+    {
+      "id": "s6.drink.014",
+      "missingFields": [
+        "currentState"
+      ],
+      "notes": []
+    },
+    {
+      "id": "s6.multi.002",
+      "missingFields": [
+        "currentSleepRisk"
+      ],
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.multi.007",
+      "missingFields": [
+        "drinkLibrary",
+        "currentSleepRisk",
+        "frequentDrinks",
+        "knownLowCaffeineOptions"
+      ],
+      "notes": []
+    }
+  ],
+  "cases": [
+    {
+      "id": "s6.drink.001",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "currentTime",
+        "drinkLibrary",
+        "customDrinks",
+        "frequentDrinks",
+        "noMatchMemory"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.002",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "currentTime",
+        "drinkLibrary",
+        "customDrinks"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.003",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "currentTime",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.004",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.005",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.006",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.007",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.008",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "drinkLibrary",
+        "customDrinks"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.009",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "drinkLibrary",
+        "customDrinks",
+        "noMatchMemory"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.010",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "currentTime",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.011",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "currentTime",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.012",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "currentTime",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.014",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile",
+        "currentState"
+      ],
+      "missingFields": [
+        "currentState"
+      ],
+      "passed": false,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.015",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "currentTime",
+        "drinkLibrary",
+        "frequentDrinks"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.drink.016",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "userText",
+        "customDrinks",
+        "drinkLibrary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.sleep.001",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sleepTime",
+        "userProfile.halfLife",
+        "todayIntakeRecords",
+        "estimatedCaffeineAtSleep",
+        "sleepRisk"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.002",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "todayIntakeRecords",
+        "remainingCaffeine",
+        "estimatedCaffeineAtSleep",
+        "sleepRisk"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.003",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sensitivity",
+        "userProfile.halfLife",
+        "recentFeedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.004",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "todayIntakeRecords",
+        "userProfile.sleepTime",
+        "sleepRisk"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.005",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sleepTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.006",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sleepTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.007",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sleepTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.008",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "remainingCaffeine",
+        "estimatedCaffeineAtSleep",
+        "userProfile.sensitivity"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.009",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.halfLife",
+        "estimatedCaffeineAtSleep",
+        "sleepRisk"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.010",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "recentFeedbackSummary",
+        "userProfile.sleepTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.011",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "estimatedCaffeineAtSleep",
+        "sleepRisk"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.012",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sleepTime",
+        "userProfile.sensitivity"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.013",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sleepTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.001",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "recentFeedbackSummary",
+        "userProfile.sleepTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.002",
+      "expectedSkill": "weekly_review_writer",
+      "requiredContextFields": [
+        "weekRange",
+        "intakeSummary",
+        "dailyStatusSummary",
+        "frequentDrinks"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.personal.003",
+      "expectedSkill": "alternative_drink_recommender",
+      "requiredContextFields": [
+        "userProfile",
+        "drinkOptions.frequentDrinks"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.004",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sensitivity",
+        "recentFeedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.005",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "recentFeedbackSummary",
+        "todayIntakeRecords"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.006",
+      "expectedSkill": "weekly_review_writer",
+      "requiredContextFields": [
+        "frequentDrinks"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.personal.007",
+      "expectedSkill": "weekly_review_writer",
+      "requiredContextFields": [
+        "dailyStatusSummary",
+        "weekRange"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.personal.008",
+      "expectedSkill": "weekly_review_writer",
+      "requiredContextFields": [
+        "dailyStatusSummary",
+        "feedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.personal.009",
+      "expectedSkill": "weekly_review_writer",
+      "requiredContextFields": [
+        "feedbackSummary",
+        "sensitivityExplanation",
+        "dailyStatusSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.personal.010",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sensitivity",
+        "userProfile.reminderStrictness"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.011",
+      "expectedSkill": "weekly_review_writer",
+      "requiredContextFields": [
+        "feedbackSummary",
+        "dailyStatusSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.personal.012",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile",
+        "recentFeedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.001",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "recentFeedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.002",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.006",
+      "expectedSkill": "alternative_drink_recommender",
+      "requiredContextFields": [
+        "currentState",
+        "userProfile"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.007",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "recentFeedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.009",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.010",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "userProfile.sleepTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.011",
+      "expectedSkill": "alternative_drink_recommender",
+      "requiredContextFields": [
+        "recentFeedbackSummary",
+        "currentState"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.012",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "recentFeedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.001",
+      "expectedSkill": "drink_record_parser + sleep_risk_advisor",
+      "requiredContextFields": [
+        "drinkLibrary",
+        "todayIntakeRecords",
+        "userProfile.sleepTime",
+        "userProfile.sensitivity"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.multi.002",
+      "expectedSkill": "weekly_review_writer + alternative_drink_recommender",
+      "requiredContextFields": [
+        "dailyStatusSummary",
+        "feedbackSummary",
+        "frequentDrinks",
+        "currentSleepRisk"
+      ],
+      "missingFields": [
+        "currentSleepRisk"
+      ],
+      "passed": false,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.multi.003",
+      "expectedSkill": "drink_record_parser",
+      "requiredContextFields": [
+        "drinkLibrary",
+        "customDrinks",
+        "noMatchMemory",
+        "currentTime"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.multi.004",
+      "expectedSkill": "sleep_risk_advisor",
+      "requiredContextFields": [
+        "todayIntakeRecords",
+        "recentFeedbackSummary.discomfortCount",
+        "userProfile.sensitivity",
+        "sleepRisk"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.005",
+      "expectedSkill": "drink_record_parser + weekly_review_writer",
+      "requiredContextFields": [
+        "currentTime",
+        "drinkLibrary",
+        "dailyStatusSummary",
+        "feedbackSummary"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。",
+        "noMatchMemory 仅作为上下文读取，写入仍必须由用户确认触发。"
+      ]
+    },
+    {
+      "id": "s6.multi.006",
+      "expectedSkill": "sleep_risk_advisor + weekly_review_writer",
+      "requiredContextFields": [
+        "todayIntakeRecords",
+        "dailyStatusSummary",
+        "userProfile"
+      ],
+      "missingFields": [],
+      "passed": true,
+      "notes": [
+        "需继续在端到端阶段验证 dailyStatusMemory 不含模拟记录或 pending no_match。"
+      ]
+    },
+    {
+      "id": "s6.multi.007",
+      "expectedSkill": "sleep_risk_advisor + alternative_drink_recommender",
+      "requiredContextFields": [
+        "drinkLibrary",
+        "todayIntakeRecords",
+        "currentSleepRisk",
+        "frequentDrinks",
+        "knownLowCaffeineOptions"
+      ],
+      "missingFields": [
+        "drinkLibrary",
+        "currentSleepRisk",
+        "frequentDrinks",
+        "knownLowCaffeineOptions"
+      ],
+      "passed": false,
+      "notes": []
+    }
+  ]
+}

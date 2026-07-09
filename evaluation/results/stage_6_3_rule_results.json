@@ -1,0 +1,722 @@
+{
+  "stage": "6.3",
+  "module": "Calculation and Rule Consistency",
+  "metrics": {
+    "total": 47,
+    "passed": 47,
+    "calculationConsistency": 1,
+    "rulePassRate": 1,
+    "boundaryCasePassRate": 1,
+    "dataIsolationPassRate": 1
+  },
+  "failedCases": [],
+  "cases": [
+    {
+      "id": "s6.3.calc.001",
+      "name": "摄入后 0 小时残留等于剂量",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 100
+      },
+      "actual": {
+        "remainingMg": 100
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.002",
+      "name": "经过 1 个半衰期残留一半",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 50
+      },
+      "actual": {
+        "remainingMg": 50
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.003",
+      "name": "经过 2 个半衰期残留四分之一",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 40
+      },
+      "actual": {
+        "remainingMg": 40
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.004",
+      "name": "多条摄入残留叠加",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 106.57
+      },
+      "actual": {
+        "remainingMg": 106.57
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.005",
+      "name": "快代谢半衰期残留更低",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 35
+      },
+      "actual": {
+        "remainingMg": 35
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.006",
+      "name": "慢代谢半衰期残留更高",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 70
+      },
+      "actual": {
+        "remainingMg": 70
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.007",
+      "name": "未来摄入不计入当前残留",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 0
+      },
+      "actual": {
+        "remainingMg": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.008",
+      "name": "0mg 输入残留为 0",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 0
+      },
+      "actual": {
+        "remainingMg": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.009",
+      "name": "极高剂量仍按同一公式衰减",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 500
+      },
+      "actual": {
+        "remainingMg": 500
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.010",
+      "name": "跨日残留计算",
+      "category": "caffeine_calculation",
+      "expected": {
+        "remainingMg": 30
+      },
+      "actual": {
+        "remainingMg": 30
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.011",
+      "name": "睡前残留当前时间早于睡眠时间",
+      "category": "sleep_residual",
+      "expected": {
+        "sleepRemainingMg": 49.61,
+        "risk": "中"
+      },
+      "actual": {
+        "sleepRemainingMg": 49.48,
+        "risk": "中",
+        "bedDate": "same_day"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.012",
+      "name": "睡前残留当前时间已跨过睡眠时间",
+      "category": "sleep_residual",
+      "expected": {
+        "sleepRemainingMg": 2.72,
+        "risk": "低",
+        "bedDate": "next_day"
+      },
+      "actual": {
+        "sleepRemainingMg": 2.72,
+        "risk": "低",
+        "bedDate": "next_day"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.013",
+      "name": "高于 80mg 为高风险",
+      "category": "risk_rule",
+      "expected": {
+        "risk": "高"
+      },
+      "actual": {
+        "risk": "高"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calc.014",
+      "name": "阈值内为低风险",
+      "category": "risk_rule",
+      "expected": {
+        "risk": "低"
+      },
+      "actual": {
+        "risk": "低"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.001",
+      "name": "近 14 天同一饮品 2 次进入常喝",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": true,
+        "count": 2,
+        "source": "auto"
+      },
+      "actual": {
+        "appears": true,
+        "count": 2,
+        "source": "auto",
+        "groupCount": 1
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.002",
+      "name": "累计 3 次进入常喝",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": true,
+        "count": 3,
+        "source": "auto"
+      },
+      "actual": {
+        "appears": true,
+        "count": 3,
+        "source": "auto",
+        "groupCount": 1
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.003",
+      "name": "删除后自动常喝不满足阈值则移除",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": false
+      },
+      "actual": {
+        "appears": false,
+        "groupCount": 1
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.004",
+      "name": "手动 pinned 不因记录次数下降消失",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": true,
+        "source": "manual",
+        "isPinned": true
+      },
+      "actual": {
+        "appears": true,
+        "count": 1,
+        "source": "manual",
+        "isPinned": true,
+        "groupCount": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.005",
+      "name": "用户移除后不立即重新出现",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": false
+      },
+      "actual": {
+        "appears": false,
+        "groupCount": 1
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.006",
+      "name": "同名不同咖啡因不误合并",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": false,
+        "groupCount": 2
+      },
+      "actual": {
+        "appears": false,
+        "groupCount": 2
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.007",
+      "name": "custom drink 真实记录后可参与常喝",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": true,
+        "sourceType": "user_custom"
+      },
+      "actual": {
+        "appears": true,
+        "count": 2,
+        "source": "auto",
+        "sourceType": "user_custom",
+        "groupCount": 1
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.008",
+      "name": "pending no_match 不参与常喝",
+      "category": "frequent_drink",
+      "expected": {
+        "appears": false
+      },
+      "actual": {
+        "appears": false,
+        "groupCount": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.009",
+      "name": "搜索无结果不自动写入 no_match",
+      "category": "no_match",
+      "expected": {
+        "memoryCount": 0
+      },
+      "actual": {
+        "memoryCount": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.010",
+      "name": "取消 no_match 不写入",
+      "category": "no_match",
+      "expected": {
+        "memoryCount": 0
+      },
+      "actual": {
+        "memoryCount": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.011",
+      "name": "仅保存名称进入 pending",
+      "category": "no_match",
+      "expected": {
+        "status": "pending",
+        "count": 1,
+        "normalizedInput": "公司楼下拿铁"
+      },
+      "actual": {
+        "memoryCount": 1,
+        "normalizedInput": "公司楼下拿铁",
+        "status": "pending",
+        "count": 1
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.012",
+      "name": "重复 no_match 合并 count",
+      "category": "no_match",
+      "expected": {
+        "status": "pending",
+        "count": 2,
+        "memoryCount": 1
+      },
+      "actual": {
+        "memoryCount": 1,
+        "normalizedInput": "公司楼下拿铁",
+        "status": "pending",
+        "count": 2
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.memory.013",
+      "name": "补充咖啡因后转 converted",
+      "category": "no_match",
+      "expected": {
+        "status": "converted",
+        "caffeineMg": 88,
+        "convertedDrinkId": "custom-1"
+      },
+      "actual": {
+        "memoryCount": 1,
+        "normalizedInput": "公司楼下拿铁",
+        "status": "converted",
+        "count": 2,
+        "caffeineMg": 88,
+        "convertedDrinkId": "custom-1"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.001",
+      "name": "新增记录后当天重算",
+      "category": "calendar_recompute",
+      "expected": {
+        "date": "2026-07-09",
+        "totalCaffeineMg": 120,
+        "recordCount": 1,
+        "hasFeedback": false
+      },
+      "actual": {
+        "date": "2026-07-09",
+        "totalCaffeineMg": 120,
+        "recordCount": 1,
+        "hasFeedback": false
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.002",
+      "name": "删除记录后当天重算",
+      "category": "calendar_recompute",
+      "expected": {
+        "date": "2026-07-09",
+        "totalCaffeineMg": 0,
+        "recordCount": 0
+      },
+      "actual": {
+        "date": "2026-07-09",
+        "totalCaffeineMg": 0,
+        "recordCount": 0,
+        "hasFeedback": false
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.003",
+      "name": "设置变化后近 14 天重算",
+      "category": "calendar_recompute",
+      "expected": {
+        "recomputedDays": 14
+      },
+      "actual": {
+        "recomputedDays": 14
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.004",
+      "name": "日期详情只展示当天记录",
+      "category": "calendar_detail",
+      "expected": {
+        "visibleRecordNames": [
+          "美式"
+        ],
+        "hiddenRecordNames": [
+          "拿铁"
+        ]
+      },
+      "actual": {
+        "visibleRecordNames": [
+          "美式"
+        ],
+        "hiddenRecordNames": [
+          "拿铁"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.005",
+      "name": "睡眠反馈归属前一天",
+      "category": "feedback_attribution",
+      "expected": {
+        "attributedDate": "2026-07-08"
+      },
+      "actual": {
+        "attributedDate": "2026-07-08"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.006",
+      "name": "心悸即时反馈归属当天",
+      "category": "feedback_attribution",
+      "expected": {
+        "attributedDate": "2026-07-09"
+      },
+      "actual": {
+        "attributedDate": "2026-07-09"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.007",
+      "name": "焦虑即时反馈归属当天",
+      "category": "feedback_attribution",
+      "expected": {
+        "attributedDate": "2026-07-09"
+      },
+      "actual": {
+        "attributedDate": "2026-07-09"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.008",
+      "name": "手抖即时反馈归属当天",
+      "category": "feedback_attribution",
+      "expected": {
+        "attributedDate": "2026-07-09"
+      },
+      "actual": {
+        "attributedDate": "2026-07-09"
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.009",
+      "name": "跨日记录不误归属",
+      "category": "calendar_detail",
+      "expected": {
+        "visibleRecordNames": [
+          "早晨拿铁"
+        ],
+        "hiddenRecordNames": [
+          "夜间美式"
+        ]
+      },
+      "actual": {
+        "visibleRecordNames": [
+          "早晨拿铁"
+        ],
+        "hiddenRecordNames": [
+          "夜间美式"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.calendar.010",
+      "name": "超过目标量标记 exceededDailyTarget",
+      "category": "calendar_status",
+      "expected": {
+        "exceededDailyTarget": true
+      },
+      "actual": {
+        "exceededDailyTarget": true
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.001",
+      "name": "喝前模拟不进入真实摄入",
+      "category": "simulation_isolation",
+      "expected": {
+        "realRecordCount": 0,
+        "todayTotalMg": 0
+      },
+      "actual": {
+        "realRecordCount": 0,
+        "todayTotalMg": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.002",
+      "name": "模拟不进入周报",
+      "category": "weekly_isolation",
+      "expected": {
+        "weeklyTotalMg": 100,
+        "excludedKinds": [
+          "simulation"
+        ]
+      },
+      "actual": {
+        "weeklyTotalMg": 100,
+        "excludedKinds": [
+          "simulation"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.003",
+      "name": "pending no_match 不进入摄入计算",
+      "category": "no_match_isolation",
+      "expected": {
+        "todayTotalMg": 0
+      },
+      "actual": {
+        "todayTotalMg": 0,
+        "weeklyTotalMg": 0,
+        "pendingListCount": 1
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.004",
+      "name": "pending no_match 不进入周报",
+      "category": "weekly_isolation",
+      "expected": {
+        "weeklyTotalMg": 0
+      },
+      "actual": {
+        "weeklyTotalMg": 0,
+        "excludedKinds": [
+          "simulation"
+        ]
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.005",
+      "name": "搜索历史不进入常喝统计",
+      "category": "frequent_isolation",
+      "expected": {
+        "frequentDrinkCount": 0
+      },
+      "actual": {
+        "frequentDrinkCount": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.006",
+      "name": "custom drink 只有真实记录后才计入",
+      "category": "frequent_isolation",
+      "expected": {
+        "frequentDrinkCount": 0
+      },
+      "actual": {
+        "frequentDrinkCount": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.007",
+      "name": "converted no_match 不重复出现在待补充列表",
+      "category": "no_match_isolation",
+      "expected": {
+        "pendingListCount": 0
+      },
+      "actual": {
+        "todayTotalMg": 0,
+        "weeklyTotalMg": 0,
+        "pendingListCount": 0
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.008",
+      "name": "custom drink 真实记录后进入摄入计算",
+      "category": "custom_drink_isolation",
+      "expected": {
+        "todayTotalMg": 90
+      },
+      "actual": {
+        "todayTotalMg": 90
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.009",
+      "name": "模拟记录不进入日历状态",
+      "category": "calendar_isolation",
+      "expected": {
+        "calendarTotalMg": 100
+      },
+      "actual": {
+        "calendarTotalMg": 100
+      },
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.3.isolation.010",
+      "name": "pending no_match 不进入日历状态",
+      "category": "calendar_isolation",
+      "expected": {
+        "calendarTotalMg": 0
+      },
+      "actual": {
+        "calendarTotalMg": 0
+      },
+      "passed": true,
+      "notes": []
+    }
+  ]
+}

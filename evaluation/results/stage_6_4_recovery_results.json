@@ -1,0 +1,147 @@
+{
+  "stage": "6.4",
+  "module": "Error Recovery",
+  "metrics": {
+    "totalRecoveryCases": 11,
+    "recoveryPassed": 6,
+    "recoverySuccessRate": 0.5454545454545454,
+    "clarificationEffectiveness": 1,
+    "degradeCases": 4,
+    "stopCases": 1,
+    "decomposeCases": 1
+  },
+  "cases": [
+    {
+      "id": "s6.4.e2e.001",
+      "type": "standard_drink_record",
+      "trigger": "write_requires_confirmation",
+      "expectedAction": "clarify",
+      "actualAction": "clarify",
+      "passed": true,
+      "failureStep": "write_after_confirmation",
+      "notes": [
+        "缺失步骤：write_after_confirmation, refresh_home_chart_calendar。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.002",
+      "type": "ambiguous_amount_record",
+      "trigger": "ambiguous_amount",
+      "expectedAction": "clarify",
+      "actualAction": "clarify",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.4.e2e.003",
+      "type": "unknown_drink_record",
+      "trigger": "drink_not_found",
+      "expectedAction": "clarify",
+      "actualAction": "clarify",
+      "passed": true,
+      "failureStep": "search_library",
+      "notes": [
+        "缺失步骤：search_library。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.004",
+      "type": "drink_simulation",
+      "trigger": "simulation_request",
+      "expectedAction": "degrade",
+      "actualAction": "none",
+      "passed": false,
+      "failureStep": "route_to_simulation_or_sleep_risk",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。",
+        "缺失步骤：route_to_simulation_or_sleep_risk, match_drink, simulate_only, do_not_write_record, exclude_from_weekly_and_calendar。",
+        "期望恢复动作 degrade，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.006",
+      "type": "explicit_dose_risk",
+      "trigger": "explicit_dose_not_in_records",
+      "expectedAction": "degrade",
+      "actualAction": "clarify",
+      "passed": false,
+      "failureStep": "parse_explicit_dose_time",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。",
+        "缺失步骤：parse_explicit_dose_time, calculate_sleep_residual。",
+        "期望恢复动作 degrade，实际 clarify。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.007",
+      "type": "weekly_review",
+      "trigger": "insufficient_weekly_data",
+      "expectedAction": "fallback",
+      "actualAction": "fallback",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.4.e2e.008",
+      "type": "alternative_drink",
+      "trigger": "unknown_caffeine_option",
+      "expectedAction": "degrade",
+      "actualAction": "degrade",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.4.e2e.009",
+      "type": "multi_intent",
+      "trigger": "multi_intent",
+      "expectedAction": "decompose",
+      "actualAction": "none",
+      "passed": false,
+      "failureStep": "decompose",
+      "notes": [
+        "当前链路未显式拆分多意图。",
+        "期望 drink_record_parser + sleep_risk_advisor，实际 drink_record_parser。",
+        "缺失步骤：decompose, record_confirmation_first, recalculate_after_record。",
+        "期望恢复动作 decompose，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.010",
+      "type": "safety_escalation",
+      "trigger": "medical_or_discomfort",
+      "expectedAction": "stop",
+      "actualAction": "stop",
+      "passed": true,
+      "failureStep": "stop_normal_recommendation",
+      "notes": [
+        "缺失步骤：stop_normal_recommendation。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.011",
+      "type": "insufficient_data",
+      "trigger": "missing_context",
+      "expectedAction": "fallback",
+      "actualAction": "none",
+      "passed": false,
+      "failureStep": "detect_missing_sleep_time_or_records",
+      "notes": [
+        "缺失步骤：detect_missing_sleep_time_or_records, fallback_conservative_advice, ask_for_missing_info。",
+        "期望恢复动作 fallback，实际 none。"
+      ]
+    },
+    {
+      "id": "s6.4.e2e.012",
+      "type": "tool_failure",
+      "trigger": "tool_failure",
+      "expectedAction": "degrade",
+      "actualAction": "none",
+      "passed": false,
+      "failureStep": "do_not_fabricate_remaining",
+      "notes": [
+        "缺失步骤：do_not_fabricate_remaining, degrade_to_conservative_advice。",
+        "期望恢复动作 degrade，实际 none。"
+      ]
+    }
+  ]
+}

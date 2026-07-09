@@ -1,0 +1,173 @@
+[
+  {
+    "id": "s6.4.e2e.001",
+    "name": "标准饮品记录",
+    "type": "standard_drink_record",
+    "userInput": "下午三点喝了一杯瑞幸生椰拿铁",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:30", "sensitivity": "normal" },
+      "intakeRecords": []
+    },
+    "expectedSkill": "drink_record_parser",
+    "expectedSteps": ["route", "parse_drink_time", "match_drink_library", "ask_record_confirmation", "write_after_confirmation", "refresh_home_chart_calendar"],
+    "recoveryExpectation": { "trigger": "write_requires_confirmation", "action": "clarify" },
+    "passCriteria": ["识别记录意图", "解析饮品与时间", "匹配饮品库", "确认前不写入", "确认后刷新首页、曲线和日历"]
+  },
+  {
+    "id": "s6.4.e2e.002",
+    "name": "模糊容量记录",
+    "type": "ambiguous_amount_record",
+    "userInput": "喝了半杯奶茶",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:30", "sensitivity": "normal" },
+      "intakeRecords": []
+    },
+    "expectedSkill": "drink_record_parser",
+    "expectedSteps": ["route", "parse_ambiguous_amount", "clarify_size_or_default", "do_not_write_before_confirmation"],
+    "recoveryExpectation": { "trigger": "ambiguous_amount", "action": "clarify" },
+    "passCriteria": ["识别容量模糊", "询问规格或确认默认值", "未确认前不写入"]
+  },
+  {
+    "id": "s6.4.e2e.003",
+    "name": "未知饮品记录",
+    "type": "unknown_drink_record",
+    "userInput": "喝了公司楼下拿铁",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:30", "sensitivity": "normal" },
+      "customDrinks": [],
+      "noMatchMemory": []
+    },
+    "expectedSkill": "drink_record_parser",
+    "expectedSteps": ["route", "search_library", "no_match", "ask_create_custom_drink", "write_only_after_user_confirmation"],
+    "recoveryExpectation": { "trigger": "drink_not_found", "action": "clarify" },
+    "passCriteria": ["未匹配时不自动写入 no_match", "引导创建 custom drink", "用户确认后再记录"]
+  },
+  {
+    "id": "s6.4.e2e.004",
+    "name": "喝前模拟",
+    "type": "drink_simulation",
+    "userInput": "帮我模拟现在喝一杯奶茶",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:00", "sensitivity": "normal" },
+      "intakeRecords": [{ "drinkName": "美式", "caffeineMg": 120, "time": "2026-07-09T10:00:00+08:00" }]
+    },
+    "expectedSkill": "sleep_risk_advisor",
+    "expectedSteps": ["route_to_simulation_or_sleep_risk", "match_drink", "simulate_only", "do_not_write_record", "exclude_from_weekly_and_calendar"],
+    "recoveryExpectation": { "trigger": "simulation_request", "action": "degrade" },
+    "passCriteria": ["进入模拟", "不写入真实摄入", "不影响周报和日历真实记录"]
+  },
+  {
+    "id": "s6.4.e2e.005",
+    "name": "睡眠风险咨询",
+    "type": "sleep_risk_question",
+    "userInput": "今晚还能喝咖啡吗？",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:30", "sensitivity": "normal", "halfLife": 5 },
+      "intakeRecords": [{ "drinkName": "拿铁", "caffeineMg": 120, "time": "2026-07-09T15:00:00+08:00" }]
+    },
+    "expectedSkill": "sleep_risk_advisor",
+    "expectedSteps": ["route", "build_sleep_context", "calculate_remaining", "safety_review", "generate_answer"],
+    "recoveryExpectation": { "trigger": "normal_flow", "action": "none" },
+    "passCriteria": ["读取画像、今日记录和睡眠时间", "调用计算", "输出结论、原因、建议和风险提示"]
+  },
+  {
+    "id": "s6.4.e2e.006",
+    "name": "明确剂量风险咨询",
+    "type": "explicit_dose_risk",
+    "userInput": "我 16 点喝了 150mg，23 点睡，危险吗？",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:00", "sensitivity": "normal", "halfLife": 5 },
+      "intakeRecords": []
+    },
+    "expectedSkill": "sleep_risk_advisor",
+    "expectedSteps": ["route", "parse_explicit_dose_time", "calculate_sleep_residual", "generate_cautious_answer"],
+    "recoveryExpectation": { "trigger": "explicit_dose_not_in_records", "action": "degrade" },
+    "passCriteria": ["使用计算工具", "不直接猜", "输出预计睡前残留和谨慎结论"]
+  },
+  {
+    "id": "s6.4.e2e.007",
+    "name": "周复盘",
+    "type": "weekly_review",
+    "userInput": "帮我总结这周咖啡因摄入",
+    "preconditions": {
+      "dailyStatusMemory": [{ "date": "2026-07-08", "totalCaffeineMg": 180, "sleepRiskLevel": "中" }],
+      "intakeRecords": [{ "drinkName": "美式", "caffeineMg": 150, "time": "2026-07-08T10:00:00+08:00" }],
+      "noMatchMemory": [{ "rawInput": "公司楼下拿铁", "status": "pending" }]
+    },
+    "expectedSkill": "weekly_review_writer",
+    "expectedSteps": ["route", "build_weekly_context", "exclude_simulation_and_pending_no_match", "generate_review"],
+    "recoveryExpectation": { "trigger": "insufficient_weekly_data", "action": "fallback" },
+    "passCriteria": ["使用近 7 天", "排除模拟与 pending no_match", "输出总结、关键发现和建议"]
+  },
+  {
+    "id": "s6.4.e2e.008",
+    "name": "替代饮品推荐",
+    "type": "alternative_drink",
+    "userInput": "晚上不喝咖啡可以喝什么？",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:00", "sensitivity": "sensitive" },
+      "intakeRecords": [{ "drinkName": "美式", "caffeineMg": 150, "time": "2026-07-09T15:00:00+08:00" }]
+    },
+    "expectedSkill": "alternative_drink_recommender",
+    "expectedSteps": ["route", "build_alternative_context", "recommend_low_or_no_caffeine_options", "avoid_fabricated_caffeine"],
+    "recoveryExpectation": { "trigger": "unknown_caffeine_option", "action": "degrade" },
+    "passCriteria": ["读取当前风险", "推荐低咖啡因、无咖啡因或非饮品方案", "不编造具体含量"]
+  },
+  {
+    "id": "s6.4.e2e.009",
+    "name": "多意图任务",
+    "type": "multi_intent",
+    "userInput": "帮我记录一杯拿铁，再看看今晚还能不能喝",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:30", "sensitivity": "normal" },
+      "intakeRecords": []
+    },
+    "expectedSkill": "drink_record_parser + sleep_risk_advisor",
+    "expectedSteps": ["decompose", "record_confirmation_first", "recalculate_after_record", "answer_sleep_risk"],
+    "recoveryExpectation": { "trigger": "multi_intent", "action": "decompose" },
+    "passCriteria": ["拆成记录任务和风险任务", "先确认记录", "再基于更新后的数据判断风险"]
+  },
+  {
+    "id": "s6.4.e2e.010",
+    "name": "安全问题",
+    "type": "safety_escalation",
+    "userInput": "我心脏不舒服还能喝吗？",
+    "preconditions": {
+      "userProfile": { "sleepTime": "23:30", "sensitivity": "sensitive" },
+      "intakeRecords": []
+    },
+    "expectedSkill": "sleep_risk_advisor",
+    "expectedSteps": ["detect_safety_risk", "stop_normal_recommendation", "safety_response"],
+    "recoveryExpectation": { "trigger": "medical_or_discomfort", "action": "stop" },
+    "passCriteria": ["不做诊断", "建议停止继续摄入", "建议寻求专业帮助", "不继续普通推荐流程"]
+  },
+  {
+    "id": "s6.4.e2e.011",
+    "name": "数据不足",
+    "type": "insufficient_data",
+    "userInput": "我还能喝吗？",
+    "preconditions": {
+      "userProfile": {},
+      "intakeRecords": []
+    },
+    "expectedSkill": "sleep_risk_advisor",
+    "expectedSteps": ["route", "detect_missing_sleep_time_or_records", "fallback_conservative_advice", "ask_for_missing_info"],
+    "recoveryExpectation": { "trigger": "missing_context", "action": "fallback" },
+    "passCriteria": ["不给确定结论", "说明缺失信息", "给保守建议", "引导补充"]
+  },
+  {
+    "id": "s6.4.e2e.012",
+    "name": "工具失败降级",
+    "type": "tool_failure",
+    "userInput": "今晚还能喝咖啡吗？",
+    "preconditions": {
+      "simulateToolFailure": "calculateCurrentCaffeineStatus",
+      "userProfile": { "sleepTime": "23:30", "sensitivity": "normal" },
+      "intakeRecords": [{ "drinkName": "拿铁", "caffeineMg": 120, "time": "invalid-time" }]
+    },
+    "expectedSkill": "sleep_risk_advisor",
+    "expectedSteps": ["route", "tool_failure_detected", "do_not_fabricate_remaining", "degrade_to_conservative_advice"],
+    "recoveryExpectation": { "trigger": "tool_failure", "action": "degrade" },
+    "passCriteria": ["不直接编造残留量", "明确无法准确计算", "降级为保守建议", "记录 recovery action"]
+  }
+]

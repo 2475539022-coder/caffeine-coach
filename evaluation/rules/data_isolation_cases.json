@@ -1,0 +1,72 @@
+[
+  {
+    "id": "s6.3.isolation.001",
+    "name": "喝前模拟不进入真实摄入",
+    "category": "simulation_isolation",
+    "input": { "realRecords": [], "simulationRecords": [{ "name": "拿铁", "mg": 120 }] },
+    "expected": { "realRecordCount": 0, "todayTotalMg": 0 }
+  },
+  {
+    "id": "s6.3.isolation.002",
+    "name": "模拟不进入周报",
+    "category": "weekly_isolation",
+    "input": { "weeklyRecords": [{ "name": "美式", "mg": 100, "kind": "real" }, { "name": "模拟奶茶", "mg": 80, "kind": "simulation" }] },
+    "expected": { "weeklyTotalMg": 100, "excludedKinds": ["simulation"] }
+  },
+  {
+    "id": "s6.3.isolation.003",
+    "name": "pending no_match 不进入摄入计算",
+    "category": "no_match_isolation",
+    "input": { "realRecords": [], "noMatchMemory": [{ "rawInput": "公司楼下拿铁", "status": "pending", "caffeineMg": 90 }] },
+    "expected": { "todayTotalMg": 0 }
+  },
+  {
+    "id": "s6.3.isolation.004",
+    "name": "pending no_match 不进入周报",
+    "category": "weekly_isolation",
+    "input": { "weeklyRecords": [], "noMatchMemory": [{ "rawInput": "公司楼下拿铁", "status": "pending", "caffeineMg": 90 }] },
+    "expected": { "weeklyTotalMg": 0 }
+  },
+  {
+    "id": "s6.3.isolation.005",
+    "name": "搜索历史不进入常喝统计",
+    "category": "frequent_isolation",
+    "input": { "searchHistory": [{ "query": "拿铁" }, { "query": "拿铁" }], "realRecords": [] },
+    "expected": { "frequentDrinkCount": 0 }
+  },
+  {
+    "id": "s6.3.isolation.006",
+    "name": "custom drink 只有真实记录后才计入",
+    "category": "frequent_isolation",
+    "input": { "customDrinks": [{ "name": "公司楼下拿铁", "caffeineMg": 90 }], "realRecords": [] },
+    "expected": { "frequentDrinkCount": 0 }
+  },
+  {
+    "id": "s6.3.isolation.007",
+    "name": "converted no_match 不重复出现在待补充列表",
+    "category": "no_match_isolation",
+    "input": { "noMatchMemory": [{ "rawInput": "公司楼下拿铁", "status": "converted", "caffeineMg": 90, "convertedDrinkId": "custom-1" }] },
+    "expected": { "pendingListCount": 0 }
+  },
+  {
+    "id": "s6.3.isolation.008",
+    "name": "custom drink 真实记录后进入摄入计算",
+    "category": "custom_drink_isolation",
+    "input": { "realRecords": [{ "name": "公司楼下拿铁", "mg": 90, "sourceType": "user_custom" }], "customDrinks": [{ "name": "公司楼下拿铁", "caffeineMg": 90 }] },
+    "expected": { "todayTotalMg": 90 }
+  },
+  {
+    "id": "s6.3.isolation.009",
+    "name": "模拟记录不进入日历状态",
+    "category": "calendar_isolation",
+    "input": { "calendarRecords": [{ "name": "美式", "mg": 100, "kind": "real" }, { "name": "模拟拿铁", "mg": 120, "kind": "simulation" }] },
+    "expected": { "calendarTotalMg": 100 }
+  },
+  {
+    "id": "s6.3.isolation.010",
+    "name": "pending no_match 不进入日历状态",
+    "category": "calendar_isolation",
+    "input": { "calendarRecords": [], "noMatchMemory": [{ "rawInput": "未知饮品", "status": "pending", "caffeineMg": 80 }] },
+    "expected": { "calendarTotalMg": 0 }
+  }
+]

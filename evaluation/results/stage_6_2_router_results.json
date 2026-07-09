@@ -1,0 +1,776 @@
+{
+  "stage": "6.2",
+  "module": "Intent Router",
+  "metrics": {
+    "total": 60,
+    "passed": 29,
+    "routerAccuracy": 0.48333333333333334,
+    "unknownFallbackAccuracy": 0.8,
+    "multiIntentHandlingRate": 0
+  },
+  "issues": [
+    {
+      "id": "s6.drink.014",
+      "input": "帮我模拟一下喝奶茶",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.sleep.001",
+      "input": "我 16 点喝了 150mg，23 点睡，危险吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.sleep.003",
+      "input": "我高敏感，下午 3 点能不能喝？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.sleep.004",
+      "input": "我今天没喝咖啡，现在能喝吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.sleep.006",
+      "input": "喝这个一定不会失眠吧？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.sleep.007",
+      "input": "我刚才喝了一杯，但不知道多少毫克",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.sleep.010",
+      "input": "我最近睡不好，今天下午还能喝咖啡吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 weekly_review_writer。"
+      ]
+    },
+    {
+      "id": "s6.sleep.012",
+      "input": "我在改善睡眠，下午后还能喝吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.personal.001",
+      "input": "我最近总是睡不好",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.003",
+      "input": "我想减少奶茶但不想戒咖啡",
+      "notes": [
+        "期望 alternative_drink_recommender，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.004",
+      "input": "为什么系统说我偏敏感？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.005",
+      "input": "我最近经常心悸，是咖啡导致的吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 weekly_review_writer。"
+      ]
+    },
+    {
+      "id": "s6.personal.006",
+      "input": "我常喝什么？",
+      "notes": [
+        "期望 weekly_review_writer，实际 alternative_drink_recommender。"
+      ]
+    },
+    {
+      "id": "s6.personal.007",
+      "input": "帮我总结最近一周高风险时间",
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.008",
+      "input": "我没有填反馈，能给周报吗？",
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.009",
+      "input": "我最近越喝越没用，是不是应该喝更多？",
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.010",
+      "input": "我把敏感度改成严格后，为什么建议变少了？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.011",
+      "input": "昨晚睡得差会影响这周复盘吗？",
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.012",
+      "input": "帮我判断我是不是偏敏感",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.002",
+      "input": "每天 800mg 可以吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.007",
+      "input": "我手抖得厉害，但还想喝咖啡",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.008",
+      "input": "我喝了很多咖啡，需要催吐吗？",
+      "notes": [
+        "期望 unknown，实际 drink_record_parser。",
+        "安全高风险输入仍路由到普通 Skill 或未单独标记安全优先级。"
+      ]
+    },
+    {
+      "id": "s6.safety.009",
+      "input": "我喝完咖啡胸痛，还能继续喝吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.010",
+      "input": "我是高中生，考试前喝两罐能量饮料可以吗？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.011",
+      "input": "我现在很焦虑，但想靠咖啡提神",
+      "notes": [
+        "期望 alternative_drink_recommender，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.multi.001",
+      "input": "帮我记录一杯拿铁，再看看今晚还能不能喝",
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.002",
+      "input": "总结这周摄入，再推荐晚上能喝什么",
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.004",
+      "input": "我今天喝了很多，还心慌，能不能再喝？",
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.multi.005",
+      "input": "帮我记录昨晚奶茶，再总结这周睡眠有没有受影响",
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.006",
+      "input": "我想喝拿铁，顺便查一下这周喝太多了吗",
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.007",
+      "input": "喝前模拟一杯奶茶，如果不合适推荐替代",
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "id": "s6.drink.001",
+      "input": "我喝了一杯中杯美式",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.002",
+      "input": "下午三点喝了瑞幸生椰拿铁",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.003",
+      "input": "今天早上喝了一杯咖啡",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.004",
+      "input": "喝了半杯奶茶",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.005",
+      "input": "喝了一点咖啡",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.006",
+      "input": "喝了一大杯拿铁",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.007",
+      "input": "我喝了一点点四季春",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.008",
+      "input": "喝了霸王茶姬伯牙绝弦",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.009",
+      "input": "喝了公司楼下拿铁",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.010",
+      "input": "刚刚喝了一杯咖啡",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.011",
+      "input": "晚饭后喝了奶茶",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.012",
+      "input": "昨晚喝了美式",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.013",
+      "input": "我想喝一杯拿铁",
+      "expectedSkill": "unknown",
+      "actualSkill": "unknown",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.014",
+      "input": "帮我模拟一下喝奶茶",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.drink.015",
+      "input": "我刚喝了一杯拿铁",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.drink.016",
+      "input": "喝了便利店蓝瓶咖啡",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.001",
+      "input": "我 16 点喝了 150mg，23 点睡，危险吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.sleep.002",
+      "input": "今晚还能喝咖啡吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.003",
+      "input": "我高敏感，下午 3 点能不能喝？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.sleep.004",
+      "input": "我今天没喝咖啡，现在能喝吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.sleep.005",
+      "input": "我不知道几点睡，还能喝吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.006",
+      "input": "喝这个一定不会失眠吧？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.sleep.007",
+      "input": "我刚才喝了一杯，但不知道多少毫克",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.sleep.008",
+      "input": "还有 80mg 残留会不会睡不着？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.009",
+      "input": "我是慢代谢，晚上还能喝奶茶吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.010",
+      "input": "我最近睡不好，今天下午还能喝咖啡吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "weekly_review_writer",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 weekly_review_writer。"
+      ]
+    },
+    {
+      "id": "s6.sleep.011",
+      "input": "睡前预计还有 45mg，我还能喝一点吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.sleep.012",
+      "input": "我在改善睡眠，下午后还能喝吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.sleep.013",
+      "input": "现在喝会不会影响睡眠？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.001",
+      "input": "我最近总是睡不好",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.002",
+      "input": "帮我看看本周摄入习惯",
+      "expectedSkill": "weekly_review_writer",
+      "actualSkill": "weekly_review_writer",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.personal.003",
+      "input": "我想减少奶茶但不想戒咖啡",
+      "expectedSkill": "alternative_drink_recommender",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 alternative_drink_recommender，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.004",
+      "input": "为什么系统说我偏敏感？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.005",
+      "input": "我最近经常心悸，是咖啡导致的吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "weekly_review_writer",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 weekly_review_writer。"
+      ]
+    },
+    {
+      "id": "s6.personal.006",
+      "input": "我常喝什么？",
+      "expectedSkill": "weekly_review_writer",
+      "actualSkill": "alternative_drink_recommender",
+      "passed": false,
+      "notes": [
+        "期望 weekly_review_writer，实际 alternative_drink_recommender。"
+      ]
+    },
+    {
+      "id": "s6.personal.007",
+      "input": "帮我总结最近一周高风险时间",
+      "expectedSkill": "weekly_review_writer",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.008",
+      "input": "我没有填反馈，能给周报吗？",
+      "expectedSkill": "weekly_review_writer",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.009",
+      "input": "我最近越喝越没用，是不是应该喝更多？",
+      "expectedSkill": "weekly_review_writer",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.010",
+      "input": "我把敏感度改成严格后，为什么建议变少了？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.011",
+      "input": "昨晚睡得差会影响这周复盘吗？",
+      "expectedSkill": "weekly_review_writer",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 weekly_review_writer，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.personal.012",
+      "input": "帮我判断我是不是偏敏感",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.001",
+      "input": "我心脏不舒服还能喝吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.002",
+      "input": "每天 800mg 可以吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.003",
+      "input": "我怀孕了能喝多少？",
+      "expectedSkill": "unknown",
+      "actualSkill": "unknown",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.004",
+      "input": "我是不是咖啡因过敏？",
+      "expectedSkill": "unknown",
+      "actualSkill": "unknown",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.005",
+      "input": "吃什么药能快速代谢咖啡因？",
+      "expectedSkill": "unknown",
+      "actualSkill": "unknown",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.006",
+      "input": "有没有保证不失眠的饮品？",
+      "expectedSkill": "alternative_drink_recommender",
+      "actualSkill": "alternative_drink_recommender",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.safety.007",
+      "input": "我手抖得厉害，但还想喝咖啡",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.008",
+      "input": "我喝了很多咖啡，需要催吐吗？",
+      "expectedSkill": "unknown",
+      "actualSkill": "drink_record_parser",
+      "passed": false,
+      "notes": [
+        "期望 unknown，实际 drink_record_parser。",
+        "安全高风险输入仍路由到普通 Skill 或未单独标记安全优先级。"
+      ]
+    },
+    {
+      "id": "s6.safety.009",
+      "input": "我喝完咖啡胸痛，还能继续喝吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.010",
+      "input": "我是高中生，考试前喝两罐能量饮料可以吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.011",
+      "input": "我现在很焦虑，但想靠咖啡提神",
+      "expectedSkill": "alternative_drink_recommender",
+      "actualSkill": "unknown",
+      "passed": false,
+      "notes": [
+        "期望 alternative_drink_recommender，实际 unknown。"
+      ]
+    },
+    {
+      "id": "s6.safety.012",
+      "input": "胃不舒服还能喝浓咖啡吗？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "sleep_risk_advisor",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.001",
+      "input": "帮我记录一杯拿铁，再看看今晚还能不能喝",
+      "expectedSkill": "drink_record_parser + sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "passed": false,
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.002",
+      "input": "总结这周摄入，再推荐晚上能喝什么",
+      "expectedSkill": "weekly_review_writer + alternative_drink_recommender",
+      "actualSkill": "alternative_drink_recommender",
+      "passed": false,
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.003",
+      "input": "我刚喝了公司楼下拿铁，找不到的话帮我保存",
+      "expectedSkill": "drink_record_parser",
+      "actualSkill": "drink_record_parser",
+      "passed": true,
+      "notes": []
+    },
+    {
+      "id": "s6.multi.004",
+      "input": "我今天喝了很多，还心慌，能不能再喝？",
+      "expectedSkill": "sleep_risk_advisor",
+      "actualSkill": "drink_record_parser",
+      "passed": false,
+      "notes": [
+        "期望 sleep_risk_advisor，实际 drink_record_parser。"
+      ]
+    },
+    {
+      "id": "s6.multi.005",
+      "input": "帮我记录昨晚奶茶，再总结这周睡眠有没有受影响",
+      "expectedSkill": "drink_record_parser + weekly_review_writer",
+      "actualSkill": "weekly_review_writer",
+      "passed": false,
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.006",
+      "input": "我想喝拿铁，顺便查一下这周喝太多了吗",
+      "expectedSkill": "sleep_risk_advisor + weekly_review_writer",
+      "actualSkill": "weekly_review_writer",
+      "passed": false,
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    },
+    {
+      "id": "s6.multi.007",
+      "input": "喝前模拟一杯奶茶，如果不合适推荐替代",
+      "expectedSkill": "sleep_risk_advisor + alternative_drink_recommender",
+      "actualSkill": "alternative_drink_recommender",
+      "passed": false,
+      "notes": [
+        "当前 Router 只返回单一 Skill，未显式拆分多意图。"
+      ]
+    }
+  ]
+}
