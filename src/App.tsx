@@ -68,6 +68,7 @@ import { agentLoop } from "./agent/agentLoop";
 import { permissionGuard } from "./agent/permissions";
 import type { AgentLoopResponse } from "./agent/types";
 import { useAdviceRefresh } from "./hooks/useAdviceRefresh";
+import { calculateRuleDecisionSnapshot, type RuleDecision } from "./decision/caffeineDecisionEngine";
 
 type MainTab = "today" | "records" | "insights" | "mine";
 
@@ -408,6 +409,13 @@ function riskLevel(value: number, threshold: number) {
   if (value <= threshold) return "低";
   if (value <= 80) return "中";
   return "高";
+}
+
+function ruleDecisionToSimulationLabel(decision: RuleDecision) {
+  if (decision === "full_cup") return "可以饮用";
+  if (decision === "half_cup") return "建议改成半杯或低因";
+  if (decision === "low_caf") return "建议选择低因";
+  return "不建议喝完整一杯";
 }
 
 function formatTime(iso: string) {
@@ -1569,29 +1577,22 @@ function App() {
   const derived = useMemo(() => {
     const now = new Date();
     const todayDrinks = drinks.filter((drink) => isSameDay(drink.time, now));
-    const todayTotal = todayDrinks.reduce((sum, drink) => sum + drink.mg, 0);
-    const halfLife = halfLives[settings.metabolism];
-    const current = totalRemaining(drinks, now, halfLife);
+    const snapshot = calculateRuleDecisionSnapshot({
+      records: drinks,
+      settings,
+      feedback,
+      currentTime: now.toISOString(),
+    });
+    const todayTotal = snapshot.todayTotalMg;
+    const halfLife = snapshot.halfLifeHours;
+    const current = snapshot.currentRemainingMg;
     const bedDate = getBedDate(settings.bedTime, now);
-    const sleepRemaining = totalRemaining(drinks, bedDate, halfLife);
+    const sleepRemaining = snapshot.estimatedSleepResidualMg;
     const sensitivity = buildSensitivityInsight(settings, feedback, sleepRemaining);
-    const habitProfile = deriveCaffeineProfileFromHabits(habitsFromSettings(settings));
-    const rawRecommended = Math.round(
-      settings.dailyBaseLimitMg *
-        metabolismFactors[settings.metabolism] *
-        sensitivity.coefficient *
-        sleepFactors[feedback.sleepQuality] *
-        goalFactors[settings.goal] *
-        feedbackFactor(feedback) *
-        habitProfile.recommendationFactor,
-    );
-    const recommended = settings.personalDailyLimitMg > 0 ? Math.min(rawRecommended, settings.personalDailyLimitMg) : rawRecommended;
-    const canDrink = Math.max(0, recommended - todayTotal);
-    const adjustedThreshold =
-      feedback.sleepLatency === "hard" || feedback.afternoonIntake === "yes"
-        ? Math.max(15, settings.safeSleepResidualMg - 5)
-        : settings.safeSleepResidualMg;
-    const risk = riskLevel(sleepRemaining, adjustedThreshold);
+    const recommended = snapshot.targetIntakeMg;
+    const canDrink = snapshot.canDrinkMg;
+    const adjustedThreshold = snapshot.adjustedSleepResidualMg;
+    const risk = snapshot.sleepRisk;
     const chartData = Array.from({ length: 25 }, (_, index) => {
       const at = new Date(now.getTime() + index * 36e5);
       return {
@@ -1657,39 +1658,25 @@ function App() {
 
   const simResult = useMemo(() => {
     const now = new Date();
-    const bedDate = getBedDate(settings.bedTime, now);
-    const synthetic: Drink = {
-      id: "simulation",
-      name: simulation.name,
-      type: simulation.type,
-      mg: simulation.mg,
-      time: now.toISOString(),
-      note: "",
-      drinkItemId: simulation.drinkItemId,
-      brand: simulation.brand,
-      category: simulation.category,
-      displayName: simulation.displayName,
-      volumeMl: simulation.volumeMl,
-      sizeLabel: simulation.sizeLabel,
-      sourceType: simulation.sourceType,
-      confidence: simulation.confidence,
-      isDecaf: simulation.isDecaf,
-    };
-    const sleepRemaining = Math.round(totalRemaining([...drinks, synthetic], bedDate, derived.halfLife));
-    const risk = riskLevel(sleepRemaining, derived.adjustedThreshold);
-    const afterTotal = derived.todayTotal + simulation.mg;
+    const snapshot = calculateRuleDecisionSnapshot({
+      records: drinks,
+      settings,
+      feedback,
+      currentTime: now.toISOString(),
+      simulatedDrink: {
+        name: simulation.displayName || simulation.name,
+        caffeineMg: simulation.mg,
+        category: simulation.category || simulation.type,
+      },
+    });
+    const sleepRemaining = snapshot.estimatedSleepResidualMg;
+    const risk = snapshot.sleepRisk;
+    const afterTotal = snapshot.afterTodayTotalMg ?? derived.todayTotal + simulation.mg;
     const exceedsPalpitation = simulation.mg >= settings.palpitationTriggerMg;
     const exceedsAnxiety = simulation.mg >= settings.anxietyTriggerMg;
     const exceedsComfort = simulation.mg > settings.singleComfortMg;
     const overPersonalLimit = settings.personalDailyLimitMg > 0 && afterTotal > settings.personalDailyLimitMg;
-    const decision =
-      exceedsPalpitation || overPersonalLimit
-        ? "不建议喝完整一杯"
-        : exceedsAnxiety || risk === "高" || afterTotal > derived.recommended
-        ? "不建议喝完整一杯"
-        : risk === "中" || exceedsComfort
-          ? "建议改成半杯或低因"
-          : "可以饮用";
+    const decision = ruleDecisionToSimulationLabel(snapshot.ruleDecision);
     const advice =
       exceedsPalpitation
         ? "这杯对你来说可能偏刺激，建议改为半杯或低因。"

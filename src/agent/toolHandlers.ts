@@ -1,5 +1,6 @@
 import { getAllDrinks } from "../utils/drinkData";
 import { matchDrinkFromText } from "../utils/drinkMatcher";
+import { calculateRuleDecisionSnapshot, type RuleDecision } from "../decision/caffeineDecisionEngine";
 import type {
   AgentDrinkRecord,
   AgentFeedback,
@@ -226,26 +227,28 @@ function resolveProfile(profile?: Partial<AgentProfile>) {
 }
 
 function calculationFor(records: AgentDrinkRecord[], profile: AgentProfile, currentTime?: string): CaffeineStatusOutput {
-  const now = currentTime ? new Date(currentTime) : new Date();
-  const todayRecords = records.filter((record) => isSameDay(record.time, now));
-  const todayTotalMg = todayRecords.reduce((sum, record) => sum + record.mg, 0);
-  const halfLifeHours = halfLives[profile.settings.metabolism];
-  const bedDate = getBedDate(profile.settings.bedTime, now);
-  const adjustedThreshold =
-    profile.feedback.sleepLatency === "hard" || profile.feedback.afternoonIntake === "yes"
-      ? Math.max(15, profile.settings.safeSleepResidualMg - 5)
-      : profile.settings.safeSleepResidualMg;
-  const sleepRemainingMg = Math.round(totalRemaining(records, bedDate, halfLifeHours));
+  const snapshot = calculateRuleDecisionSnapshot({
+    records,
+    settings: profile.settings,
+    feedback: profile.feedback,
+    currentTime,
+  });
   return {
-    currentTime: now.toISOString(),
-    todayTotalMg,
-    currentRemainingMg: Math.round(totalRemaining(records, now, halfLifeHours)),
-    sleepRemainingMg,
-    sleepRisk: riskLevel(sleepRemainingMg, adjustedThreshold),
-    bedTime: profile.settings.bedTime,
-    halfLifeHours,
-    safeSleepResidualMg: adjustedThreshold,
+    currentTime: snapshot.currentTime,
+    todayTotalMg: snapshot.todayTotalMg,
+    currentRemainingMg: snapshot.currentRemainingMg,
+    sleepRemainingMg: snapshot.estimatedSleepResidualMg,
+    sleepRisk: snapshot.sleepRisk,
+    bedTime: snapshot.bedTime,
+    halfLifeHours: snapshot.halfLifeHours,
+    safeSleepResidualMg: snapshot.adjustedSleepResidualMg,
   };
+}
+
+function decisionLabelFromRule(decision: RuleDecision): SimulateDrinkOutput["decision"] {
+  if (decision === "full_cup") return "可以饮用";
+  if (decision === "half_cup" || decision === "low_caf") return "建议改成半杯或低因";
+  return "不建议喝完整一杯";
 }
 
 export function getTodayIntakeRecords(input: TodayIntakeInput = {}): AgentToolResult<TodayIntakeOutput> {
@@ -374,29 +377,23 @@ export function simulateDrinkBeforeAdding(input: SimulateDrinkInput): AgentToolR
       };
     }
     const drinkName = input.drink?.displayName || input.drink?.name || "这杯饮品";
-    const synthetic: AgentDrinkRecord = {
-      id: "agent-simulation",
-      name: drinkName,
-      type: input.drink?.category ?? "饮品",
-      mg: caffeineMg,
-      time: now.toISOString(),
-      note: "喝前模拟",
-    };
-    const calculation = calculationFor([...stored.drinks, synthetic], profile, now.toISOString());
+    const snapshot = calculateRuleDecisionSnapshot({
+      records: stored.drinks,
+      settings: profile.settings,
+      feedback: profile.feedback,
+      currentTime: now.toISOString(),
+      simulatedDrink: {
+        name: drinkName,
+        caffeineMg,
+        category: input.drink?.category,
+      },
+    });
     const currentToday = stored.drinks.filter((record) => isSameDay(record.time, now)).reduce((sum, record) => sum + record.mg, 0);
-    const afterTodayTotalMg = currentToday + caffeineMg;
+    const afterTodayTotalMg = snapshot.afterTodayTotalMg ?? currentToday + caffeineMg;
     const exceedsPalpitation = caffeineMg >= profile.settings.palpitationTriggerMg;
     const exceedsAnxiety = caffeineMg >= profile.settings.anxietyTriggerMg;
-    const exceedsComfort = caffeineMg > profile.settings.singleComfortMg;
     const overPersonalLimit = profile.settings.personalDailyLimitMg > 0 && afterTodayTotalMg > profile.settings.personalDailyLimitMg;
-    const decision =
-      exceedsPalpitation || overPersonalLimit
-        ? "不建议喝完整一杯"
-        : exceedsAnxiety || calculation.sleepRisk === "高" || afterTodayTotalMg > profile.targetIntakeMg
-          ? "不建议喝完整一杯"
-          : calculation.sleepRisk === "中" || exceedsComfort
-            ? "建议改成半杯或低因"
-            : "可以饮用";
+    const decision = decisionLabelFromRule(snapshot.ruleDecision);
     const advice =
       exceedsPalpitation
         ? "这杯超过了你的心慌提醒线，建议改为半杯或低因。"
@@ -404,9 +401,9 @@ export function simulateDrinkBeforeAdding(input: SimulateDrinkInput): AgentToolR
           ? "这杯会超过你的个人每日上限，今天建议暂停咖啡因。"
           : exceedsAnxiety
             ? "这杯可能让你更容易紧张，建议改成半杯。"
-            : calculation.sleepRisk === "高" || afterTodayTotalMg > profile.targetIntakeMg
+            : snapshot.sleepRisk === "高" || afterTodayTotalMg > profile.targetIntakeMg
               ? "不建议继续摄入，今晚优先保护睡眠。"
-              : calculation.sleepRisk === "中" || exceedsComfort
+              : snapshot.sleepRisk === "中" || caffeineMg > profile.settings.singleComfortMg
                 ? "建议喝半杯，或选择低因饮品。"
                 : "可以饮用，建议慢慢喝并留意身体反馈。";
     return {
@@ -415,14 +412,14 @@ export function simulateDrinkBeforeAdding(input: SimulateDrinkInput): AgentToolR
         drinkName,
         caffeineMg,
         afterTodayTotalMg,
-        sleepRemainingMg: calculation.sleepRemainingMg,
-        sleepRisk: calculation.sleepRisk,
+        sleepRemainingMg: snapshot.estimatedSleepResidualMg,
+        sleepRisk: snapshot.sleepRisk,
         decision,
         advice,
         reasons: [
           `你计划 ${profile.settings.bedTime} 睡觉。`,
           `这杯约 ${caffeineMg}mg，今天喝完后累计约 ${afterTodayTotalMg}mg。`,
-          `睡前预计残留约 ${calculation.sleepRemainingMg}mg，目标约 ${calculation.safeSleepResidualMg}mg。`,
+          `睡前预计残留约 ${snapshot.estimatedSleepResidualMg}mg，目标约 ${snapshot.adjustedSleepResidualMg}mg。`,
         ],
       },
     };

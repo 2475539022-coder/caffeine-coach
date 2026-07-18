@@ -7,3 +7,8 @@ dist
 .npm-cache
 *.tsbuildinfo
 *.tsbuildinfo
+.vercel
+.env*
+
+.Rhistory
+**/.Rhistory
