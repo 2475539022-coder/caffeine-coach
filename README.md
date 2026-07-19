@@ -2,7 +2,7 @@
 
 一个轻量咖啡因饮用决策助手：帮助用户快速记录咖啡因摄入，并在准备喝下一杯前判断“现在还能不能喝、喝多少更合适、为什么这样建议”。
 
-> Online Demo: `TODO: add Vercel production URL`
+> Online Demo: 🌐 [立即体验 Caffeine Coach](https://caffeine-coach-dev.vercel.app)
 
 ## 用户痛点与产品价值
 
