@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -64,11 +64,14 @@ import {
   type NoMatchDrinkMemory,
 } from "./utils/noMatchDrinkMemory";
 import { recognizeDrinkFromImage } from "./services/mockOcr";
+import { requestPersonalizedPreDrinkExplanation } from "./services/personalizedExplanationClient";
 import { agentLoop } from "./agent/agentLoop";
 import { permissionGuard } from "./agent/permissions";
 import type { AgentLoopResponse } from "./agent/types";
 import { useAdviceRefresh } from "./hooks/useAdviceRefresh";
-import { calculateRuleDecisionSnapshot, type RuleDecision } from "./decision/caffeineDecisionEngine";
+import { buildCompactEvidenceContext } from "./decision/aiExplanationEvidenceBuilder";
+import { calculateRuleDecisionSnapshot, type RuleDecision, type RuleDecisionSnapshot } from "./decision/caffeineDecisionEngine";
+import type { PersonalizedPreDrinkExplanation } from "./ai/personalizedPreDrinkExplanation";
 
 type MainTab = "today" | "records" | "insights" | "mine";
 
@@ -110,6 +113,27 @@ type DrinkDraft = {
 type SimulationDraft = Omit<DrinkDraft, "time" | "note">;
 
 type OcrResult = Awaited<ReturnType<typeof recognizeDrinkFromImage>>;
+
+const PRE_DRINK_AI_PROMPT_VERSION = "personalized-pre-drink-explanation-v1";
+const PRE_DRINK_AI_MODEL_PROVIDER = "server";
+const PRE_DRINK_AI_MODEL_VERSION = "server-configured";
+const PRE_DRINK_AI_SCHEMA_VERSION = "ai-explanation-output-v1";
+const PRE_DRINK_AI_SAFETY_VERSION = "safety-v1";
+
+type PreDrinkExplanationState = {
+  status: "idle" | "loading" | "llm_success" | "fallback" | "error";
+  requestKey?: string;
+  data?: PersonalizedPreDrinkExplanation;
+  source?: "llm" | "fallback";
+  fallbackType?: string;
+  message?: string;
+};
+
+type PreDrinkExplanationCacheEntry = Omit<PreDrinkExplanationState, "status"> & {
+  status: "llm_success" | "fallback";
+  data: PersonalizedPreDrinkExplanation;
+  requestKey: string;
+};
 
 type OcrState = {
   loading: boolean;
@@ -1516,8 +1540,9 @@ function App() {
   );
   const [homeAgentAdvice, setHomeAgentAdvice] = useState<AgentLoopResponse | null>(null);
   const [homeAgentLoading, setHomeAgentLoading] = useState(false);
-  const [simAgentAdvice, setSimAgentAdvice] = useState<AgentLoopResponse | null>(null);
-  const [simAgentLoading, setSimAgentLoading] = useState(false);
+  const [preDrinkExplanation, setPreDrinkExplanation] = useState<PreDrinkExplanationState>({ status: "idle" });
+  const preDrinkExplanationCache = useRef(new Map<string, PreDrinkExplanationCacheEntry>());
+  const preDrinkExplanationRequest = useRef<{ key: string; controller: AbortController } | null>(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ drinks, settings, feedback, dailyStatusMemory, feedbackMemory }));
@@ -1533,22 +1558,6 @@ function App() {
     const timer = window.setTimeout(() => setToastBean(null), 2600);
     return () => window.clearTimeout(timer);
   }, [toastBean]);
-
-  useEffect(() => {
-    if (!simOpen || !simulation.name.trim()) return;
-    let active = true;
-    setSimAgentLoading(true);
-    void agentLoop(`如果我现在喝一杯${simulation.name}会怎样？`, { currentTime: new Date().toISOString(), maxToolCalls: 5 })
-      .then((response) => {
-        if (active) setSimAgentAdvice(response);
-      })
-      .finally(() => {
-        if (active) setSimAgentLoading(false);
-      });
-    return () => {
-      active = false;
-    };
-  }, [simOpen, simulation.name, simulation.drinkItemId, simulation.mg]);
 
   const { emitAdviceRefresh } = useAdviceRefresh({
     watch: [drinks, settings, feedback],
@@ -1711,8 +1720,86 @@ function App() {
       feedback,
       latestDoseMg: simulation.mg,
     });
-    return { sleepRemaining, risk, advice, afterTotal, decision, alternatives, reasons, bean };
+    return { sleepRemaining, risk, advice, afterTotal, decision, alternatives, reasons, bean, snapshot };
   }, [derived, drinks, feedback, settings, simulation]);
+
+  const preDrinkExplanationContext = useMemo(
+    () =>
+      buildCompactEvidenceContext({
+        records: drinks,
+        dailyStatusMemory,
+        feedbackMemory,
+        ruleDecision: simResult.snapshot,
+        currentTime: simResult.snapshot.currentTime,
+        promptVersion: PRE_DRINK_AI_PROMPT_VERSION,
+        modelProvider: PRE_DRINK_AI_MODEL_PROVIDER,
+        modelVersion: PRE_DRINK_AI_MODEL_VERSION,
+        schemaVersion: PRE_DRINK_AI_SCHEMA_VERSION,
+        safetyVersion: PRE_DRINK_AI_SAFETY_VERSION,
+      }),
+    [dailyStatusMemory, drinks, feedbackMemory, simResult.snapshot],
+  );
+
+  useEffect(() => {
+    const requestKey = preDrinkExplanationContext.dataVersionHash;
+    preDrinkExplanationRequest.current?.controller.abort();
+    preDrinkExplanationRequest.current = null;
+    const cached = preDrinkExplanationCache.current.get(requestKey);
+    setPreDrinkExplanation(cached ? cached : { status: "idle", requestKey });
+  }, [preDrinkExplanationContext.dataVersionHash]);
+
+  useEffect(() => {
+    return () => {
+      preDrinkExplanationRequest.current?.controller.abort();
+    };
+  }, []);
+
+  function loadPreDrinkExplanation() {
+    const context = preDrinkExplanationContext;
+    const requestKey = context.dataVersionHash;
+    const cached = preDrinkExplanationCache.current.get(requestKey);
+    if (cached) {
+      setPreDrinkExplanation(cached);
+      return;
+    }
+    if (preDrinkExplanationRequest.current?.key === requestKey || preDrinkExplanation.status === "loading") return;
+    preDrinkExplanationRequest.current?.controller.abort();
+    const controller = new AbortController();
+    preDrinkExplanationRequest.current = { key: requestKey, controller };
+    setPreDrinkExplanation({ status: "loading", requestKey });
+    void requestPersonalizedPreDrinkExplanation(context, controller.signal)
+      .then((response) => {
+        if (preDrinkExplanationRequest.current?.key !== requestKey) return;
+        if (!response.success || response.data.decision !== context.ruleDecision.ruleDecision) {
+          setPreDrinkExplanation({
+            status: "error",
+            requestKey,
+            message: "个性化说明暂时不可用，当前模拟结论不受影响。",
+          });
+          return;
+        }
+        const next: PreDrinkExplanationCacheEntry = {
+          status: response.source === "llm" ? "llm_success" : "fallback",
+          requestKey,
+          source: response.source,
+          fallbackType: response.source === "fallback" ? response.fallbackType : undefined,
+          data: response.data,
+        };
+        preDrinkExplanationCache.current.set(requestKey, next);
+        setPreDrinkExplanation(next);
+      })
+      .catch((error) => {
+        if (controller.signal.aborted || preDrinkExplanationRequest.current?.key !== requestKey) return;
+        setPreDrinkExplanation({
+          status: "error",
+          requestKey,
+          message: "个性化说明暂时不可用，当前模拟结论不受影响。",
+        });
+      })
+      .finally(() => {
+        if (preDrinkExplanationRequest.current?.key === requestKey) preDrinkExplanationRequest.current = null;
+      });
+  }
 
   function refreshLibraryDrinks() {
     setLibraryDrinks(getAllDrinks());
@@ -2015,8 +2102,8 @@ function App() {
               settings={settings}
               recordSimulation={recordSimulation}
               skipSimulation={skipSimulation}
-              agentAdvice={simAgentAdvice}
-              agentLoading={simAgentLoading}
+              explanationState={preDrinkExplanation}
+              onExplanationOpen={loadPreDrinkExplanation}
               saveNoMatchName={saveNoMatchName}
               saveNoMatchAsCustom={convertNoMatchToSimulationDrink}
             />
@@ -2961,8 +3048,8 @@ function SimulationDialog({
   settings,
   recordSimulation,
   skipSimulation,
-  agentAdvice,
-  agentLoading,
+  explanationState,
+  onExplanationOpen,
   saveNoMatchName,
   saveNoMatchAsCustom,
 }: {
@@ -2981,12 +3068,13 @@ function SimulationDialog({
     alternatives: string[];
     reasons: string[];
     bean: Bean;
+    snapshot: RuleDecisionSnapshot;
   };
   settings: SettingsState;
   recordSimulation: () => void;
   skipSimulation: () => void;
-  agentAdvice: AgentLoopResponse | null;
-  agentLoading: boolean;
+  explanationState: PreDrinkExplanationState;
+  onExplanationOpen: () => void;
   saveNoMatchName: (rawInput: string) => void;
   saveNoMatchAsCustom: (rawInput: string, caffeineMg: number) => void;
 }) {
@@ -3062,25 +3150,9 @@ function SimulationDialog({
           <p className="mt-3 text-xs text-ink/45">睡前更安心的目标：{settings.safeSleepResidualMg}mg</p>
         </div>
         <div className="mt-4">
-          <KnowledgeAccordion title="为什么不建议继续喝？">
-            <p>咖啡因会阻断困意信号，让人更清醒。如果距离睡觉时间太近，体内仍有较多残留，就可能增加入睡难度或影响睡眠质量。</p>
-            <p>如果这杯可能让你不舒服，系统会优先建议半杯、低因或暂停摄入。</p>
+          <KnowledgeAccordion title="为什么这样建议？" onOpen={onExplanationOpen} showDefaultNote={false}>
+            <PreDrinkExplanationCard result={result} explanationState={explanationState} />
           </KnowledgeAccordion>
-        </div>
-        <div className="mt-4">
-          <AgentAdviceCard
-            title="喝前建议依据"
-            subtitle="已根据饮品信息、今日摄入和你的作息估算风险。"
-            result={agentAdvice}
-            loading={agentLoading}
-            compact
-            metrics={[
-              { label: "这杯咖啡因", value: `${simulation.mg}mg` },
-              { label: "今日累计", value: `${result.afterTotal}mg` },
-              { label: "睡前残留", value: `${result.sleepRemaining}mg` },
-              { label: "风险等级", value: `${result.risk}风险` },
-            ]}
-          />
         </div>
         <div className="mt-5 grid gap-3 md:grid-cols-3">
           <Button onClick={recordSimulation}>记录这杯</Button>
@@ -3089,6 +3161,118 @@ function SimulationDialog({
         </div>
       </div>
     </DialogContent>
+  );
+}
+
+function actionSuggestionText(action: RuleDecision) {
+  if (action === "full_cup") return "可以饮用，建议慢慢喝并留意身体反馈。";
+  if (action === "half_cup") return "建议改成半杯，或选择低因饮品。";
+  if (action === "low_caf") return "建议优先选择低因饮品。";
+  return "今天建议先不继续摄入咖啡因。";
+}
+
+function mergedHistoricalReference(explanation: PersonalizedPreDrinkExplanation) {
+  const observation = explanation.historicalObservation?.trim();
+  const summary = explanation.evidenceSummary?.trim();
+  if (observation && summary && observation !== summary) return `${observation}\n${summary}`;
+  return observation || summary || "";
+}
+
+function PreDrinkExplanationCard({
+  result,
+  explanationState,
+}: {
+  result: {
+    advice: string;
+    reasons: string[];
+    snapshot: RuleDecisionSnapshot;
+  };
+  explanationState: PreDrinkExplanationState;
+}) {
+  const explanation = explanationState.data;
+  const showPersonalized = explanationState.status === "llm_success" && explanation;
+  const showFallback = explanationState.status === "fallback" && explanation;
+  const isInsufficientEvidence = explanationState.fallbackType === "insufficient_evidence";
+  const showLoading = explanationState.status === "loading";
+  const showError = explanationState.status === "error";
+  const historicalReference = explanation ? mergedHistoricalReference(explanation) : "";
+  const bottomNote = explanation
+    ? `${explanation.dataLimitation} ${explanation.safetyNote}`.replace(/\s+/g, " ").trim()
+    : "";
+  const explanationRows = showPersonalized
+    ? [
+        { label: "本次建议", value: explanation.explanation },
+        { label: "近期记录参考", value: historicalReference },
+        { label: "建议行动", value: actionSuggestionText(explanation.actionSuggestion) },
+      ].filter((item) => item.value)
+    : [];
+
+  return (
+    <div className="rounded-[24px] bg-white/45 p-4">
+      <div className="flex items-start gap-4">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#fff0df] text-caramel">
+          <Bot className="h-5 w-5" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-bold text-caramel">喝前建议依据</p>
+          <p className="mt-1 text-sm leading-relaxed text-ink/55">已根据饮品信息、今日摄入和你的作息估算风险。</p>
+        </div>
+        {showLoading && <span className="rounded-full bg-[#fff8ee] px-3 py-1 text-xs font-bold text-caramel">补充中</span>}
+      </div>
+
+      <div className="mt-5 space-y-4">
+        <div className="rounded-[24px] bg-[#f7ead9] p-5">
+          <p className="text-sm font-bold text-caramel">规则说明</p>
+          <p className="mt-2 text-base font-bold leading-relaxed text-ink">{result.snapshot.ruleActionText || result.advice}</p>
+        </div>
+
+        <AgentListBlock title="规则依据" items={result.reasons} emptyText="暂无额外依据。" />
+
+        {showLoading && (
+          <p className="rounded-[22px] bg-[#fff8ee] p-4 text-sm font-semibold leading-relaxed text-ink/55">
+            正在结合近期记录补充说明……
+          </p>
+        )}
+
+        {showPersonalized && (
+          <div className="space-y-3 rounded-[24px] bg-white/55 p-4">
+            {explanationRows.map((item) => (
+              <div key={item.label}>
+                <p className="text-xs font-bold text-caramel">{item.label}</p>
+                <p className="mt-1 whitespace-pre-line text-sm font-semibold leading-relaxed text-ink/66">{item.value}</p>
+              </div>
+            ))}
+            {bottomNote && (
+              <p className="rounded-[18px] bg-[#fff8ee] px-4 py-3 text-xs font-semibold leading-relaxed text-ink/48">
+                {bottomNote}
+              </p>
+            )}
+          </div>
+        )}
+
+        {showFallback && (
+          <div className="space-y-3 rounded-[24px] bg-white/55 p-4">
+            {!isInsufficientEvidence && (
+              <div>
+                <p className="text-xs font-bold text-caramel">说明</p>
+                <p className="mt-1 text-sm font-semibold leading-relaxed text-ink/66">{explanation.explanation}</p>
+              </div>
+            )}
+            {bottomNote && (
+              <p className="rounded-[18px] bg-[#fff8ee] px-4 py-3 text-sm font-semibold leading-relaxed text-ink/58">
+                {bottomNote}
+              </p>
+            )}
+          </div>
+        )}
+
+        {showError && (
+          <p className="rounded-[22px] bg-[#fff8ee] p-4 text-sm font-semibold leading-relaxed text-ink/55">
+            {explanationState.message || "个性化说明暂时不可用，当前模拟结论不受影响。"}
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -3348,16 +3532,31 @@ function InfoPill({ label, value }: { label: string; value: string }) {
   );
 }
 
-function KnowledgeAccordion({ title, children }: { title: string; children: React.ReactNode }) {
+function KnowledgeAccordion({
+  title,
+  children,
+  onOpen,
+  showDefaultNote = true,
+}: {
+  title: string;
+  children: React.ReactNode;
+  onOpen?: () => void;
+  showDefaultNote?: boolean;
+}) {
   return (
-    <details className="group rounded-[24px] border border-[#eadccd] bg-white/55 p-4 text-left">
+    <details
+      className="group rounded-[24px] border border-[#eadccd] bg-white/55 p-4 text-left"
+      onToggle={(event) => {
+        if (event.currentTarget.open) onOpen?.();
+      }}
+    >
       <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-bold text-caramel">
         <span>{title}</span>
         <span className="rounded-full bg-[#f3e6d6] px-2 py-1 text-xs text-caramel group-open:rotate-180">⌄</span>
       </summary>
       <div className="mt-3 space-y-2 text-sm leading-relaxed text-ink/62">
         {children}
-        <p className="text-xs text-ink/45">本产品提供的是估算和生活管理建议，不是医疗诊断。</p>
+        {showDefaultNote && <p className="text-xs text-ink/45">本产品提供的是估算和生活管理建议，不是医疗诊断。</p>}
       </div>
     </details>
   );

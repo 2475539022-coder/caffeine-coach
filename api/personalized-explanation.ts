@@ -56,6 +56,9 @@ type ValidationFailureCode =
   | "medical_claim"
   | "causal_claim"
   | "absolute_claim"
+  | "evidence_relevance_mismatch"
+  | "range_claim"
+  | "internal_enum_exposed"
   | "safety_note_invalid"
   | "unknown_validation_failure";
 
@@ -96,25 +99,45 @@ function buildEndpoint(baseUrl: string) {
 function buildSystemPrompt() {
   return [
     "你是 Caffeine Coach 的 AI 个性化喝前解释器。",
-    "核心计算与风险结论已经由规则层完成，你只能解释，不能改写。",
+    "咖啡因计算、风险等级和本次行动建议已经由产品规则完成，你只能解释，不能改写。",
     "你必须输出 JSON，字段必须符合 schema。",
     "不得重新计算数字，不得新增事实，不得编造饮品、记录、反馈或咖啡因含量。",
+    "不得在用户可见文案中输出内部枚举：full_cup、half_cup、low_caf、no_more_today。",
+    "不得使用“本次决策为”“当前决策为”“规则层”“历史证据中”“建议今天”等内部或重复表达。",
+    "只能在用户可见文案中使用中文自然语言，例如：可以饮用、建议半杯、建议低因、今天先不喝。",
     "不得引用任何输入中未提供的数字。",
     "不得补充每日摄入上限、医学阈值、推荐标准或通用健康知识。",
     "只能原样使用 compactContext.allowedFacts 中明确提供的数字。",
     "数字不是必要信息时，使用“当前建议量”“近期”“较高”“较低”等定性表达。",
-    "explanation 必须围绕既有 decision 解释，不能重新判断 decision。",
+    "explanation 只写一段：当前中文行动建议 + 最关键的规则依据 + 历史证据如何支持或对照本次建议。",
+    "explanation 不要重复 ruleActionText 原句，不要以“建议今天”“本次决策为”等句式开头。",
+    "historicalObservation 只描述历史事实本身，不写本次建议，不写原因推导，不写与当前建议的关系。",
+    "evidenceSummary 只用一句话说明这条历史事实与当前建议的支持或对照关系，不重复完整历史事实。",
+    "explanation、historicalObservation、evidenceSummary 三个字段不得机械重复同一句话。",
+    "只能使用与当前行动建议相关的历史证据。",
+    "优先使用 relationToDecision 为 supports_decision 的证据。",
+    "如果使用 relationToDecision 为 contrasts_with_decision 的证据，必须明确说明当前场景与历史场景的关键差异。",
+    "禁止在正向行动建议后直接堆叠未解释差异的负向历史证据。",
+    "没有相关历史证据时，historicalObservation 必须返回 null，evidenceIds 返回 []，observationType 返回 none。",
+    "confidence 必须原样返回 compactContext.historicalEvidence.evidenceStrength，不能自行判断。",
+    "不得使用“安全范围”“医学安全阈值”等表达。",
+    "参考目标不得归因为用户个人设置，统一称为“当前默认参考目标”。",
+    "优先使用“低于当前默认参考目标”“按当前规则判定为低风险”。",
     "不得把共现写成因果，不得做医学诊断，不得承诺一定不会失眠。",
     "只能描述历史记录中的“同时出现、相关、趋势或参考信息”。",
+    "描述历史事实时必须是完整自然句，例如“近期有几天同时出现较晚饮用和睡眠反馈”，不要输出缺少对象的生硬短语。",
     "不得把历史记录表达为确定的因果关系。",
     "不得说明某次饮用“导致、造成、引发、带来、使你、使得、会让、会使、从而导致、直接影响”某个结果。",
     "不得使用“因为 A，所以一定会 B”或类似确定因果链。",
     "不得根据有限历史记录下医学或生理结论。",
-    "explanation 推荐固定逻辑：先说明当前 decision 来自规则结果；再引用一条相关历史现象；最后说明该现象仅作为建议参考，不代表因果关系。",
+    "explanation 推荐固定逻辑：先说明当前中文行动建议来自本次估算；再说明一条历史现象对本次建议的支持或对照作用；最后保持克制，不写成长周报。",
     "禁止表达示例：较晚饮用会导致你睡不好；咖啡因会让你今晚失眠；晚喝咖啡会带来更严重的睡眠问题；这些记录证明咖啡因直接影响了你的睡眠。",
     "允许表达示例：近期记录中，较晚饮用与较差反馈曾同时出现；结合这些记录，本次可以优先遵循半杯建议；该现象仅作为当前建议的参考，不代表因果关系。",
+    "full_cup 对照表达示例：过去高残留场景下出现过睡眠反馈，但本次睡前预计残留低于当前默认参考目标，按当前规则判定为低风险，因此这条历史记录只作为对照参考。",
+    "字段示例：historicalObservation 写“近期有几天同时出现较晚饮用和睡眠反馈”；evidenceSummary 写“这支持本次控制份量的建议”。",
     "actionSuggestion 必须来自 allowedActionSuggestions。",
-    "decision 必须与 ruleDecision.ruleDecision 完全一致。",
+    "用户可见字段 explanation、historicalObservation、evidenceSummary 绝对不得出现 full_cup、half_cup、low_caf、no_more_today。",
+    "JSON 字段 decision 必须与 ruleDecision.ruleDecision 完全一致，但不得把这个内部值写进 explanation、historicalObservation 或 evidenceSummary。",
   ].join("\n");
 }
 
@@ -127,9 +150,9 @@ function buildUserPrompt(context: CompactEvidenceContext) {
     outputSchema: {
       decision: "full_cup | half_cup | low_caf | no_more_today",
       explanation: "string",
-      historicalObservation: "string，可为空",
+      historicalObservation: "string | null",
       observationType:
-        "evening_intake_pattern | high_residual_pattern | sleep_feedback_overlap | discomfort_overlap | insufficient_data | none",
+        "low_risk_positive_pattern | evening_intake_pattern | high_residual_pattern | sleep_feedback_overlap | discomfort_overlap | insufficient_data | none",
       evidenceIds: "string[]",
       evidenceSummary: "string",
       actionSuggestion: "full_cup | half_cup | low_caf | no_more_today",
@@ -211,9 +234,13 @@ function classifyValidationFailure(errorCodes: ExplanationValidationErrorCode[])
   if (errorCodes.includes("action_not_allowed")) return "action_not_allowed";
   if (errorCodes.includes("invalid_evidence_id")) return "invalid_evidence_id";
   if (errorCodes.includes("unknown_number")) return "fact_number_not_allowed";
+  if (errorCodes.includes("evidence_strength_mismatch")) return "evidence_strength_mismatch";
   if (errorCodes.includes("medical_claim")) return "medical_claim";
   if (errorCodes.includes("causal_claim")) return "causal_claim";
   if (errorCodes.includes("absolute_claim")) return "absolute_claim";
+  if (errorCodes.includes("evidence_relevance_mismatch")) return "evidence_relevance_mismatch";
+  if (errorCodes.includes("range_claim")) return "range_claim";
+  if (errorCodes.includes("internal_enum_exposed")) return "internal_enum_exposed";
   if (errorCodes.includes("extra_data_limitation")) return "schema_invalid";
   if (errorCodes.includes("extra_safety_note")) return "schema_invalid";
   return "unknown_validation_failure";
@@ -247,7 +274,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       success: true,
       source: "fallback",
       fallbackType: "insufficient_evidence",
-      data: ruleFallbackExplanation(context, gate.reason),
+      data: ruleFallbackExplanation(context, gate.reason, "insufficient_evidence"),
     });
   }
   const llmResult = await callLlmWithTechnicalRetry(context);
@@ -256,7 +283,7 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       success: true,
       source: "fallback",
       fallbackType: llmResult.fallbackType,
-      data: ruleFallbackExplanation(context, "个性化解释暂不可用，已展示规则型解释。"),
+      data: ruleFallbackExplanation(context, "个性化解释暂不可用，已展示规则型解释。", "unavailable"),
     });
   }
   let validation = validatePersonalizedExplanation(llmResult.output, context);
@@ -284,6 +311,12 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
             safetyTriggerCode: validation.safetyTriggerCode || "unknown_causal_pattern",
           }
         : {};
+    const internalEnumDiagnostics =
+      validationFailureCode === "internal_enum_exposed" && "validationFailureField" in validation
+        ? {
+            validationFailureField: validation.validationFailureField || "unknown",
+          }
+        : {};
     console.warn(
       [
         "personalized_explanation_validation_failed",
@@ -301,7 +334,8 @@ export default async function handler(req: ApiRequest, res: ApiResponse) {
       validationFailureCode,
       ...factNumberDiagnostics,
       ...causalDiagnostics,
-      data: ruleFallbackExplanation(context, "个性化解释未通过安全或事实校验，已展示规则型解释。"),
+      ...internalEnumDiagnostics,
+      data: ruleFallbackExplanation(context, "个性化解释未通过安全或事实校验，已展示规则型解释。", "unavailable"),
     });
   }
   return json(res, 200, {

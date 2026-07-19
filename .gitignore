@@ -9,6 +9,23 @@ dist
 *.tsbuildinfo
 .vercel
 .env*
+!.env.example
+
+# Personal prompt/skill packs used during project coaching, not runtime dependencies
+skills/AIPM-Resume/
+skills/aipm-anchor/
+skills/aipm-chain/
+skills/aipm-eval/
 
 .Rhistory
 **/.Rhistory
+
+# Historical evaluation runs
+evaluation/personalized_explanation/run_results/*.json
+!evaluation/personalized_explanation/run_results/latest.json
+
+evaluation/personalized_explanation/human_review/*.json
+!evaluation/personalized_explanation/human_review/latest.json
+
+# Intermediate portfolio documents
+docs/portfolio/*.docx

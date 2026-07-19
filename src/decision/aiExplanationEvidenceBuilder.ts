@@ -23,6 +23,7 @@ export type DailyStatusForEvidence = {
 export type EvidenceStrength = "low" | "medium" | "high";
 
 export type ObservationType =
+  | "low_risk_positive_pattern"
   | "evening_intake_pattern"
   | "high_residual_pattern"
   | "sleep_feedback_overlap"
@@ -30,12 +31,16 @@ export type ObservationType =
   | "insufficient_data"
   | "none";
 
+export type EvidenceDecisionRelation = "supports_decision" | "contrasts_with_decision" | "not_relevant";
+
 export type EvidenceCandidate = {
   evidenceId: string;
   observationType: ObservationType;
   count: number;
   summary: string;
   requiresFeedback: boolean;
+  relationToDecision: EvidenceDecisionRelation;
+  relationSummary: string;
 };
 
 export type HistoricalEvidenceSummary = {
@@ -125,6 +130,89 @@ function evidenceStrengthFor(summary: {
   return "low";
 }
 
+function relationForCandidate(input: {
+  decision: RuleDecisionSnapshot["ruleDecision"];
+  observationType: ObservationType;
+  sleepRisk: RuleDecisionSnapshot["sleepRisk"];
+  estimatedSleepResidualMg: number;
+  adjustedSleepResidualMg: number;
+}): Pick<EvidenceCandidate, "relationToDecision" | "relationSummary"> {
+  const isNegativeEvidence =
+    input.observationType === "evening_intake_pattern" ||
+    input.observationType === "high_residual_pattern" ||
+    input.observationType === "sleep_feedback_overlap" ||
+    input.observationType === "discomfort_overlap";
+  if (input.decision === "full_cup") {
+    if (input.observationType === "low_risk_positive_pattern") {
+      return {
+        relationToDecision: "supports_decision",
+        relationSummary: "这条历史观察支持当前低风险、可饮用的判断。",
+      };
+    }
+    if (isNegativeEvidence && input.sleepRisk === "低" && input.estimatedSleepResidualMg <= input.adjustedSleepResidualMg) {
+      return {
+        relationToDecision: "contrasts_with_decision",
+        relationSummary: "这条历史观察属于对照：历史场景残留更高，而本次预计残留低于当前默认参考目标。",
+      };
+    }
+    return {
+      relationToDecision: "not_relevant",
+      relationSummary: "这条历史观察与当前可饮用判断关系较弱，不建议引用。",
+    };
+  }
+  if (input.decision === "half_cup") {
+    if (isNegativeEvidence) {
+      return {
+        relationToDecision: "supports_decision",
+        relationSummary: "这条历史观察支持本次控制份量的建议。",
+      };
+    }
+    return {
+      relationToDecision: "not_relevant",
+      relationSummary: "这条历史观察与当前半杯建议关系较弱，不建议引用。",
+    };
+  }
+  if (input.decision === "low_caf") {
+    if (input.observationType === "discomfort_overlap" || input.observationType === "high_residual_pattern" || input.observationType === "sleep_feedback_overlap") {
+      return {
+        relationToDecision: "supports_decision",
+        relationSummary: "这条历史观察支持本次优先选择低因的建议。",
+      };
+    }
+    if (input.observationType === "evening_intake_pattern") {
+      return {
+        relationToDecision: "supports_decision",
+        relationSummary: "这条历史观察支持本次降低咖啡因负荷的建议。",
+      };
+    }
+    return {
+      relationToDecision: "not_relevant",
+      relationSummary: "这条历史观察与当前低因建议关系较弱，不建议引用。",
+    };
+  }
+  if (input.decision === "no_more_today" && isNegativeEvidence) {
+    return {
+      relationToDecision: "supports_decision",
+      relationSummary: "这条历史观察支持今天先暂停咖啡因的建议。",
+    };
+  }
+  return {
+    relationToDecision: "not_relevant",
+    relationSummary: "这条历史观察与当前建议关系较弱，不建议引用。",
+  };
+}
+
+function orderCandidates(candidates: EvidenceCandidate[]) {
+  const rank: Record<EvidenceDecisionRelation, number> = {
+    supports_decision: 0,
+    contrasts_with_decision: 1,
+    not_relevant: 2,
+  };
+  return candidates
+    .filter((candidate) => candidate.relationToDecision !== "not_relevant")
+    .sort((a, b) => rank[a.relationToDecision] - rank[b.relationToDecision] || b.count - a.count);
+}
+
 export function buildHistoricalEvidenceSummary(input: {
   records: CaffeineDecisionRecord[];
   dailyStatusMemory: DailyStatusForEvidence[];
@@ -151,45 +239,82 @@ export function buildHistoricalEvidenceSummary(input: {
   const sleepAffectedFeedbackCount = sleepAffectedDates.size;
   const discomfortFeedbackCount = discomfortDates.size;
   const candidates: EvidenceCandidate[] = [];
+  const lowRiskStableDays = dailyStatuses.filter((item) => {
+    if (item.recordCount <= 0 || item.sleepRiskLevel !== "低" || item.hasEveningIntake) return false;
+    const feedback = feedbackItems.find((entry) => entry.date === item.date);
+    return !feedback || (!feedbackHasSleepImpact(feedback) && !feedbackHasDiscomfort(feedback));
+  }).length;
+  const withRelation = (
+    candidate: Omit<EvidenceCandidate, "relationToDecision" | "relationSummary">,
+  ): EvidenceCandidate => ({
+    ...candidate,
+    ...relationForCandidate({
+      decision: input.ruleDecision.ruleDecision,
+      observationType: candidate.observationType,
+      sleepRisk: input.ruleDecision.sleepRisk,
+      estimatedSleepResidualMg: input.ruleDecision.estimatedSleepResidualMg,
+      adjustedSleepResidualMg: input.ruleDecision.adjustedSleepResidualMg,
+    }),
+  });
+  if (lowRiskStableDays >= 2) {
+    candidates.push(
+      withRelation({
+        evidenceId: "evidence_low_risk_stable_days_14d",
+        observationType: "low_risk_positive_pattern",
+        count: lowRiskStableDays,
+        summary: `最近 14 天有 ${lowRiskStableDays} 天较早或轻量摄入后，睡前残留处于低风险记录。`,
+        requiresFeedback: false,
+      }),
+    );
+  }
   if (eveningIntakeDays >= 2) {
-    candidates.push({
-      evidenceId: "evidence_evening_intake_days_14d",
-      observationType: "evening_intake_pattern",
-      count: eveningIntakeDays,
-      summary: `最近 14 天有 ${eveningIntakeDays} 天出现晚间摄入。`,
-      requiresFeedback: false,
-    });
+    candidates.push(
+      withRelation({
+        evidenceId: "evidence_evening_intake_days_14d",
+        observationType: "evening_intake_pattern",
+        count: eveningIntakeDays,
+        summary: `最近 14 天有 ${eveningIntakeDays} 天出现晚间摄入。`,
+        requiresFeedback: false,
+      }),
+    );
   }
   if (highResidualDays >= 2) {
-    candidates.push({
-      evidenceId: "evidence_high_residual_days_14d",
-      observationType: "high_residual_pattern",
-      count: highResidualDays,
-      summary: `最近 14 天有 ${highResidualDays} 天睡前残留偏高。`,
-      requiresFeedback: false,
-    });
+    candidates.push(
+      withRelation({
+        evidenceId: "evidence_high_residual_days_14d",
+        observationType: "high_residual_pattern",
+        count: highResidualDays,
+        summary: `最近 14 天有 ${highResidualDays} 天睡前残留偏高。`,
+        requiresFeedback: false,
+      }),
+    );
   }
   if (sleepAffectedFeedbackCount >= 2 && highResidualAndSleepFeedbackSameDayCount >= 2) {
-    candidates.push({
-      evidenceId: "evidence_high_residual_sleep_overlap_14d",
-      observationType: "sleep_feedback_overlap",
-      count: highResidualAndSleepFeedbackSameDayCount,
-      summary: `有 ${highResidualAndSleepFeedbackSameDayCount} 天同时出现高残留和睡眠受影响反馈。`,
-      requiresFeedback: true,
-    });
+    candidates.push(
+      withRelation({
+        evidenceId: "evidence_high_residual_sleep_overlap_14d",
+        observationType: "sleep_feedback_overlap",
+        count: highResidualAndSleepFeedbackSameDayCount,
+        summary: `有 ${highResidualAndSleepFeedbackSameDayCount} 天同时出现高残留和睡眠受影响反馈。`,
+        requiresFeedback: true,
+      }),
+    );
   }
   if (discomfortFeedbackCount >= 2 && drinkTypeAndDiscomfortSameDayCount >= 2) {
-    candidates.push({
-      evidenceId: "evidence_drink_type_discomfort_overlap_14d",
-      observationType: "discomfort_overlap",
-      count: drinkTypeAndDiscomfortSameDayCount,
-      summary: `当前饮品类别与即时不适反馈同日出现 ${drinkTypeAndDiscomfortSameDayCount} 次。`,
-      requiresFeedback: true,
-    });
+    candidates.push(
+      withRelation({
+        evidenceId: "evidence_drink_type_discomfort_overlap_14d",
+        observationType: "discomfort_overlap",
+        count: drinkTypeAndDiscomfortSameDayCount,
+        summary: `当前饮品类别与即时不适反馈同日出现 ${drinkTypeAndDiscomfortSameDayCount} 次。`,
+        requiresFeedback: true,
+      }),
+    );
   }
+  const relevantCandidates = orderCandidates(candidates);
   const dataCompleteness = evaluateCompleteness(effectiveRecordDays, sleepAffectedFeedbackCount + discomfortFeedbackCount);
-  const minimumEvidenceMet = effectiveRecordDays >= 4 && candidates.some((candidate) => candidate.count >= 2);
-  const evidenceStrength = evidenceStrengthFor({ effectiveRecordDays, candidates, sleepAffectedFeedbackCount, discomfortFeedbackCount });
+  const minimumEvidenceMet = effectiveRecordDays >= 4 && relevantCandidates.some((candidate) => candidate.count >= 2);
+  const evidenceStrength = evidenceStrengthFor({ effectiveRecordDays, candidates: relevantCandidates, sleepAffectedFeedbackCount, discomfortFeedbackCount });
   return {
     windowDays: 14,
     effectiveRecordDays,
@@ -202,7 +327,7 @@ export function buildHistoricalEvidenceSummary(input: {
     dataCompleteness,
     minimumEvidenceMet,
     evidenceStrength,
-    candidates,
+    candidates: relevantCandidates,
   };
 }
 

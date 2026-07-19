@@ -1,0 +1,1008 @@
+{
+  "schema_version": "personalized-explanation-human-review-v1",
+  "run_id": "pe_eval_preview_2026-07-19T04-11-30-220Z",
+  "created_at": "2026-07-19T04:11:38.819Z",
+  "source_results_path": "evaluation/personalized_explanation/run_results/pe_eval_preview_2026-07-19T04-11-30-220Z.json",
+  "review_status": "pending_human_review",
+  "cases": [
+    {
+      "case_id": "pe_eval_001",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "full_cup",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_002",
+      "primary_case_type": "confusing",
+      "risk_tags": [
+        "full_cup",
+        "contrasts_with_decision",
+        "negative_history"
+      ],
+      "stage_id": "L3_L4_L5a",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_003",
+      "primary_case_type": "confusing",
+      "risk_tags": [
+        "full_cup",
+        "contrasts_with_decision",
+        "unexplained_negative_history"
+      ],
+      "stage_id": "L5a",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_004",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "full_cup",
+        "no_relevant_history",
+        "nullable_observation",
+        "insufficient_evidence"
+      ],
+      "stage_id": "L4_L5a",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_005",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "full_cup",
+        "internal_enum"
+      ],
+      "stage_id": "L5a",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_006",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "full_cup",
+        "number_faithfulness"
+      ],
+      "stage_id": "L5a",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_007",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "full_cup",
+        "frontend_mapping",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_008",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "half_cup",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_009",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "decision_mismatch"
+      ],
+      "stage_id": "L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_010",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "action_more_permissive"
+      ],
+      "stage_id": "L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_011",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "invalid_evidence_id"
+      ],
+      "stage_id": "L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_012",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "causal_claim"
+      ],
+      "stage_id": "L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_013",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "absolute_claim"
+      ],
+      "stage_id": "L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_014",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "half_cup",
+        "insufficient_evidence",
+        "fallback_wording"
+      ],
+      "stage_id": "L3_L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_015",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "half_cup",
+        "cache",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_016",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "low_caf",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_017",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "medical_claim"
+      ],
+      "stage_id": "L5a",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_018",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "internal_enum",
+        "historicalObservation"
+      ],
+      "stage_id": "L5a",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_019",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "schema"
+      ],
+      "stage_id": "L5a",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_020",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "safety_range"
+      ],
+      "stage_id": "L5a",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_021",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "evidence_strength_mismatch"
+      ],
+      "stage_id": "L5a",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_022",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "low_caf",
+        "validation_failed",
+        "fallback_wording"
+      ],
+      "stage_id": "L5a",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_023",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "low_caf",
+        "bottom_note",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "decision": "low_caf",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_024",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "no_more_today",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_025",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "internal_enum"
+      ],
+      "stage_id": "L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_026",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "action_more_permissive"
+      ],
+      "stage_id": "L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_027",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "decision_mismatch"
+      ],
+      "stage_id": "L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_028",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "medical_claim"
+      ],
+      "stage_id": "L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_029",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "causal_claim"
+      ],
+      "stage_id": "L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_030",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "number_faithfulness"
+      ],
+      "stage_id": "L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_031",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "no_more_today",
+        "service_unavailable",
+        "fallback_wording"
+      ],
+      "stage_id": "L5a",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_032",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "no_more_today",
+        "frontend_mapping",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_033",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "schema",
+        "validation_failed"
+      ],
+      "stage_id": "L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_034",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "schema",
+        "validation_failed"
+      ],
+      "stage_id": "L5a",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_035",
+      "primary_case_type": "preview",
+      "risk_tags": [
+        "preview_required",
+        "real_llm",
+        "half_cup"
+      ],
+      "stage_id": "L4_L5a_E2E",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "schema": "not_applicable",
+        "decision_consistency": "not_applicable",
+        "number_faithfulness": "not_applicable",
+        "evidence_id_validity": "not_applicable",
+        "action_consistency": "not_applicable",
+        "safety": "pass",
+        "internal_enum": "pass",
+        "fallback_correctness": "pass",
+        "model_generated_violation": false,
+        "validator_caught_violation": false,
+        "user_final_safe": true
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_036",
+      "primary_case_type": "preview",
+      "risk_tags": [
+        "preview_required",
+        "real_llm",
+        "full_cup",
+        "contrasts_with_decision"
+      ],
+      "stage_id": "L4_L5a_E2E",
+      "decision": "full_cup",
+      "hard_gate_summary": {
+        "schema": "pass",
+        "decision_consistency": "pass",
+        "number_faithfulness": "pass",
+        "evidence_id_validity": "pass",
+        "action_consistency": "pass",
+        "safety": "pass",
+        "internal_enum": "pass",
+        "fallback_correctness": "not_applicable",
+        "model_generated_violation": false,
+        "validator_caught_violation": false,
+        "user_final_safe": true
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_037",
+      "primary_case_type": "preview",
+      "risk_tags": [
+        "preview_required",
+        "real_llm",
+        "no_more_today"
+      ],
+      "stage_id": "L4_L5a_E2E",
+      "decision": "no_more_today",
+      "hard_gate_summary": {
+        "schema": "pass",
+        "decision_consistency": "pass",
+        "number_faithfulness": "pass",
+        "evidence_id_validity": "pass",
+        "action_consistency": "pass",
+        "safety": "pass",
+        "internal_enum": "pass",
+        "fallback_correctness": "not_applicable",
+        "model_generated_violation": false,
+        "validator_caught_violation": false,
+        "user_final_safe": true
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    },
+    {
+      "case_id": "pe_eval_038",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "browser_manual",
+        "fallback",
+        "insufficient_evidence",
+        "no_duplicate_explanation"
+      ],
+      "stage_id": "L5b_E2E",
+      "decision": "half_cup",
+      "hard_gate_summary": {
+        "status": "not_run",
+        "reason": "preview not enabled for this case"
+      },
+      "quality_scores": {
+        "evidence_relevance": "pending_human_review",
+        "explanation_clarity": "pending_human_review",
+        "concision": "pending_human_review",
+        "actionability": "pending_human_review",
+        "frontend_information_hierarchy": "pending_human_review"
+      },
+      "failure_dimension": "pending_human_review",
+      "root_cause": "pending_human_review",
+      "retest_result": "pending_human_review",
+      "human_note": "pending_human_review"
+    }
+  ]
+}

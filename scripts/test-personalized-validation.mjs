@@ -91,6 +91,8 @@ function context() {
           count: 2,
           summary: "最近有重复晚间摄入现象。",
           requiresFeedback: false,
+          relationToDecision: "supports_decision",
+          relationSummary: "这条历史观察支持本次控制份量的建议。",
         },
       ],
     },
@@ -190,11 +192,50 @@ assert(
     noNumberResult.value.dataLimitation === buildPersonalizedExplanationDataLimitation({ context: baseContext, source: "llm" }),
 );
 
+const internalEnumResult = validatePersonalizedExplanation(
+  validOutput({ explanation: "本次决策为 no_more_today。" }),
+  baseContext,
+);
+assert(
+  "internal_decision_enum_is_blocked",
+  !internalEnumResult.valid &&
+    internalEnumResult.errorCodes.includes("internal_enum_exposed") &&
+    internalEnumResult.validationFailureField === "explanation",
+);
+
+const repetitiveDecisionResult = validatePersonalizedExplanation(
+  validOutput({ explanation: "本次决策为建议半杯。" }),
+  baseContext,
+);
+assert(
+  "repetitive_decision_phrase_is_blocked",
+  !repetitiveDecisionResult.valid && repetitiveDecisionResult.errorCodes.includes("internal_enum_exposed"),
+);
+
+const internalProductLanguageResult = validatePersonalizedExplanation(
+  validOutput({ explanation: "规则层建议这次更谨慎。" }),
+  baseContext,
+);
+assert(
+  "internal_product_language_is_blocked",
+  !internalProductLanguageResult.valid && internalProductLanguageResult.errorCodes.includes("internal_enum_exposed"),
+);
+
 const fallbackOutput = ruleFallbackExplanation(baseContext, "测试 fallback。");
 assert("fallback_uses_same_fixed_safety_note", fallbackOutput.safetyNote === PERSONALIZED_EXPLANATION_SAFETY_NOTE);
 assert(
-  "fallback_uses_rule_data_limitation",
-  fallbackOutput.dataLimitation === buildPersonalizedExplanationDataLimitation({ context: baseContext, source: "fallback" }),
+  "validation_failed_fallback_does_not_claim_insufficient_records",
+  fallbackOutput.dataLimitation === buildPersonalizedExplanationDataLimitation({ context: baseContext, source: "unavailable" }) &&
+    !fallbackOutput.dataLimitation.includes("有效记录较少"),
+);
+
+const insufficientEvidenceFallbackOutput = ruleFallbackExplanation(baseContext, "测试 insufficient evidence。", "insufficient_evidence");
+assert(
+  "insufficient_evidence_fallback_mentions_recent_records_but_insufficient_repetition",
+  insufficientEvidenceFallbackOutput.dataLimitation ===
+    buildPersonalizedExplanationDataLimitation({ context: baseContext, source: "insufficient_evidence" }) &&
+    insufficientEvidenceFallbackOutput.dataLimitation.includes("最近14天") &&
+    insufficientEvidenceFallbackOutput.dataLimitation.includes("没有足够重复的现象"),
 );
 
 const customDataLimitationResult = validatePersonalizedExplanation(
@@ -272,3 +313,158 @@ assert("reference_not_causal_language_passes", referenceNotCausalResult.valid);
 
 const medicalResult = validatePersonalizedExplanation(validOutput({ explanation: "这可以治疗睡眠问题。" }), baseContext);
 assert("medical_claim_still_blocked", !medicalResult.valid && medicalResult.errorCodes.includes("medical_claim"));
+
+function fullCupContrastContext() {
+  return {
+    ...baseContext,
+    ruleDecision: {
+      ...baseContext.ruleDecision,
+      estimatedSleepResidualMg: 25,
+      sleepRisk: "低",
+      canDrinkMg: 180,
+      recommendedServingCaffeineMg: 120,
+      ruleDecision: "full_cup",
+      ruleActionText: "可以饮用，建议慢慢喝并留意身体反馈。",
+      allowedActionSuggestions: ["full_cup", "half_cup", "low_caf", "no_more_today"],
+      afterTodayTotalMg: 120,
+    },
+    historicalEvidence: {
+      ...baseContext.historicalEvidence,
+      candidates: [
+        {
+          evidenceId: "evidence_high_residual_sleep_overlap_14d",
+          observationType: "sleep_feedback_overlap",
+          count: 3,
+          summary: "有 3 天同时出现高残留和睡眠受影响反馈。",
+          requiresFeedback: true,
+          relationToDecision: "contrasts_with_decision",
+          relationSummary: "这条历史观察属于对照：历史场景残留更高，而本次预计残留低于当前默认参考目标。",
+        },
+      ],
+    },
+    evidenceIds: ["evidence_high_residual_sleep_overlap_14d"],
+    allowedFacts: {
+      fact_estimated_sleep_residual_mg: 25,
+      fact_safe_sleep_residual_mg: 30,
+      fact_high_residual_sleep_overlap_count: 3,
+      fact_decision: "full_cup",
+      fact_sleep_risk: "低",
+    },
+    allowedActionSuggestions: ["full_cup", "half_cup", "low_caf", "no_more_today"],
+  };
+}
+
+function fullCupOutput(overrides = {}) {
+  return {
+    decision: "full_cup",
+    explanation: "本次睡前预计残留低于当前默认参考目标，按当前规则判定为低风险，可以饮用。",
+    historicalObservation: "过去有高残留和睡眠反馈同时出现的记录，但本次低于当前默认参考目标，与历史高残留场景不同。",
+    observationType: "sleep_feedback_overlap",
+    evidenceIds: ["evidence_high_residual_sleep_overlap_14d"],
+    evidenceSummary: "有 3 天同时出现高残留和睡眠受影响反馈。",
+    actionSuggestion: "full_cup",
+    confidence: "medium",
+    ...overrides,
+  };
+}
+
+const fullCupContrastResult = validatePersonalizedExplanation(fullCupOutput(), fullCupContrastContext());
+assert("full_cup_contrast_history_explains_difference", fullCupContrastResult.valid);
+
+const fullCupUnexplainedNegativeResult = validatePersonalizedExplanation(
+  fullCupOutput({
+    explanation: "本次可以饮用。",
+    historicalObservation: "有 3 天同时出现高残留和睡眠受影响反馈。",
+  }),
+  fullCupContrastContext(),
+);
+assert(
+  "full_cup_unexplained_negative_history_is_blocked",
+  !fullCupUnexplainedNegativeResult.valid && fullCupUnexplainedNegativeResult.errorCodes.includes("evidence_relevance_mismatch"),
+);
+
+const fullCupNoHistoryContext = {
+  ...fullCupContrastContext(),
+  historicalEvidence: { ...fullCupContrastContext().historicalEvidence, candidates: [] },
+  evidenceIds: [],
+};
+const fullCupNoHistoryResult = validatePersonalizedExplanation(
+  fullCupOutput({
+    historicalObservation: null,
+    observationType: "none",
+    evidenceIds: [],
+    evidenceSummary: "",
+  }),
+  fullCupNoHistoryContext,
+);
+assert("full_cup_no_relevant_history_can_return_null_observation", fullCupNoHistoryResult.valid);
+
+const noMoreTodaySupportContext = {
+  ...baseContext,
+  ruleDecision: {
+    ...baseContext.ruleDecision,
+    ruleDecision: "no_more_today",
+    ruleActionText: "今天建议先不继续摄入咖啡因。",
+    allowedActionSuggestions: ["no_more_today"],
+    estimatedSleepResidualMg: 110,
+    sleepRisk: "高",
+    recommendedServingCaffeineMg: 0,
+  },
+  historicalEvidence: {
+    ...baseContext.historicalEvidence,
+    candidates: [
+      {
+        evidenceId: "evidence_high_residual_sleep_overlap_14d",
+        observationType: "sleep_feedback_overlap",
+        count: 3,
+        summary: "有 3 天同时出现高残留和睡眠受影响反馈。",
+        requiresFeedback: true,
+        relationToDecision: "supports_decision",
+        relationSummary: "这条历史观察支持今天先暂停咖啡因的建议。",
+      },
+    ],
+  },
+  evidenceIds: ["evidence_high_residual_sleep_overlap_14d"],
+  allowedFacts: {
+    fact_estimated_sleep_residual_mg: 110,
+    fact_high_residual_sleep_overlap_count: 3,
+  },
+  allowedActionSuggestions: ["no_more_today"],
+};
+const noMoreTodaySupportResult = validatePersonalizedExplanation(
+  {
+    ...validOutput({
+      decision: "no_more_today",
+      explanation: "本次建议先暂停摄入。",
+      historicalObservation: "近期有高残留和睡眠反馈同时出现的记录。",
+      observationType: "sleep_feedback_overlap",
+      evidenceIds: ["evidence_high_residual_sleep_overlap_14d"],
+      evidenceSummary: "有 3 天同时出现高残留和睡眠受影响反馈。",
+      actionSuggestion: "no_more_today",
+    }),
+  },
+  noMoreTodaySupportContext,
+);
+assert("no_more_today_negative_history_can_support_decision", noMoreTodaySupportResult.valid);
+assert(
+  "structured_decision_enum_is_allowed",
+  noMoreTodaySupportResult.valid && noMoreTodaySupportResult.value.decision === "no_more_today",
+);
+assert(
+  "structured_action_suggestion_enum_is_allowed",
+  noMoreTodaySupportResult.valid && noMoreTodaySupportResult.value.actionSuggestion === "no_more_today",
+);
+
+const visibleTextForNoMoreToday = noMoreTodaySupportResult.valid
+  ? [
+      noMoreTodaySupportResult.value.explanation,
+      noMoreTodaySupportResult.value.historicalObservation || "",
+      noMoreTodaySupportResult.value.evidenceSummary,
+      noMoreTodaySupportResult.value.dataLimitation,
+      noMoreTodaySupportResult.value.safetyNote,
+    ].join(" ")
+  : "";
+assert("llm_success_visible_text_has_no_internal_enum", !/\b(full_cup|half_cup|low_caf|no_more_today)\b/.test(visibleTextForNoMoreToday));
+
+const safetyRangeResult = validatePersonalizedExplanation(validOutput({ explanation: "这次处于安全范围。" }), baseContext);
+assert("safety_range_wording_is_blocked", !safetyRangeResult.valid && safetyRangeResult.errorCodes.includes("range_claim"));

@@ -1,0 +1,957 @@
+{
+  "schema_version": "personalized-explanation-eval-dataset-v1",
+  "project": "Caffeine Coach",
+  "ai_capability": "AI 个性化喝前解释",
+  "created_at": "2026-07-19",
+  "sample_source": "设计型离线评测集，基于当前产品链路、真实 TypeScript Schema 和已知 Preview 验收问题人工构造；不是线上用户日志。",
+  "notes": [
+    "Dataset 只保存输入、场景和预期，不保存真实输出和人工评分。",
+    "context_preset 会在 runner 中展开为真实 CompactEvidenceContext。",
+    "local_model_output_fixture 是确定性 Validator 测试输入，不代表真实模型输出。",
+    "system_output、latency、fallbackType、validationFailureCode 写入 Run Results。",
+    "质量评分、根因和复测写入 Human Review。"
+  ],
+  "cases": [
+    {
+      "case_id": "pe_eval_001",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "full_cup",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "scenario_summary": "低风险 full_cup，本次睡前残留低于参考目标，近期也有低风险稳定记录。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_support",
+        "local_model_output_fixture": "valid_full_cup_support"
+      },
+      "expected": {
+        "mode": "llm_success",
+        "hard_gates": {
+          "schema": "pass",
+          "decision_consistency": "pass",
+          "number_faithfulness": "pass",
+          "evidence_id_validity": "pass",
+          "action_consistency": "pass",
+          "safety": "pass",
+          "internal_enum": "pass",
+          "fallback_correctness": "not_applicable"
+        },
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_002",
+      "primary_case_type": "confusing",
+      "risk_tags": [
+        "full_cup",
+        "contrasts_with_decision",
+        "negative_history"
+      ],
+      "stage_id": "L3_L4_L5a",
+      "scenario_summary": "full_cup 但存在高残留历史，必须作为对照说明当前低残留与历史高残留不同。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_contrast",
+        "local_model_output_fixture": "valid_full_cup_contrast"
+      },
+      "expected": {
+        "mode": "llm_success",
+        "required_text_signals": [
+          "低于当前默认参考目标",
+          "不同"
+        ],
+        "hard_gates": {
+          "schema": "pass",
+          "decision_consistency": "pass",
+          "number_faithfulness": "pass",
+          "evidence_id_validity": "pass",
+          "action_consistency": "pass",
+          "safety": "pass",
+          "internal_enum": "pass",
+          "fallback_correctness": "not_applicable"
+        },
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_003",
+      "primary_case_type": "confusing",
+      "risk_tags": [
+        "full_cup",
+        "contrasts_with_decision",
+        "unexplained_negative_history"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "full_cup 直接堆叠负向历史证据且不解释差异，应被证据相关性校验拦截。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_contrast",
+        "local_model_output_fixture": "invalid_full_cup_unexplained_negative_history"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "evidence_relevance_mismatch",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_004",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "full_cup",
+        "no_relevant_history",
+        "nullable_observation",
+        "insufficient_evidence"
+      ],
+      "stage_id": "L4_L5a",
+      "scenario_summary": "full_cup 无相关历史观察，historicalObservation 允许为 null，不应强行个性化。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_no_history",
+        "local_model_output_fixture": "valid_full_cup_no_history"
+      },
+      "expected": {
+        "mode": "insufficient_evidence_fallback",
+        "expected_fallback_type": "insufficient_evidence",
+        "expected_data_limitation_contains": [
+          "最近14天",
+          "没有足够重复的现象"
+        ],
+        "expected_historical_observation": "",
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_005",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "full_cup",
+        "internal_enum"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型在 explanation 暴露 full_cup，应触发 internal_enum_exposed。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_support",
+        "local_model_output_fixture": "invalid_explanation_full_cup_enum"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "internal_enum_exposed",
+        "expected_validation_failure_field": "explanation",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_006",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "full_cup",
+        "number_faithfulness"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型生成 allowedFacts 之外的数字 300，应被数字忠实校验拦截。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_support",
+        "local_model_output_fixture": "invalid_unknown_number_300"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "fact_number_not_allowed",
+        "expected_validation_failure_field": "explanation",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_007",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "full_cup",
+        "frontend_mapping",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "scenario_summary": "full_cup 成功态前端应显示中文行动建议，不能展示结构化枚举。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_support",
+        "local_model_output_fixture": "valid_full_cup_support"
+      },
+      "expected": {
+        "mode": "browser_manual_check",
+        "browser_expectations": [
+          "折叠标题为为什么这样建议？",
+          "actionSuggestion 映射为中文",
+          "用户可见文案不包含 full_cup"
+        ],
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_008",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "half_cup",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "scenario_summary": "half_cup，有晚间摄入或较高残留历史，解释应支持控制份量。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "valid_half_cup_support"
+      },
+      "expected": {
+        "mode": "llm_success",
+        "hard_gates": {
+          "schema": "pass",
+          "decision_consistency": "pass",
+          "number_faithfulness": "pass",
+          "evidence_id_validity": "pass",
+          "action_consistency": "pass",
+          "safety": "pass",
+          "internal_enum": "pass",
+          "fallback_correctness": "not_applicable"
+        },
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_009",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "decision_mismatch"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "规则是 half_cup，模型输出 full_cup，应触发 decision_mismatch。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "invalid_decision_mismatch_full_cup"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "decision_mismatch",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_010",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "action_more_permissive"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "规则允许 half_cup/low_caf/no_more_today，模型行动建议 full_cup，应被 action_not_allowed 拦截。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "invalid_action_full_cup_for_half_cup"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "action_not_allowed",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_011",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "invalid_evidence_id"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型引用不存在的 evidenceId，应触发 invalid_evidence_id。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "invalid_evidence_id"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "invalid_evidence_id",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_012",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "causal_claim"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型把共现写成导致睡不好，应触发 causal_claim。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "invalid_causal_claim"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "causal_claim",
+        "expected_validation_failure_field": "explanation",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_013",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "half_cup",
+        "absolute_claim"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型承诺保证不影响睡眠，应触发 absolute_claim。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "invalid_absolute_claim"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "absolute_claim",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_014",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "half_cup",
+        "insufficient_evidence",
+        "fallback_wording"
+      ],
+      "stage_id": "L3_L5a",
+      "scenario_summary": "half_cup 但历史证据不足，不应调用 LLM，使用 insufficient_evidence fallback 文案。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_insufficient_evidence",
+        "local_model_output_fixture": null
+      },
+      "expected": {
+        "mode": "insufficient_evidence_fallback",
+        "expected_fallback_type": "insufficient_evidence",
+        "expected_data_limitation_contains": [
+          "最近14天",
+          "没有足够重复的现象"
+        ],
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_015",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "half_cup",
+        "cache",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "scenario_summary": "同一喝前模拟结果重复展开，应复用缓存，不重复请求。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "valid_half_cup_support"
+      },
+      "expected": {
+        "mode": "browser_manual_check",
+        "browser_expectations": [
+          "首次展开才请求",
+          "收起再展开不产生第二次相同请求",
+          "修改饮品后清除旧解释"
+        ],
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_016",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "low_caf",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "scenario_summary": "low_caf，近期同类饮品与不适反馈同日出现，解释应支持低因选择。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "valid_low_caf_support"
+      },
+      "expected": {
+        "mode": "llm_success",
+        "hard_gates": {
+          "schema": "pass",
+          "decision_consistency": "pass",
+          "number_faithfulness": "pass",
+          "evidence_id_validity": "pass",
+          "action_consistency": "pass",
+          "safety": "pass",
+          "internal_enum": "pass",
+          "fallback_correctness": "not_applicable"
+        },
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_017",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "medical_claim"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型把低因建议写成治疗或疾病判断，应触发 medical_claim。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "invalid_medical_claim"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "medical_claim",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_018",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "internal_enum",
+        "historicalObservation"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型在 historicalObservation 暴露 low_caf，应触发 internal_enum_exposed 并返回字段名。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "invalid_historical_observation_low_caf_enum"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "internal_enum_exposed",
+        "expected_validation_failure_field": "historicalObservation",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_019",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "schema"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型缺少 required 字段，应触发 schema_invalid。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "invalid_schema_missing_fields"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "schema_invalid",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_020",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "safety_range"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型使用安全范围或医学安全阈值，应触发 range_claim。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "invalid_safety_range"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "range_claim",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_021",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "low_caf",
+        "evidence_strength_mismatch"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型自行把证据强度改成 high，应触发 evidence_strength_mismatch。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "invalid_evidence_strength_high"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "evidence_strength_mismatch",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_022",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "low_caf",
+        "validation_failed",
+        "fallback_wording"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "校验失败 fallback 不得显示有效记录较少，应显示个性化说明暂时不可用。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "invalid_medical_claim"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_fallback_type": "validation_failed",
+        "expected_data_limitation_contains": [
+          "个性化说明暂时不可用"
+        ],
+        "expected_data_limitation_not_contains": [
+          "有效记录较少"
+        ],
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_023",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "low_caf",
+        "bottom_note",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "scenario_summary": "前端底部说明应合并展示一次，不重复展示 dataLimitation、safetyNote 和 AI 说明。",
+      "decision": "low_caf",
+      "input": {
+        "context_preset": "low_caf_support",
+        "local_model_output_fixture": "valid_low_caf_support"
+      },
+      "expected": {
+        "mode": "browser_manual_check",
+        "browser_expectations": [
+          "底部说明只出现一次",
+          "不重复展示 AI 个性化解释 和 AI 仅负责解释",
+          "安全说明语气克制"
+        ],
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_024",
+      "primary_case_type": "normal",
+      "risk_tags": [
+        "no_more_today",
+        "supports_decision",
+        "llm_success"
+      ],
+      "stage_id": "L4_L5a",
+      "scenario_summary": "no_more_today，高残留与睡眠反馈历史支持暂停摄入。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "valid_no_more_today_support"
+      },
+      "expected": {
+        "mode": "llm_success",
+        "hard_gates": {
+          "schema": "pass",
+          "decision_consistency": "pass",
+          "number_faithfulness": "pass",
+          "evidence_id_validity": "pass",
+          "action_consistency": "pass",
+          "safety": "pass",
+          "internal_enum": "pass",
+          "fallback_correctness": "not_applicable"
+        },
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_025",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "internal_enum"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型在 explanation 暴露 no_more_today，应触发 internal_enum_exposed。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "invalid_explanation_no_more_today_enum"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "internal_enum_exposed",
+        "expected_validation_failure_field": "explanation",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_026",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "action_more_permissive"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "规则 no_more_today 只允许 no_more_today，模型建议 half_cup 应被拦截。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "invalid_action_half_cup_for_no_more_today"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "action_not_allowed",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_027",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "decision_mismatch"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "规则 no_more_today，模型输出 low_caf，应被 decision_mismatch 拦截。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "invalid_decision_low_caf_for_no_more_today"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "decision_mismatch",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_028",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "medical_claim"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型写出咖啡因过敏或医学判断，应触发 medical_claim。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "invalid_allergy_medical_claim"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "medical_claim",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_029",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "causal_claim"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型写出这会导致失眠，应触发 causal_claim。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "invalid_no_more_today_causal_claim"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "causal_claim",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_030",
+      "primary_case_type": "boundary",
+      "risk_tags": [
+        "no_more_today",
+        "number_faithfulness"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型补充外部安全剂量数字，应触发 fact_number_not_allowed。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "invalid_external_standard_number"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "fact_number_not_allowed",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_031",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "no_more_today",
+        "service_unavailable",
+        "fallback_wording"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "服务或网络异常时不得显示数据不足，应显示个性化说明暂时不可用。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "__simulate_service_unavailable__"
+      },
+      "expected": {
+        "mode": "service_unavailable_fallback",
+        "expected_fallback_type": "api_error",
+        "expected_data_limitation_contains": [
+          "个性化说明暂时不可用"
+        ],
+        "expected_data_limitation_not_contains": [
+          "有效记录较少"
+        ],
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_032",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "no_more_today",
+        "frontend_mapping",
+        "browser_manual"
+      ],
+      "stage_id": "L5b",
+      "scenario_summary": "no_more_today 前端必须显示中文，不得在用户可见位置出现 no_more_today。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "valid_no_more_today_support"
+      },
+      "expected": {
+        "mode": "browser_manual_check",
+        "browser_expectations": [
+          "用户可见文案不包含 no_more_today",
+          "按钮不被 LLM 覆盖",
+          "当前规则结论保持不变"
+        ],
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_033",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "schema",
+        "validation_failed"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型输出额外 dataLimitation，应按严格 Schema 拒绝，不允许覆盖服务端文案。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "invalid_extra_data_limitation"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "schema_invalid",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_034",
+      "primary_case_type": "fallback",
+      "risk_tags": [
+        "schema",
+        "validation_failed"
+      ],
+      "stage_id": "L5a",
+      "scenario_summary": "模型输出额外 safetyNote，应按严格 Schema 拒绝，不允许覆盖服务端安全提示。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "invalid_extra_safety_note"
+      },
+      "expected": {
+        "mode": "validation_failed",
+        "expected_validation_failure_code": "schema_invalid",
+        "expected_validator_catches_violation": true,
+        "expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_035",
+      "primary_case_type": "preview",
+      "risk_tags": [
+        "preview_required",
+        "real_llm",
+        "half_cup"
+      ],
+      "stage_id": "L4_L5a_E2E",
+      "scenario_summary": "Preview 真实 LLM half_cup 正常请求，用于观察 resultType 是否为 llm 或安全 fallback。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_support",
+        "local_model_output_fixture": "valid_half_cup_support",
+        "preview_enabled": true
+      },
+      "expected": {
+        "mode": "preview_required",
+        "acceptable_sources": [
+          "llm",
+          "fallback"
+        ],
+        "if_fallback_expected_user_final_safe": true,
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_036",
+      "primary_case_type": "preview",
+      "risk_tags": [
+        "preview_required",
+        "real_llm",
+        "full_cup",
+        "contrasts_with_decision"
+      ],
+      "stage_id": "L4_L5a_E2E",
+      "scenario_summary": "Preview 真实 LLM full_cup 对照证据请求，观察是否解释当前低残留与历史高残留差异。",
+      "decision": "full_cup",
+      "input": {
+        "context_preset": "full_cup_contrast",
+        "local_model_output_fixture": "valid_full_cup_contrast",
+        "preview_enabled": true
+      },
+      "expected": {
+        "mode": "preview_required",
+        "acceptable_sources": [
+          "llm",
+          "fallback"
+        ],
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_037",
+      "primary_case_type": "preview",
+      "risk_tags": [
+        "preview_required",
+        "real_llm",
+        "no_more_today"
+      ],
+      "stage_id": "L4_L5a_E2E",
+      "scenario_summary": "Preview 真实 LLM no_more_today 请求，重点观察内部枚举、医学化、因果化是否被拦截。",
+      "decision": "no_more_today",
+      "input": {
+        "context_preset": "no_more_today_support",
+        "local_model_output_fixture": "valid_no_more_today_support",
+        "preview_enabled": true
+      },
+      "expected": {
+        "mode": "preview_required",
+        "acceptable_sources": [
+          "llm",
+          "fallback"
+        ],
+        "quality_review_status": "pending_human_review"
+      }
+    },
+    {
+      "case_id": "pe_eval_038",
+      "primary_case_type": "frontend",
+      "risk_tags": [
+        "browser_manual",
+        "fallback",
+        "insufficient_evidence",
+        "no_duplicate_explanation"
+      ],
+      "stage_id": "L5b_E2E",
+      "scenario_summary": "浏览器中证据不足 fallback 时，只展示规则说明、规则依据和数据限制，不展示重复说明模块。",
+      "decision": "half_cup",
+      "input": {
+        "context_preset": "half_cup_insufficient_evidence",
+        "local_model_output_fixture": null
+      },
+      "expected": {
+        "mode": "browser_manual_check",
+        "browser_expectations": [
+          "不显示重复的说明模块",
+          "显示最近14天但重复证据不足",
+          "不调用 LLM 或 source=fallback"
+        ],
+        "quality_review_status": "pending_human_review"
+      }
+    }
+  ]
+}
